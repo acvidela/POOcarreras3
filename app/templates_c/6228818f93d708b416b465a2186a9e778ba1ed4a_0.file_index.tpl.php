@@ -1,36 +1,34 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-22 17:10:27
+/* Smarty version 5.4.0, created on 2024-08-22 20:31:11
   from 'file:frontend\templates\index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66c754e34cc554_66783081',
+  'unifunc' => 'content_66c783ef826a32_19047737',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6228818f93d708b416b465a2186a9e778ba1ed4a' => 
     array (
       0 => 'frontend\\templates\\index.tpl',
-      1 => 1724339412,
+      1 => 1724351441,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:../templates/head.tpl' => 1,
   ),
 ))) {
-function content_66c754e34cc554_66783081 (\Smarty\Template $_smarty_tpl) {
+function content_66c783ef826a32_19047737 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="frontend/logo.png">
-    <link rel="stylesheet" type="text/css" href="frontend/styles.css">
-    <title>Es-Tan-Dil</title>
-</head>
+
+<?php $_smarty_tpl->renderSubTemplate('file:../templates/head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
 <body>
     <div class="container">
         <header>
@@ -40,8 +38,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
         </header>
         <nav>
             <a href="index.php">Inicio</a>
-            <a href="frontend/verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="frontend/verproximascarreras/verproximascarreras.php">Ver Próximas Carreras</a>
+            <a href="frontend/verresultadoscarreras.php">Resultados de Carreras</a>
+            <a href="frontend/verproximascarreras.php">Ver Próximas Carreras</a>
             <a class="mouse" onclick="iniciodesecion()">Administrador</a>
         </nav>
         <div class="main-content">

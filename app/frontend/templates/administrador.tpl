@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png">
-    <link rel="" href="verproximascarreras/verproximascarreras.php">
-    <link rel="" href="verresultadoscarreas/verresultadoscarreras.php">
-    <link rel="stylesheet" href="../styles.css">
-    <title>Es-Tan-Dil</title>
-</head>
+
+{include 'templates/head.tpl'}
+
 <body>
     <div class="container">
         <header>
@@ -29,9 +23,7 @@
             <h2>administrador</h2>
             <p></p>
         </div>
-        <footer>
-            &copy; 2024 Es-Tan-Dil. Todos los derechos reservados.
-        </footer>
+           {include 'templates/footer.tpl'}
     </div>
 
     <script>

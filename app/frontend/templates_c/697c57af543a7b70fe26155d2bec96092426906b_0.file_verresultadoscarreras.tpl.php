@@ -1,50 +1,48 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-22 17:19:09
+/* Smarty version 5.4.0, created on 2024-08-22 21:00:04
   from 'file:..\templates\verresultadoscarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66c756eda074a1_81638237',
+  'unifunc' => 'content_66c78ab4583703_54687602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'e61dedfe7c35930b03b17658eb6357aadad47cd9' => 
+    '697c57af543a7b70fe26155d2bec96092426906b' => 
     array (
       0 => '..\\templates\\verresultadoscarreras.tpl',
-      1 => 1724339892,
+      1 => 1724353151,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:templates/head.tpl' => 1,
+    'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66c756eda074a1_81638237 (\Smarty\Template $_smarty_tpl) {
+function content_66c78ab4583703_54687602 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../logo.png">
-    <link rel="stylesheet" href="../styles.css">
-    <title>Es-Tan-Dil</title>
-    
-</head>
+
+<?php $_smarty_tpl->renderSubTemplate('file:templates/head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
 <body>
     <div class="container">
         <header>
             
             <button class="mouse" onclick="cargainicio()">
-                <img src="../logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
+                <img src="logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
             </button>
         
         </header>
         <nav>
-            <a href="../../index.php">Inicio</a>
+            <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carrears </a>
-            <a href="../verproximascarreras/verproximascarreras.php">Ver Proximas Carrearas</a>
+            <a href="verproximascarreras.php">Ver Próximas Carrearas</a>
     
         </nav>
         <div class="main-content">
@@ -52,15 +50,14 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             <h2>Resultados</h2>
             <p>Se van a mostrar Carreras Terminadas, y al apretar se mostraran los resultados de la carrera seleccionada</p>
         </div>
-        <footer>
-            &copy; 2024 Es-Tan-Dil. Todos los derechos reservados.
-        </footer>
+          <?php $_smarty_tpl->renderSubTemplate('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
     </div>
 
     <?php echo '<script'; ?>
 >
         function cargainicio() {
-            window.location.href = '../../index.php';
+            window.location.href = '../index.php';
         }
     <?php echo '</script'; ?>
 >
