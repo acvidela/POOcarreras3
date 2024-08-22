@@ -18,7 +18,7 @@
             
         </header>
         <nav>
-            <a href="../inicio.php">Inicio</a>
+            <a href="../../index.php">Inicio</a>
             <a href="../verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
             <a href="verproximascarreras.php"> Ver Proximas Carreras</a>
             <a href="#"></a>
@@ -35,7 +35,7 @@
 
     <script>
         function cargainicio() {
-            window.location.href = '../inicio.php';
+            window.location.href = '../../index.php';
         }
     </script>
 

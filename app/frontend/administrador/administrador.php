@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../logo.png">
+    <link rel="icon" href="logo.png">
+    <link rel="" href="verproximascarrears/verproximascarreras.php">
+    <link rel="" href="verresultadoscarreas/verresultadoscarreras.php">
     <link rel="stylesheet" href="../styles.css">
     <title>Es-Tan-Dil</title>
-    
 </head>
 <body>
     <div class="container">
         <header>
             
             <button class="mouse" onclick="cargainicio()">
-                <img src="../logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
+              <img src="../logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
             </button>
-        
+
         </header>
         <nav>
-            <a href="../inicio.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carrears </a>
-            <a href="../verproximascarrears/verproximascarreras.php">Ver Proximas Carrearas</a>
-    
+            <a href="../../index.php">Inicio</a>
+            <a href="">Carreras</a>
+            <a href="">Corredores</a>
+            <a href="#"></a>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
-            <h2>Resultados</h2>
-            <p>Se van a mostrar Carreras Terminadas, y al apretar se mostraran los resultados de la carrera seleccionada</p>
+            <h2>administrador</h2>
+            <p></p>
         </div>
         <footer>
             &copy; 2024 Es-Tan-Dil. Todos los derechos reservados.
@@ -35,7 +36,7 @@
 
     <script>
         function cargainicio() {
-            window.location.href = '../inicio.php';
+            window.location.href = '../../index.php';
         }
     </script>
 

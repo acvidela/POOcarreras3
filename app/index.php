@@ -17,21 +17,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="frontend/logo.png">
+    <link rel="stylesheet" type="text/css" href="frontend/styles.css">
     <title>Es-Tan-Dil</title>
 </head>
 <body>
     <div class="container">
         <header>
             <button class="mouse" onclick="cargainicio()">
-                <img src="logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
+                <img src="frontend/logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
             </button>
         </header>
         <nav>
-            <a href="inicio.php">Inicio</a>
-            <a href="verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarrears/verproximascarreras.php">Ver Próximas Carreras</a>
+            <a href="index.php">Inicio</a>
+            <a href="frontend/verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
+            <a href="frontend/verproximascarrears/verproximascarreras.php">Ver Próximas Carreras</a>
             <a class="mouse" onclick="iniciodesecion()">Administrador</a>
         </nav>
         <div class="main-content">
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
         function cargainicio() {
-            window.location.href = 'inicio.php';
+            window.location.href = 'index.php';
         }
 
         function iniciodesecion() {
