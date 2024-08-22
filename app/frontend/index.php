@@ -2,7 +2,8 @@
 
 require_once('lib\smarty\libs\Smarty.class.php');
 
-$smarty = new Smarty\Smarty;                                    //
+$smarty = new Smarty\Smarty;        
+$smarty->assign('titulo', 'Es-Tan-Dil');                            //
 $smarty->display('templates\index.tpl');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
