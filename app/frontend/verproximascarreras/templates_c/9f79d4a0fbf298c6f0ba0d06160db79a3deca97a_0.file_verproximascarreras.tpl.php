@@ -1,5 +1,29 @@
-<!DOCTYPE html>
-<php lang="en">
+<?php
+/* Smarty version 5.4.0, created on 2024-08-22 17:16:18
+  from 'file:..\templates\verproximascarreras.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.0',
+  'unifunc' => 'content_66c75642e9a670_25021949',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '9f79d4a0fbf298c6f0ba0d06160db79a3deca97a' => 
+    array (
+      0 => '..\\templates\\verproximascarreras.tpl',
+      1 => 1724339271,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_66c75642e9a670_25021949 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
+?><!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,11 +57,14 @@
         </footer>
     </div>
 
-    <script>
+    <?php echo '<script'; ?>
+>
         function cargainicio() {
             window.location.href = '../../index.php';
         }
-    </script>
+    <?php echo '</script'; ?>
+>
 
 </body>
-</php>
+</html><?php }
+}

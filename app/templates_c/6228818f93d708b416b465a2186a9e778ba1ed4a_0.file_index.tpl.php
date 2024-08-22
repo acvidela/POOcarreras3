@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-22 16:54:30
+/* Smarty version 5.4.0, created on 2024-08-22 17:10:27
   from 'file:frontend\templates\index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66c751264247c3_05412401',
+  'unifunc' => 'content_66c754e34cc554_66783081',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6228818f93d708b416b465a2186a9e778ba1ed4a' => 
     array (
       0 => 'frontend\\templates\\index.tpl',
-      1 => 1724338463,
+      1 => 1724339412,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66c751264247c3_05412401 (\Smarty\Template $_smarty_tpl) {
+function content_66c754e34cc554_66783081 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -41,7 +41,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
         <nav>
             <a href="index.php">Inicio</a>
             <a href="frontend/verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="frontend/verproximascarrears/verproximascarreras.php">Ver Próximas Carreras</a>
+            <a href="frontend/verproximascarreras/verproximascarreras.php">Ver Próximas Carreras</a>
             <a class="mouse" onclick="iniciodesecion()">Administrador</a>
         </nav>
         <div class="main-content">

@@ -3,7 +3,7 @@
 require_once('frontend\lib\smarty\libs\Smarty.class.php');
 
 $smarty = new Smarty\Smarty;                                    //
-
+$smarty->display('frontend\templates\index.tpl');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -16,6 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Inicio de sesión cancelado.";
     }
 }
-$smarty->display('frontend\templates\index.tpl');
+
 ?>
 

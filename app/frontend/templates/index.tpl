@@ -17,7 +17,7 @@
         <nav>
             <a href="index.php">Inicio</a>
             <a href="frontend/verresultadoscarreas/verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="frontend/verproximascarrears/verproximascarreras.php">Ver Próximas Carreras</a>
+            <a href="frontend/verproximascarreras/verproximascarreras.php">Ver Próximas Carreras</a>
             <a class="mouse" onclick="iniciodesecion()">Administrador</a>
         </nav>
         <div class="main-content">
