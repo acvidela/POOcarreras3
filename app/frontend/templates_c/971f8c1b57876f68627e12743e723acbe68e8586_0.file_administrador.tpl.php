@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-23 23:56:45
-  from 'file:templates\index.tpl' */
+/* Smarty version 5.4.0, created on 2024-08-24 00:30:28
+  from 'file:templates\administrador.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66c9059da94bc8_21196133',
+  'unifunc' => 'content_66c90d84369d41_98862932',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '0a1e08e0a870b16a7ce03f8008940a736676a547' => 
+    '971f8c1b57876f68627e12743e723acbe68e8586' => 
     array (
-      0 => 'templates\\index.tpl',
-      1 => 1724449840,
+      0 => 'templates\\administrador.tpl',
+      1 => 1724452219,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66c9059da94bc8_21196133 (\Smarty\Template $_smarty_tpl) {
+function content_66c90d84369d41_98862932 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -33,20 +33,22 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
 <body>
     <div class="container">
         <header>
+            
             <button class="mouse" onclick="cargainicio()">
-                <img src="logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
+              <img src="logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
             </button>
+
         </header>
         <nav>
             <a href="index.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php">Ver Próximas Carreras</a>
-            <a class="mouse" onclick="iniciodesecion()">Administrador</a>
+            <a href="">Carreras</a>
+            <a href="">Corredores</a>
+            <a href="#"></a>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
-            <h2>Bienvenido a Es-Tan-Dil</h2>
-            <p>_________________________</p>
+            <h2>administrador</h2>
+            <p></p>
         </div>
            <?php $_smarty_tpl->renderSubTemplate('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
@@ -57,23 +59,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
         function cargainicio() {
             window.location.href = 'index.php';
         }
-
-        function iniciodesecion() {
-            const username = prompt('Ingrese su nombre de usuario:');
-            const password = prompt('Ingrese su contraseña:');
-            // Aquí puedes validar las credenciales o realizar otras acciones
-            if (username && password) {
-                alert('Bienvenido, ' + username + '!');
-            } else {
-                alert('Inicio de sesión cancelado.');
-            }
-        }
     <?php echo '</script'; ?>
 >
+
 </body>
-</html>
-
-
-
-<?php }
+</html><?php }
 }
