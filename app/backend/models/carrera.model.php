@@ -5,7 +5,7 @@ require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 class Carreras{
 
 //Devuelve todas las carreras con el id kit
-    public function todas() {
+public function todas() {
     $sql = "select * from carreras";
     $carreras = Conexion::query($sql);
     return $carreras;
@@ -13,10 +13,10 @@ class Carreras{
     
 //Devuelve una carrera en particular  
 
-function una($id) {
-    $sql = 'SELECT *
+public function una($id) {
+    $sql = "SELECT *
                 FROM carreras
-                WHERE id = ?';
+                WHERE id = $id";
 
     $carrera = Conexion::query($sql);
     return $carrera;     

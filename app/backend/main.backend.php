@@ -8,5 +8,5 @@ $db = Conexion::getConexion();
  
 $carreras=new Carreras();
 var_dump($carreras->todas());
-
+var_dump($carreras->una(18));
 $db = Conexion::closeConexion();
