@@ -1,18 +1,12 @@
 <?php
-require_once('menu.php');
-require_once('conexion.php');  
+require_once('config\conexion.php');  
+require_once('models\carrera.model.php');
 
 //MAIN
 
-$menu = new Menu();
-
-$menu->cls();
-$menu->pantallaBienvenida('Es-Tan-Dil');
-
 $db = Conexion::getConexion();
  
-$menu->elegirUsuario();  //0 salir, 1 participante, 2 administrador
-
-$menu->pantallaDespedida();
+$carreras=new Carreras();
+var_dump($carreras->todas());
 
 $db = Conexion::closeConexion();

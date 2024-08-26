@@ -1,16 +1,15 @@
 <?php
-
     class Conexion{
     
         private static $db = null;
             
         //Obtiene los datos de ingresos a la DB de un archivo json local
         private static function getDatosDb(){
-            $nombreArchivo = "datos\base.json";
+            $nombreArchivo = 'C:\xampp\htdocs\POOcarreras3\app\backend\config\base.json';
             if (is_readable($nombreArchivo)){
                 $datos = file_get_contents($nombreArchivo);
                 $datos = json_decode($datos);
-               return $datos;
+                return $datos;
             }
             return null;
         }
@@ -19,6 +18,10 @@
             try {
                 // Cadena de conexión
                 $datosDb = self::getDatosDb();
+                if($datosDb == null){
+                    echo 'Error de conexión';  
+                    return;  
+                }
                 $dsn = "pgsql:host=$datosDb->host;port=$datosDb->port;dbname=$datosDb->database;user=$datosDb->user;password=$datosDb->password";
         
                 // Crear una instancia de PDO
