@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-22 20:58:34
+/* Smarty version 5.4.0, created on 2024-08-29 15:10:40
   from 'file:templates\verproximascarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66c78a5a518a04_97378949',
+  'unifunc' => 'content_66d0735063c7f8_75188120',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a735ee512df148129ea9c3e10ba5dc3be2954e99' => 
     array (
       0 => 'templates\\verproximascarreras.tpl',
-      1 => 1724353105,
+      1 => 1724936781,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66c78a5a518a04_97378949 (\Smarty\Template $_smarty_tpl) {
+function content_66d0735063c7f8_75188120 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -35,7 +35,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
         <header>
 
              <button class="mouse" onclick="cargainicio()">
-                <img src="logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
+                <img src="images/logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
             </button>
             
         </header>
