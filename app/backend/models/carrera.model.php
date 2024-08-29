@@ -2,11 +2,21 @@
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 
-class Carreras{
+class Carrera{
 
 //Devuelve todas las carreras con el id kit
 public function todas() {
+    $db = Conexion::getConexion();
     $sql = "select * from carreras";
+    $carreras = Conexion::query($sql);
+    return $carreras;
+}
+
+//Devuelve todas las carreras por realizarse con el id kit
+public function proximas() {
+    $db = Conexion::getConexion();
+    $sql = "select * from carreras 
+             WHERE fecha >= CURRENT_DATE";
     $carreras = Conexion::query($sql);
     return $carreras;
 }

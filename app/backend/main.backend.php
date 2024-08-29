@@ -6,7 +6,7 @@ require_once('models\carrera.model.php');
 
 $db = Conexion::getConexion();
  
-$carreras=new Carreras();
+$carreras=new Carrera();
 var_dump($carreras->todas());
 var_dump($carreras->una(18));
 $db = Conexion::closeConexion();
