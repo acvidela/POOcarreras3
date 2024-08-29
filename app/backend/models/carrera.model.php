@@ -20,7 +20,17 @@ public function proximas() {
     $carreras = Conexion::query($sql);
     return $carreras;
 }
-    
+   
+//Devuelve todas las carreras ya realizadas con el id kit
+public function anteriores() {
+    $db = Conexion::getConexion();
+    $sql = "select * from carreras 
+             WHERE fecha <= CURRENT_DATE
+             ORDER by fecha DESC";
+    $carreras = Conexion::query($sql);
+    return $carreras;
+}
+
 //Devuelve una carrera en particular  
 
 public function una($id) {
