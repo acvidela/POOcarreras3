@@ -1,44 +1,41 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-29 18:47:51
-  from 'file:..\templates\verresultadoscarreras.tpl' */
+/* Smarty version 5.4.0, created on 2024-08-29 22:03:01
+  from 'file:templates\verresultadoscarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d0a6370ffa08_41053786',
+  'unifunc' => 'content_66d0d3f52a8ac4_50977756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '697c57af543a7b70fe26155d2bec96092426906b' => 
+    'fee0031a565d066527b0eb624e3600e6c23a43bc' => 
     array (
-      0 => '..\\templates\\verresultadoscarreras.tpl',
-      1 => 1724950020,
+      0 => 'templates\\verresultadoscarreras.tpl',
+      1 => 1724961767,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:templates/head.tpl' => 1,
+    'file:templates/header.tpl' => 1,
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d0a6370ffa08_41053786 (\Smarty\Template $_smarty_tpl) {
+function content_66d0d3f52a8ac4_50977756 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
 
-<?php $_smarty_tpl->renderSubTemplate('file:templates/head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+ <?php $_smarty_tpl->renderSubTemplate('file:templates/head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
 
 <body>
     <div class="container">
-        <header>
-            
-            <button class="mouse" onclick="cargainicio()">
-                <img src="images/logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
-            </button>
-        
-        </header>
+        <?php $_smarty_tpl->renderSubTemplate('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carrears </a>

@@ -5,13 +5,8 @@
 
 <body>
     <div class="container">
-        <header>
-            
-            <button class="mouse" onclick="cargainicio()">
-              <img src="images/logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
-            </button>
+        {include 'templates/header.tpl'}
 
-        </header>
         <nav>
             <a href="index.php">Inicio</a>
             <a href="">Carreras</a>

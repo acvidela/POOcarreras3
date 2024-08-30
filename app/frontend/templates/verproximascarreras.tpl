@@ -5,13 +5,7 @@
 
 <body>
     <div class="container">
-        <header>
-
-             <button class="mouse" onclick="cargainicio()">
-                <img src="images/logo-inicio.png" alt="Boton Inicio" width="20%" height="20%">
-            </button>
-            
-        </header>
+        {include 'templates/header.tpl'}
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
@@ -21,7 +15,25 @@
         <div class="main-content">
             <!-- Contenido principal de la página -->
             <h2>Proximas Carreras</h2>
-            <p>Se van a mostrar Futuras carreras, con un boton para inscribirse</p>
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Circuito</th>
+                    <th scope="col">Fecha</th>      
+                </tr>
+                </thead>
+                <tbody>
+                {foreach from=$carreras item=carrera}
+                    <tr>
+                        <td>{$carrera->nombre}</td>
+                        <td>{$carrera->circuito}</td>
+                        <td>{$carrera->fecha}</td>
+                    </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            <p>Hay que agregar un botón para más detalles como precio y kit y con un boton para inscribirse</p>
         </div>
      {include 'templates/footer.tpl'}
     </div>
