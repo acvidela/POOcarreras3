@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
- {include 'templates/head.tpl'}
+{include 'templates/head.tpl'}
 
 <body>
     <div class="container">
@@ -9,34 +9,39 @@
 
         <nav>
             <a href="../index.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carrears </a>
-            <a href="verproximascarreras.php">Ver Próximas Carrearas</a>
-    
+            <a href="verresultadoscarreras.php">Resultados de Carreras</a>
+            <a href="verproximascarreras.php">Ver Próximas Carreras</a>
         </nav>
-        <div class="main-content">
-            <!-- Contenido principal de la página -->
-            <h2>Resultados</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Circuito</th>
-                    <th scope="col">Fecha</th>      
-                </tr>
-                </thead>
-                <tbody>
-                {foreach from=$carreras item=carrera}
-                    <tr>
-                        <td>{$carrera->nombre}</td>
-                        <td>{$carrera->circuito}</td>
-                        <td>{$carrera->fecha}</td>
-                    </tr>
-                {/foreach}
-                </tbody>
-            </table>
-            <p>Se van a mostrar Carreras Terminadas, y al apretar se mostrarán los resultados de la carrera seleccionada</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive" data-pattern="priority-columns">
+                        <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
+                            <caption>Resultados</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Circuito</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Resultados</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$carreras item=carrera}
+                                <tr>
+                                    <td>{$carrera->nombre}</td>
+                                    <td>{$carrera->circuito}</td>
+                                    <td>{$carrera->fecha}</td>
+                                    <td><button type="button">Ver Resultados</button></td> 
+                                </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div><!--end of .table-responsive-->
+                </div>
+            </div>
         </div>
-          {include 'templates/footer.tpl'}
+        {include 'templates/footer.tpl'}
     </div>
 
     <script>
@@ -44,6 +49,28 @@
             window.location.href = '../index.php';
         }
     </script>
+
+    <style>
+      button {
+    background-color: Darkgrey;
+    border: 2px solid Black ;
+    color: Black ;
+    padding: 10px 20px ;
+    text-align: center ;
+    text-decoration: none ;
+    display: inline-block ;
+    font-size: 16px ;
+    margin: 4px 2px ;
+    cursor: pointer ;
+    border-radius: 12px !; 
+    transition: background-color 0.3s ease ; 
+}
+
+button:hover {
+    background-color: White;
+}
+    </style>
+
 
 </body>
 </html>
