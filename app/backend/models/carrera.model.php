@@ -34,6 +34,7 @@ public function anteriores() {
 //Devuelve una carrera en particular  
 
 public function una($id) {
+    $db = Conexion::getConexion();
     $sql = "SELECT *
                 FROM carreras
                 WHERE id = $id";

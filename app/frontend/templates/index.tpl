@@ -10,7 +10,7 @@
             <a href="index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
             <a href="verproximascarreras.php">Ver Próximas Carreras</a>
-            <a class="mouse" onclick="iniciodesecion()">Administrador</a>
+            <a class="mouse" onclick="iniciodesesion()">Administrador</a>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
@@ -25,7 +25,7 @@
             window.location.href = 'index.php';
         }
 
-        function iniciodesecion() {
+        function iniciodesesion() {
             const username = prompt('Ingrese su nombre de usuario:');
             const password = prompt('Ingrese su contraseña:');
             // Aquí puedes validar las credenciales o realizar otras acciones

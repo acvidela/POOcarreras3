@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-29 22:04:15
+/* Smarty version 5.4.0, created on 2024-09-01 06:11:13
   from 'file:templates\index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d0d43f45aa52_24836943',
+  'unifunc' => 'content_66d3e9611c4456_54602967',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a1e08e0a870b16a7ce03f8008940a736676a547' => 
     array (
       0 => 'templates\\index.tpl',
-      1 => 1724961811,
+      1 => 1725160819,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d0d43f45aa52_24836943 (\Smarty\Template $_smarty_tpl) {
+function content_66d3e9611c4456_54602967 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -39,7 +39,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             <a href="index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
             <a href="verproximascarreras.php">Ver Próximas Carreras</a>
-            <a class="mouse" onclick="iniciodesecion()">Administrador</a>
+            <a class="mouse" onclick="iniciodesesion()">Administrador</a>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
@@ -56,7 +56,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             window.location.href = 'index.php';
         }
 
-        function iniciodesecion() {
+        function iniciodesesion() {
             const username = prompt('Ingrese su nombre de usuario:');
             const password = prompt('Ingrese su contraseña:');
             // Aquí puedes validar las credenciales o realizar otras acciones

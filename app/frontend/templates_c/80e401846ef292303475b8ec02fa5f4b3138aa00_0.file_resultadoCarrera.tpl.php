@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-01 06:36:02
-  from 'file:templates\verresultadoscarreras.tpl' */
+/* Smarty version 5.4.0, created on 2024-09-01 17:22:15
+  from 'file:templates\resultadoCarrera.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d3ef32e2c3e0_02765332',
+  'unifunc' => 'content_66d486a71849b7_88677373',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'fee0031a565d066527b0eb624e3600e6c23a43bc' => 
+    '80e401846ef292303475b8ec02fa5f4b3138aa00' => 
     array (
-      0 => 'templates\\verresultadoscarreras.tpl',
-      1 => 1725165352,
+      0 => 'templates\\resultadoCarrera.tpl',
+      1 => 1725204121,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d3ef32e2c3e0_02765332 (\Smarty\Template $_smarty_tpl) {
+function content_66d486a71849b7_88677373 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -42,35 +42,49 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             <a href="verproximascarreras.php">Ver Próximas Carreras</a>
         </nav>
         <div class="container">
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('carrera'), 'carreraMostrar');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('carreraMostrar')->value) {
+$foreach0DoElse = false;
+?>
+            <h2>Clasificación de carrera <?php echo $_smarty_tpl->getValue('carreraMostrar')->nombre;?>
+</h2>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
-                            <caption>Resultados</caption>
+                            <caption>Resultados carrera</caption>
                             <thead>
                                 <tr>
+                                    <th scope="col">Posición general</th>
+                                    <th scope="col">Pechera</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Circuito</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Resultados</th>
+                                    <th scope="col">Posición Categoría</th>
+                                    <th scope="col">Categoría</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('carreras'), 'carrera');
-$foreach0DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('carrera')->value) {
-$foreach0DoElse = false;
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('resultados'), 'resultado');
+$foreach1DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('resultado')->value) {
+$foreach1DoElse = false;
 ?>
                                 <tr>
-                                    <td><?php echo $_smarty_tpl->getValue('carrera')->nombre;?>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->pos_general;?>
 </td>
-                                    <td><?php echo $_smarty_tpl->getValue('carrera')->circuito;?>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->id;?>
 </td>
-                                    <td><?php echo $_smarty_tpl->getValue('carrera')->fecha;?>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->nombre;?>
 </td>
-                                    <td><a href="resultadoCarrera.php?id=<?php echo $_smarty_tpl->getValue('carrera')->id;?>
-" type="button">Ver Resultados</a></td> 
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->pos_categoria;?>
+</td>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->categoria;?>
+</td> 
                                 </tr>
                                 <?php
 }

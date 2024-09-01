@@ -13,26 +13,31 @@
             <a href="verproximascarreras.php">Ver Próximas Carreras</a>
         </nav>
         <div class="container">
+            {foreach from=$carrera item=carreraMostrar}
+            <h2>Clasificación de carrera {$carreraMostrar->nombre}</h2>
+            {/foreach}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
-                            <caption>Resultados</caption>
+                            <caption>Resultados carrera</caption>
                             <thead>
                                 <tr>
+                                    <th scope="col">Posición general</th>
+                                    <th scope="col">Pechera</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Circuito</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Resultados</th>
+                                    <th scope="col">Posición Categoría</th>
+                                    <th scope="col">Categoría</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach from=$carreras item=carrera}
+                                {foreach from=$resultados item=resultado}
                                 <tr>
-                                    <td>{$carrera->nombre}</td>
-                                    <td>{$carrera->circuito}</td>
-                                    <td>{$carrera->fecha}</td>
-                                    <td><a href="resultadoCarrera.php?id={$carrera->id}" type="button">Ver Resultados</a></td> 
+                                    <td>{$resultado->pos_general}</td>
+                                    <td>{$resultado->id}</td>
+                                    <td>{$resultado->nombre}</td>
+                                    <td>{$resultado->pos_categoria}</td>
+                                    <td>{$resultado->categoria}</td> 
                                 </tr>
                                 {/foreach}
                             </tbody>
