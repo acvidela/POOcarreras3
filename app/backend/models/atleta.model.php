@@ -1,37 +1,33 @@
 <?php 
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
+/*CREATE TABLE atletas (
+	id serial NOT NULL,
+	nombre varchar(255) NULL,
+	fechadenacimiento date NULL,
+	email varchar(255) NULL,
+	CONSTRAINT atletas_pkey PRIMARY KEY (id)
+);
+*/
 
-class Participante {
+class Atleta{
 
-
-//Devuelve todos los participantes 
+//Devuelve todos los atletas registrados en el sistema
 public function todos() {
     $db = Conexion::getConexion();
-    $sql = "select * from participantes";
-    $participantes = Conexion::query($sql);
-    return $participantes;
+    $sql = "select * from atletas";
+    $atletas = Conexion::query($sql);
+    return $atletas;
 }
 
-//Devuelve todos los participantes de una carrera en particular ordenados por posición general
-//Muy útil para ver los resultados
-public function todosEnCarrera($idCarrera){
-    $sql = "select * from participantes
-            where id_carrera = ".$idCarrera."
-            ORDER by pos_general";
-    $participantes = Conexion::query($sql);
-    return $participantes;
-}    
-
-//Devuelve un participante
-
+//Devuelve un atleta en particular  
 public function uno($id) {
     $sql = "SELECT *
-                FROM participantes
+                FROM atletas
                 WHERE id = $id";
 
-    $participante = Conexion::query($sql);
-    return $participante;     
+    $atleta = Conexion::query($sql);
+    return $atleta;     
 }
 
 }
