@@ -32,7 +32,7 @@
                                     <td>{$carrera->nombre}</td>
                                     <td>{$carrera->circuito}</td>
                                     <td>{$carrera->fecha}</td>
-                                    <td><a href="resultadoCarrera.php?id={$carrera->id}" type="button">Ver Resultados</a></td> 
+                                    <td><button type="button" onclick="window.location.href='resultadoCarrera.php?id={$carrera->id}'">Ver Resultados</button></td> 
                                 </tr>
                                 {/foreach}
                             </tbody>
@@ -54,6 +54,7 @@
     <style>
       button {
     background-color: Darkgrey;
+    border-radius: 10px;
     border: 2px solid Black ;
     color: Black ;
     padding: 10px 20px ;

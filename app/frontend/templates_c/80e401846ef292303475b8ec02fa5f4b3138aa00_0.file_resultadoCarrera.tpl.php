@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-01 17:22:15
+/* Smarty version 5.4.0, created on 2024-09-01 23:52:34
   from 'file:templates\resultadoCarrera.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d486a71849b7_88677373',
+  'unifunc' => 'content_66d4e22200dde0_59819119',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '80e401846ef292303475b8ec02fa5f4b3138aa00' => 
     array (
       0 => 'templates\\resultadoCarrera.tpl',
-      1 => 1725204121,
+      1 => 1725227547,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d486a71849b7_88677373 (\Smarty\Template $_smarty_tpl) {
+function content_66d4e22200dde0_59819119 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -60,9 +60,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                             <caption>Resultados carrera</caption>
                             <thead>
                                 <tr>
-                                    <th scope="col">Posición general</th>
-                                    <th scope="col">Pechera</th>
                                     <th scope="col">Nombre</th>
+                                    <th scope="col">Pechera</th>
+                                    <th scope="col">Posición general</th>
                                     <th scope="col">Posición Categoría</th>
                                     <th scope="col">Categoría</th>
                                 </tr>
@@ -75,11 +75,11 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('resultado')->value) {
 $foreach1DoElse = false;
 ?>
                                 <tr>
-                                    <td><?php echo $_smarty_tpl->getValue('resultado')->pos_general;?>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->nombre;?>
 </td>
                                     <td><?php echo $_smarty_tpl->getValue('resultado')->id;?>
 </td>
-                                    <td><?php echo $_smarty_tpl->getValue('resultado')->nombre;?>
+                                    <td><?php echo $_smarty_tpl->getValue('resultado')->pos_general;?>
 </td>
                                     <td><?php echo $_smarty_tpl->getValue('resultado')->pos_categoria;?>
 </td>

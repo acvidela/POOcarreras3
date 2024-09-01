@@ -23,9 +23,9 @@
                             <caption>Resultados carrera</caption>
                             <thead>
                                 <tr>
-                                    <th scope="col">Posición general</th>
-                                    <th scope="col">Pechera</th>
                                     <th scope="col">Nombre</th>
+                                    <th scope="col">Pechera</th>
+                                    <th scope="col">Posición general</th>
                                     <th scope="col">Posición Categoría</th>
                                     <th scope="col">Categoría</th>
                                 </tr>
@@ -33,9 +33,9 @@
                             <tbody>
                                 {foreach from=$resultados item=resultado}
                                 <tr>
-                                    <td>{$resultado->pos_general}</td>
-                                    <td>{$resultado->id}</td>
                                     <td>{$resultado->nombre}</td>
+                                    <td>{$resultado->id}</td>
+                                    <td>{$resultado->pos_general}</td>
                                     <td>{$resultado->pos_categoria}</td>
                                     <td>{$resultado->categoria}</td> 
                                 </tr>

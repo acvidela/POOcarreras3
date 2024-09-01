@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-01 06:36:02
+/* Smarty version 5.4.0, created on 2024-09-01 23:48:32
   from 'file:templates\verresultadoscarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d3ef32e2c3e0_02765332',
+  'unifunc' => 'content_66d4e1305ed399_78001613',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fee0031a565d066527b0eb624e3600e6c23a43bc' => 
     array (
       0 => 'templates\\verresultadoscarreras.tpl',
-      1 => 1725165352,
+      1 => 1725227307,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d3ef32e2c3e0_02765332 (\Smarty\Template $_smarty_tpl) {
+function content_66d4e1305ed399_78001613 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -69,8 +69,8 @@ $foreach0DoElse = false;
 </td>
                                     <td><?php echo $_smarty_tpl->getValue('carrera')->fecha;?>
 </td>
-                                    <td><a href="resultadoCarrera.php?id=<?php echo $_smarty_tpl->getValue('carrera')->id;?>
-" type="button">Ver Resultados</a></td> 
+                                    <td><button type="button" onclick="window.location.href='resultadoCarrera.php?id=<?php echo $_smarty_tpl->getValue('carrera')->id;?>
+'">Ver Resultados</button></td> 
                                 </tr>
                                 <?php
 }
@@ -97,6 +97,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <style>
       button {
     background-color: Darkgrey;
+    border-radius: 10px;
     border: 2px solid Black ;
     color: Black ;
     padding: 10px 20px ;
