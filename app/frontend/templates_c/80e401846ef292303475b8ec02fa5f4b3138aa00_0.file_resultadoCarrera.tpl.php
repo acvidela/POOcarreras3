@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-01 23:52:34
+/* Smarty version 5.4.0, created on 2024-09-04 00:48:55
   from 'file:templates\resultadoCarrera.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d4e22200dde0_59819119',
+  'unifunc' => 'content_66d79257c2a5c5_06475272',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '80e401846ef292303475b8ec02fa5f4b3138aa00' => 
     array (
       0 => 'templates\\resultadoCarrera.tpl',
-      1 => 1725227547,
+      1 => 1725319471,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d4e22200dde0_59819119 (\Smarty\Template $_smarty_tpl) {
+function content_66d79257c2a5c5_06475272 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
