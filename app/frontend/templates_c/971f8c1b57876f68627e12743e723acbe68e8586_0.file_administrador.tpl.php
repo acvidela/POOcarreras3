@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-11 01:38:47
+/* Smarty version 5.4.0, created on 2024-09-12 01:29:58
   from 'file:templates\administrador.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66e0d887809db7_06221121',
+  'unifunc' => 'content_66e227f65fc973_78445558',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '971f8c1b57876f68627e12743e723acbe68e8586' => 
     array (
       0 => 'templates\\administrador.tpl',
-      1 => 1726011523,
+      1 => 1726097394,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66e0d887809db7_06221121 (\Smarty\Template $_smarty_tpl) {
+function content_66e227f65fc973_78445558 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -38,29 +38,30 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
 
         <nav>
             <a href="index.php">Inicio</a>
-            <div class:"column">
-            <a class="accordion">Carreras</a>
-            <div class="panel">
-                <a href="carrera1.php">Agregar una Carrera</a>
-                <a href="carrera2.php">Editar una Carrera</a>
-                <a href="carrera3.php">Eliminar una Carrera</a>
+            <div class="column">
+                <a class="accordion">Carreras</a>
+                <div class="panel">
+                    <a href="#" onclick="showForm()">Agregar una Carrera</a>
+                    <a href="#" onclick="showForm()">Editar una Carrera</a>
+                    <a href="#" onclick="showForm()">Eliminar una Carrera</a>
+                </div>
             </div>
-            </div>
-            <div class:"column">
-            <a class="accordion">Participantes</a>
-            <div class="panel">
-                <a href="carrera1.php">Agregar una Partipante</a>
-                <a href="carrera2.php">Editar una Participante</a>
-                <a href="carrera3.php">Eliminar una Participante</a>
-            </div>
+            <div class="column">
+                <a class="accordion">Participantes</a>
+                <div class="panel">
+                    <a href="#" onclick="showForm()">Agregar una Participante</a>
+                    <a href="#" onclick="showForm()">Editar una Participante</a>
+                    <a href="#" onclick="showForm()">Eliminar una Participante</a>
+                </div>
             </div>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
-            <h2>administrador</h2>
-            <p></p>
+            <div id="form-container">
+                <p></p>
+            </div>
         </div>
-           <?php $_smarty_tpl->renderSubTemplate('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+        <?php $_smarty_tpl->renderSubTemplate('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
     </div>
 
@@ -70,7 +71,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             window.location.href = 'index.php';
         }
 
-                var acc = document.getElementsByClassName("accordion");
+        var acc = document.getElementsByClassName("accordion");
         var i;
 
         for (i = 0; i < acc.length; i++) {
@@ -83,6 +84,23 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
                     panel.style.display = "block";
                 }
             });
+        }
+
+        function showForm() {
+            const formContainer = document.getElementById('form-container');
+            formContainer.innerHTML = `
+                   <form>
+                    <label for="name">opcion1:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="name">opcion2:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="name">opcion3:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="opcion4">Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
+                    <input type="submit" value="Enviar">
+                </form>
+            `;
         }
     <?php echo '</script'; ?>
 >
@@ -98,8 +116,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             transition: max-height 0.2s ease-out;
             background-color: grey;
             border-radius: 15px;
-
-
         }
 
         .panel a {
@@ -111,11 +127,16 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             background-color: grey;
         }
 
-        column.{
-            display:flex;
+        .column {
+            display: flex;
             flex-direction: column;
+        }
+
+        #form-container {
+            margin-top: 20px;
         }
     </style>
 </body>
-</html><?php }
+</html>
+<?php }
 }

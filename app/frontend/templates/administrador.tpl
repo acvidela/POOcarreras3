@@ -9,29 +9,30 @@
 
         <nav>
             <a href="index.php">Inicio</a>
-            <div class:"column">
-            <a class="accordion">Carreras</a>
-            <div class="panel">
-                <a href="carrera1.php">Agregar una Carrera</a>
-                <a href="carrera2.php">Editar una Carrera</a>
-                <a href="carrera3.php">Eliminar una Carrera</a>
+            <div class="column">
+                <a class="accordion">Carreras</a>
+                <div class="panel">
+                    <a href="#" onclick="showForm()">Agregar una Carrera</a>
+                    <a href="#" onclick="showForm()">Editar una Carrera</a>
+                    <a href="#" onclick="showForm()">Eliminar una Carrera</a>
+                </div>
             </div>
-            </div>
-            <div class:"column">
-            <a class="accordion">Participantes</a>
-            <div class="panel">
-                <a href="carrera1.php">Agregar una Partipante</a>
-                <a href="carrera2.php">Editar una Participante</a>
-                <a href="carrera3.php">Eliminar una Participante</a>
-            </div>
+            <div class="column">
+                <a class="accordion">Participantes</a>
+                <div class="panel">
+                    <a href="#" onclick="showForm()">Agregar una Participante</a>
+                    <a href="#" onclick="showForm()">Editar una Participante</a>
+                    <a href="#" onclick="showForm()">Eliminar una Participante</a>
+                </div>
             </div>
         </nav>
         <div class="main-content">
             <!-- Contenido principal de la página -->
-            <h2>administrador</h2>
-            <p></p>
+            <div id="form-container">
+                <p></p>
+            </div>
         </div>
-           {include 'templates/footer.tpl'}
+        {include 'templates/footer.tpl'}
     </div>
 
     <script>
@@ -39,7 +40,7 @@
             window.location.href = 'index.php';
         }
 
-                var acc = document.getElementsByClassName("accordion");
+        var acc = document.getElementsByClassName("accordion");
         var i;
 
         for (i = 0; i < acc.length; i++) {
@@ -52,6 +53,23 @@
                     panel.style.display = "block";
                 }
             });
+        }
+
+        function showForm() {
+            const formContainer = document.getElementById('form-container');
+            formContainer.innerHTML = `
+                   <form>
+                    <label for="name">opcion1:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="name">opcion2:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="name">opcion3:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="opcion4">Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
+                    <input type="submit" value="Enviar">
+                </form>
+            `;
         }
     </script>
     <style>
@@ -66,8 +84,6 @@
             transition: max-height 0.2s ease-out;
             background-color: grey;
             border-radius: 15px;
-
-
         }
 
         .panel a {
@@ -79,9 +95,13 @@
             background-color: grey;
         }
 
-        column.{
-            display:flex;
+        .column {
+            display: flex;
             flex-direction: column;
+        }
+
+        #form-container {
+            margin-top: 20px;
         }
     </style>
 </body>
