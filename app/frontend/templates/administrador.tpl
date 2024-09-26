@@ -12,7 +12,7 @@
             <div class="column">
                 <a class="accordion">Carreras</a>
                 <div class="panel">
-                    <a href="#" onclick="showForm()">Agregar una Carrera</a>
+                    <a href="#" onclick="showFormCarrera()">Agregar una Carrera</a>
                     <a href="#" onclick="showForm()">Editar una Carrera</a>
                     <a href="#" onclick="showForm()">Eliminar una Carrera</a>
                 </div>
@@ -20,9 +20,9 @@
             <div class="column">
                 <a class="accordion">Participantes</a>
                 <div class="panel">
-                    <a href="#" onclick="showForm()">Agregar una Participante</a>
-                    <a href="#" onclick="showForm()">Editar una Participante</a>
-                    <a href="#" onclick="showForm()">Eliminar una Participante</a>
+                    <a href="#" onclick="showForm()">Agregar un Participante</a>
+                    <a href="#" onclick="showForm()">Editar un Participante</a>
+                    <a href="#" onclick="showForm()">Eliminar un Participante</a>
                 </div>
             </div>
         </nav>
@@ -67,6 +67,22 @@
                     <input type="text" id="name" name="name"><br><br>
                     <label for="opcion4">Email:</label>
                     <input type="email" id="email" name="email"><br><br>
+                    <input type="submit" value="Enviar">
+                </form>
+            `;
+        }
+        function showFormCarrera() {
+            const formContainer = document.getElementById('form-container');
+            formContainer.innerHTML = `
+                   <form>
+                    <label for="name">Nombre Carrera:</label>
+                    <input type="text" id="nombre" name="nombre"><br><br>
+                    <label for="name">Circuito:</label>
+                    <input type="text" id="circuito" name="circuito"><br><br>
+                    <label for="name">Fecha:</label>
+                    <input type="text" id="fecha" name="fecha"><br><br>
+                    <label for="opcion4">Precio:</label>
+                    <input type="number" id="precio" name="precio"><br><br>
                     <input type="submit" value="Enviar">
                 </form>
             `;

@@ -43,6 +43,22 @@ public function una($id) {
     return $carrera;     
 }
 
+//Inserta una carrera sin el kit
+public function insertar($datos){
+    $nombre = $datos['nombre'];
+    $circuito = $datos['circuito'];
+    $fecha = $datos['fecha'];
+    $precio = $datos['precio'];
+    
+    $db= Conexion::getConexion();
+
+    $sql = "INSERT INTO carreras (nombre, circuito, fecha, precio)
+    VALUES ('$nombre', '$circuito', '$fecha', '$precio')";
+
+    Conexion::ejecutar($sql);
+
+}
+
 }
 
 /*
