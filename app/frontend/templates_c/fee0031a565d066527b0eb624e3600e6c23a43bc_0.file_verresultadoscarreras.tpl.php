@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-01 23:48:32
+/* Smarty version 5.4.0, created on 2025-02-13 23:37:39
   from 'file:templates\verresultadoscarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d4e1305ed399_78001613',
+  'unifunc' => 'content_67ae743347d855_15961736',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fee0031a565d066527b0eb624e3600e6c23a43bc' => 
     array (
       0 => 'templates\\verresultadoscarreras.tpl',
-      1 => 1725227307,
+      1 => 1739486224,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d4e1305ed399_78001613 (\Smarty\Template $_smarty_tpl) {
+function content_67ae743347d855_15961736 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -35,7 +35,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
     <div class="container">
         <?php $_smarty_tpl->renderSubTemplate('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
-
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
@@ -95,20 +94,20 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 >
 
     <style>
-      button {
-    background-color: Darkgrey;
-    border-radius: 10px;
-    border: 2px solid Black ;
-    color: Black ;
-    padding: 10px 20px ;
-    text-align: center ;
-    text-decoration: none ;
-    display: inline-block ;
-    font-size: 16px ;
-    margin: 4px 2px ;
-    cursor: pointer ;
-    border-radius: 12px !; 
-    transition: background-color 0.3s ease ; 
+
+button {
+  background-color: Darkgrey;
+  border-radius: 12px;  /* Mantén uno de los border-radius */
+  border: 2px solid Black;
+  color: Black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s 
 }
 
 button:hover {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-13 22:47:08
+/* Smarty version 5.4.0, created on 2025-02-13 23:37:41
   from 'file:templates\verproximascarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67ae685c4433e8_69325714',
+  'unifunc' => 'content_67ae74350aeb61_70580679',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a735ee512df148129ea9c3e10ba5dc3be2954e99' => 
     array (
       0 => 'templates\\verproximascarreras.tpl',
-      1 => 1738979162,
+      1 => 1739486232,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_67ae685c4433e8_69325714 (\Smarty\Template $_smarty_tpl) {
+function content_67ae74350aeb61_70580679 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -123,19 +123,20 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 >
 
         <style>
-      button {
-    background-color: Darkgrey;
-    border: 2px solid Black ;
-    color: Black ;
-    padding: 10px 20px ;
-    text-align: center ;
-    text-decoration: none ;
-    display: inline-block ;
-    font-size: 16px ;
-    margin: 4px 2px ;
-    cursor: pointer ;
-    border-radius: 12px !; 
-    transition: background-color 0.3s ease ; 
+
+        button {
+  background-color: Darkgrey;
+  border-radius: 12px;  /* Mantén uno de los border-radius */
+  border: 2px solid Black;
+  color: Black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s 
 }
 
 button:hover {

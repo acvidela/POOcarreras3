@@ -6,7 +6,6 @@
 <body>
     <div class="container">
         {include 'templates/header.tpl'}
-
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
@@ -52,20 +51,20 @@
     </script>
 
     <style>
-      button {
-    background-color: Darkgrey;
-    border-radius: 10px;
-    border: 2px solid Black ;
-    color: Black ;
-    padding: 10px 20px ;
-    text-align: center ;
-    text-decoration: none ;
-    display: inline-block ;
-    font-size: 16px ;
-    margin: 4px 2px ;
-    cursor: pointer ;
-    border-radius: 12px !; 
-    transition: background-color 0.3s ease ; 
+
+button {
+  background-color: Darkgrey;
+  border-radius: 12px;  /* Mantén uno de los border-radius */
+  border: 2px solid Black;
+  color: Black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s 
 }
 
 button:hover {

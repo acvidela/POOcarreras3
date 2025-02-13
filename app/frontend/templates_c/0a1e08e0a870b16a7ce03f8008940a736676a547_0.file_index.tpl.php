@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-08 02:23:58
+/* Smarty version 5.4.0, created on 2025-02-13 23:37:37
   from 'file:templates\index.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67a6b22e79ce76_35079835',
+  'unifunc' => 'content_67ae7431cfc8a0_15808045',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a1e08e0a870b16a7ce03f8008940a736676a547' => 
     array (
       0 => 'templates\\index.tpl',
-      1 => 1738977835,
+      1 => 1739486254,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_67a6b22e79ce76_35079835 (\Smarty\Template $_smarty_tpl) {
+function content_67ae7431cfc8a0_15808045 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -79,6 +79,21 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
 </body>
 </html>
 <style>
+
+button {
+  background-color: Darkgrey;
+  border-radius: 12px;  /* Mantén uno de los border-radius */
+  border: 2px solid Black;
+  color: Black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s 
+}
 
 @font-face {
     font-family: 'Rubikmaps';
