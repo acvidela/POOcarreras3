@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-09-26 22:21:08
+/* Smarty version 5.4.0, created on 2025-02-13 22:47:25
   from 'file:templates\administrador.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66f5c234a0f3b3_21742378',
+  'unifunc' => 'content_67ae686d7bb709_65770527',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '971f8c1b57876f68627e12743e723acbe68e8586' => 
     array (
       0 => 'templates\\administrador.tpl',
-      1 => 1727382061,
+      1 => 1738280008,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66f5c234a0f3b3_21742378 (\Smarty\Template $_smarty_tpl) {
+function content_67ae686d7bb709_65770527 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -41,7 +41,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
             <div class="column">
                 <a class="accordion">Carreras</a>
                 <div class="panel">
-                    <a href="#" onclick="showFormCarrera()">Agregar una Carrera</a>
+                    <a href="#" onclick="showForm()">Agregar una Carrera</a>
                     <a href="#" onclick="showForm()">Editar una Carrera</a>
                     <a href="#" onclick="showForm()">Eliminar una Carrera</a>
                 </div>
@@ -98,22 +98,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
                     <input type="text" id="name" name="name"><br><br>
                     <label for="opcion4">Email:</label>
                     <input type="email" id="email" name="email"><br><br>
-                    <input type="submit" value="Enviar">
-                </form>
-            `;
-        }
-        function showFormCarrera() {
-            const formContainer = document.getElementById('form-container');
-            formContainer.innerHTML = `
-                   <form>
-                    <label for="name">Nombre Carrera:</label>
-                    <input type="text" id="nombre" name="nombre"><br><br>
-                    <label for="name">Circuito:</label>
-                    <input type="text" id="circuito" name="circuito"><br><br>
-                    <label for="name">Fecha:</label>
-                    <input type="text" id="fecha" name="fecha"><br><br>
-                    <label for="opcion4">Precio:</label>
-                    <input type="number" id="precio" name="precio"><br><br>
                     <input type="submit" value="Enviar">
                 </form>
             `;

@@ -32,7 +32,27 @@
               <td>{$carrera->nombre}</td>
               <td>{$carrera->circuito}</td>
               <td>{$carrera->fecha}</td>
-              <td><button type="button">Quiero Participar!</button></td>
+              <td><button type="button" onclick="showPopup()">Quiero Participar!</button></td>
+              <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+              <div class="popup" id="popup">
+         <form>
+            <h2>Formulario de Participación</h2>
+            <label for="name">Nombre y apellido:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="dob">Fecha de nacimiento:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+            <label for="gender">Sexo:</label>
+            <select id="gender" name="gender" required>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select><br><br>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required><br><br>
+            <button type="submit">Enviar</button>
+            <button type="button" onclick="hidePopup()">Cerrar</button>
+        </form>
+    </div>
             </tr>
             {/foreach}
            </tbody>
@@ -48,6 +68,16 @@
         function cargainicio() {
             window.location.href = '../index.php';
         }
+         function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
     </script>
 
         <style>
@@ -69,7 +99,28 @@
 button:hover {
     background-color: White;
 }
-    </style>
+ /* Estilos para el pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Estilos para el fondo oscuro */
+        .overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+          }
+        </style>
 
 </body>
 </html>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2024-08-31 22:56:39
+/* Smarty version 5.4.0, created on 2025-02-13 22:47:08
   from 'file:templates\verproximascarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_66d383879f6c96_33500370',
+  'unifunc' => 'content_67ae685c4433e8_69325714',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a735ee512df148129ea9c3e10ba5dc3be2954e99' => 
     array (
       0 => 'templates\\verproximascarreras.tpl',
-      1 => 1725137792,
+      1 => 1738979162,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_66d383879f6c96_33500370 (\Smarty\Template $_smarty_tpl) {
+function content_67ae685c4433e8_69325714 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -69,7 +69,27 @@ $foreach0DoElse = false;
 </td>
               <td><?php echo $_smarty_tpl->getValue('carrera')->fecha;?>
 </td>
-              <td><button type="button">Quiero Participar!</button></td>
+              <td><button type="button" onclick="showPopup()">Quiero Participar!</button></td>
+              <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+              <div class="popup" id="popup">
+         <form>
+            <h2>Formulario de Participación</h2>
+            <label for="name">Nombre y apellido:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="dob">Fecha de nacimiento:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+            <label for="gender">Sexo:</label>
+            <select id="gender" name="gender" required>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select><br><br>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required><br><br>
+            <button type="submit">Enviar</button>
+            <button type="button" onclick="hidePopup()">Cerrar</button>
+        </form>
+    </div>
             </tr>
             <?php
 }
@@ -89,6 +109,16 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         function cargainicio() {
             window.location.href = '../index.php';
         }
+         function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
     <?php echo '</script'; ?>
 >
 
@@ -111,7 +141,28 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 button:hover {
     background-color: White;
 }
-    </style>
+ /* Estilos para el pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Estilos para el fondo oscuro */
+        .overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+          }
+        </style>
 
 </body>
 </html><?php }
