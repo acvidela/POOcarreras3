@@ -20,9 +20,9 @@
             <div class="column">
                 <a class="accordion">Participantes</a>
                 <div class="panel">
-                    <a href="#" onclick="showForm()">Agregar una Participante</a>
-                    <a href="#" onclick="showForm()">Editar una Participante</a>
-                    <a href="#" onclick="showForm()">Eliminar una Participante</a>
+                    <a href="#" onclick="showForm()">Agregar un Participante</a>
+                    <a href="#" onclick="showForm()">Editar un Participante</a>
+                    <a href="#" onclick="showForm()">Eliminar un Participante</a>
                 </div>
             </div>
         </nav>
