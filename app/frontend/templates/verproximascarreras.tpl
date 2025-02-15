@@ -9,7 +9,7 @@
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php"> Ver Proximas Carreras</a>
+            <a href="verproximascarreras.php"> Ver Próximas Carreras</a>
             <a href="#"></a>
         </nav>
         <div class="container">
@@ -17,7 +17,7 @@
     <div class="col-xs-12">
       <div class="table-responsive" data-pattern="priority-columns">
         <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
-          <caption>Proximas Carreras</caption>
+          <caption>Próximas Carreras</caption>
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -32,7 +32,7 @@
               <td>{$carrera->nombre}</td>
               <td>{$carrera->circuito}</td>
               <td>{$carrera->fecha}</td>
-              <td><button type="button" onclick="showPopup()">Quiero Participar!</button></td>
+              <td><button type="button" onclick="showPopup()">Quiero participar</button></td>
               <div class="overlay" id="overlay" onclick="hidePopup()"></div>
               <div class="popup" id="popup">
          <form>
@@ -49,6 +49,8 @@
             </select><br><br>
             <label for="dni">DNI:</label>
             <input type="text" id="dni" name="dni" required><br><br>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" name="mail" required><br><br>
             <button type="submit">Enviar</button>
             <button type="button" onclick="hidePopup()">Cerrar</button>
         </form>

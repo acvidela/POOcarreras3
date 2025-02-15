@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-13 22:47:08
+/* Smarty version 5.4.0, created on 2025-02-13 23:55:15
   from 'file:templates\verproximascarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67ae685c4433e8_69325714',
+  'unifunc' => 'content_67ae785371d882_86313983',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a735ee512df148129ea9c3e10ba5dc3be2954e99' => 
     array (
       0 => 'templates\\verproximascarreras.tpl',
-      1 => 1738979162,
+      1 => 1739486706,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_67ae685c4433e8_69325714 (\Smarty\Template $_smarty_tpl) {
+function content_67ae785371d882_86313983 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -38,7 +38,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
         <nav>
             <a href="../index.php">Inicio</a>
             <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php"> Ver Proximas Carreras</a>
+            <a href="verproximascarreras.php"> Ver Próximas Carreras</a>
             <a href="#"></a>
         </nav>
         <div class="container">
@@ -46,7 +46,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
     <div class="col-xs-12">
       <div class="table-responsive" data-pattern="priority-columns">
         <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
-          <caption>Proximas Carreras</caption>
+          <caption>Próximas Carreras</caption>
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -69,7 +69,7 @@ $foreach0DoElse = false;
 </td>
               <td><?php echo $_smarty_tpl->getValue('carrera')->fecha;?>
 </td>
-              <td><button type="button" onclick="showPopup()">Quiero Participar!</button></td>
+              <td><button type="button" onclick="showPopup()">Quiero participar</button></td>
               <div class="overlay" id="overlay" onclick="hidePopup()"></div>
               <div class="popup" id="popup">
          <form>
@@ -86,6 +86,8 @@ $foreach0DoElse = false;
             </select><br><br>
             <label for="dni">DNI:</label>
             <input type="text" id="dni" name="dni" required><br><br>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" name="mail" required><br><br>
             <button type="submit">Enviar</button>
             <button type="button" onclick="hidePopup()">Cerrar</button>
         </form>
