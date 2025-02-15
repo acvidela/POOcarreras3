@@ -126,3 +126,9 @@ ALTER TABLE kits ADD CONSTRAINT kits_id_carrera_fkey FOREIGN KEY (id_carrera) RE
 ALTER TABLE carreras ADD CONSTRAINT carreras_id_kits_fkey FOREIGN KEY (id_kits) REFERENCES kits(id);
 ALTER TABLE participantes ADD CONSTRAINT participantes_id_atleta_fkey FOREIGN KEY (id_atleta) REFERENCES atletas(id) ON DELETE CASCADE;
 ALTER TABLE participantes ADD CONSTRAINT participantes_id_carrera_fkey FOREIGN KEY (id_carrera) REFERENCES carreras(id) ON DELETE CASCADE;
+
+CREATE TABLE administrador (
+    id INT PRIMARY KEY,
+    usuario VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
