@@ -132,3 +132,9 @@ CREATE TABLE administradores (
     usuario VARCHAR(100) NOT NULL,
     clave VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE administradores_id_seq START 1;
+ALTER TABLE administradores ALTER COLUMN id SET DEFAULT nextval('administradores_id_seq');
+ALTER TABLE administradores ALTER COLUMN id SET NOT NULL;
+
+ALTER TABLE administradores ADD CONSTRAINT unique_usuario UNIQUE (usuario);
