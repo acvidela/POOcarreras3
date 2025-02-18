@@ -1,0 +1,16 @@
+# Activar mod_rewrite
+RewriteEngine On
+
+# Redirigir todas las solicitudes a index.php, excepto archivos y directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# Evitar el acceso directo a archivos del sistema
+<FilesMatch "^(.*)\.json|\.ini|\.log|\.sql$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Forzar UTF-8
+AddDefaultCharset utf-8
