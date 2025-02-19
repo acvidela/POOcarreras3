@@ -9,7 +9,7 @@ require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 );
 */
 
-class Administrador{
+class AdministradorModel{
 
 //Devuelve todos los administradores registrados en el sistema
 public function todos() {
@@ -58,8 +58,23 @@ public function administrador_insertar($datos) {
     return true;
 }
 
+public static function verificarCredenciales($usuario, $clave) {
+    $sql = "SELECT * FROM administradores WHERE usuario = ?";
+    $stmt = Conexion::prepare($sql);
+    $stmt->execute([$usuario]);
+    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verifica que el usuario existe y que la contraseña es válida
+    if ($admin && password_verify($clave, $admin['clave'])) {
+        return $admin;  // Retorna los datos del administrador si es correcto
+    } else {
+        return false; // Retorna false si la autenticación falla
+    }
+}
+
 }
 /*
+//Para insertar directamente los usuarios por consola. Escribir php ruta a este archivo
 $admin = new Administrador();
 $admin->administrador_insertar([
     'usuario' => 'admin1',
