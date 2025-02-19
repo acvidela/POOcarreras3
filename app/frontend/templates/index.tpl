@@ -6,12 +6,9 @@
 <body>
     <div class="container">
         {include 'templates/header.tpl'}
-        <nav>
-            <a href="index.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php">Ver Próximas Carreras</a>
-            <a class="mouse" onclick="iniciodesesion()">Administrador</a>
-        </nav>
+
+        {include 'templates/navbarIndex.tpl'}
+        
         <div class="main-content">
             <!-- Contenido principal de la página -->
             <h2>Bienvenido a Es-Tan-Dil</h2

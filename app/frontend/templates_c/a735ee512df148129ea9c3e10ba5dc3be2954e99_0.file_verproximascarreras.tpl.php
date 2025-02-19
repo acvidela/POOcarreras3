@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.0, created on 2025-02-13 23:55:15
+/* Smarty version 5.4.0, created on 2025-02-19 22:50:14
   from 'file:templates\verproximascarreras.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.0',
-  'unifunc' => 'content_67ae785371d882_86313983',
+  'unifunc' => 'content_67b65216b34c22_85636682',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a735ee512df148129ea9c3e10ba5dc3be2954e99' => 
     array (
       0 => 'templates\\verproximascarreras.tpl',
-      1 => 1739486706,
+      1 => 1740001711,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,11 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
     'file:templates/head.tpl' => 1,
     'file:templates/header.tpl' => 1,
+    'file:templates/navbarIndex.tpl' => 1,
     'file:templates/footer.tpl' => 1,
   ),
 ))) {
-function content_67ae785371d882_86313983 (\Smarty\Template $_smarty_tpl) {
+function content_67b65216b34c22_85636682 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\templates';
 ?><!DOCTYPE html>
 <html lang="es">
@@ -35,12 +36,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\POOcarreras3\\app\\frontend\\template
     <div class="container">
         <?php $_smarty_tpl->renderSubTemplate('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
-        <nav>
-            <a href="../index.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php"> Ver Próximas Carreras</a>
-            <a href="#"></a>
-        </nav>
+        
+        <?php $_smarty_tpl->renderSubTemplate('file:templates/navbarIndex.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
         <div class="container">
   <div class="row">
     <div class="col-xs-12">

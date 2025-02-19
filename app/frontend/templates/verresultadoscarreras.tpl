@@ -6,11 +6,9 @@
 <body>
     <div class="container">
         {include 'templates/header.tpl'}
-        <nav>
-            <a href="../index.php">Inicio</a>
-            <a href="verresultadoscarreras.php">Resultados de Carreras</a>
-            <a href="verproximascarreras.php">Ver Próximas Carreras</a>
-        </nav>
+
+        {include 'templates/navbarIndex.tpl'}
+        
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
