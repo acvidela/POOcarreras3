@@ -1,12 +1,4 @@
 RewriteEngine On
-RewriteBase /POOcarreras3/app/
-
-# Excluir archivos estáticos de las reglas de reescritura
-RewriteCond %{REQUEST_URI} !^/POOcarreras3/app/(css|js|images|fonts|favicon|robots\.txt) [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^$ index.php [L,QSA]
-RewriteRule ^verresultadoscarreras/?$ frontend/verresultadoscarreras.php [L,QSA]
-RewriteRule ^verproximascarreras/?$ frontend/verproximascarreras.php [L,QSA]
-
-AddDefaultCharset utf-8
+RewriteRule ^(.*)$ router.php?url=$1 [QSA,L]

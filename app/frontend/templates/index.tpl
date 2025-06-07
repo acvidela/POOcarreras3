@@ -13,7 +13,7 @@
             <!-- Contenido principal de la página -->
             <h2>Bienvenido a Es-Tan-Dil</h2
             <p>Somos un grupo apasionado por el Atletismo y la naturaleza, dedicados a organizar carreras inolvidables en las hermosas sierras de Tandil, Nuestros objetivo es fomentar un estilo de vida saludable y conectar a las personas la naturaleza de nuestra ciudad a traves del deporte</p>
-            <h2>Estos son los lugares por donde podes llegar a pasar!</h2>
+            <h2>Estos son los lugares por donde podes llegar a pasar</h2>
             <section class="galeria">
             <img src="https://as1.ftcdn.net/v2/jpg/03/90/19/48/1000_F_390194899_CEDg71PI6Uxb0UaoLkZNrO8zNx8lX0hZ.jpg"</img>
             <img src="https://photo620x400.mnstatic.com/def2c358c3ad724c60622558ba514f64/tandil.jpg"</img>
@@ -33,8 +33,7 @@
         function iniciodesesion() {
             const username = prompt('Ingrese su nombre de usuario:');
             const password = prompt('Ingrese su contraseña:');
-            // Aquí puedes validar las credenciales o realizar otras acciones
-            if (username && password) {
+            if ($adminValido) {
                 alert('Bienvenido, ' + username + '!');
             } else {
                 alert('Inicio de sesión cancelado.');
@@ -87,6 +86,6 @@ h2 {
     border: 2px solid #ccc; /* Opcional: añade un borde a las imágenes */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra a las imágenes */
 }
-</style
+</style>
 
 
