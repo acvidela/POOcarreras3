@@ -1,4 +1,7 @@
 RewriteEngine On
+RewriteBase /PooCarreras3/app/
+
+# Redirige todo a index.php menos archivos o carpetas reales
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ router.php?url=$1 [QSA,L]
+RewriteRule ^(.+)$ index.php?action=$1 [QSA,L]
