@@ -74,8 +74,8 @@ public static function verificarCredenciales($usuario, $clave) {
 
 }
 /*
-//Para insertar directamente los usuarios por consola. Escribir php ruta a este archivo
-$admin = new Administrador();
+//Para insertar directamente los usuarios por consola. Escribir php ruta a este archivo, luego comentar
+$admin = new AdministradorModel();
 $admin->administrador_insertar([
     'usuario' => 'admin1',
     'clave' => 'clave1'
@@ -85,4 +85,4 @@ $admin->administrador_insertar([
     'clave' => 'clave2'
 ]);
 */
-?>
+
