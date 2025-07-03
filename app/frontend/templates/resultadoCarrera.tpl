@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
-{include 'templates/head.tpl'}
+{include 'frontend/templates/head.tpl'}
 
 <body>
     <div class="container">
-        {include 'templates/header.tpl'}
+        {include 'frontend/templates/header.tpl'}
         
-        {include 'templates/navbarIndex.tpl'}
+        {include 'frontend/templates/navbarIndex.tpl'}
         
         <div class="container">
             {foreach from=$carrera item=carreraMostrar}
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        {include 'templates/footer.tpl'}
+        {include 'frontend/templates/footer.tpl'}
     </div>
 
     <script>

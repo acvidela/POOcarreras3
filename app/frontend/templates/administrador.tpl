@@ -1,124 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-
-{include 'templates/head.tpl'}
-
+{include 'frontend/templates/head.tpl'}
 <body>
     <div class="container">
-        {include 'templates/header.tpl'}
+        {include 'frontend/templates/header.tpl'}
+        <h2>Ingreso de Administrador</h2>
 
-        <nav>
-            <a href="index.php">Inicio</a>
-            <div class="column">
-                <a class="accordion">Carreras</a>
-                <div class="panel">
-                    <a href="#" onclick="showFormCarrera()">Agregar una Carrera</a>
-                    <a href="#" onclick="showForm()">Editar una Carrera</a>
-                    <a href="#" onclick="showForm()">Eliminar una Carrera</a>
-                </div>
-            </div>
-            <div class="column">
-                <a class="accordion">Participantes</a>
-                <div class="panel">
-                    <a href="#" onclick="showForm()">Agregar un Participante</a>
-                    <a href="#" onclick="showForm()">Editar un Participante</a>
-                    <a href="#" onclick="showForm()">Eliminar un Participante</a>
-                </div>
-            </div>
-        </nav>
-        <div class="main-content">
-            <!-- Contenido principal de la página -->
-            <div id="form-container">
-                <p></p>
-            </div>
-        </div>
-        {include 'templates/footer.tpl'}
+        {if $mensaje}
+            <p style="color: red;">{$mensaje}</p>
+        {/if}
+
+        <form method="POST" action="validarlogin" style="max-width: 400px; margin: auto;">
+            <label for="usuario">Usuario:</label><br>
+            <input type="text" name="usuario" id="usuario" required><br><br>
+
+            <label for="clave">Contraseña:</label><br>
+            <input type="password" name="clave" id="clave" required><br><br>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+        <p style="text-align: center;"><a href="home">Volver al inicio</a></p>
+
+        {include 'frontend/templates/footer.tpl'}
     </div>
-
-    <script>
-        function cargainicio() {
-            window.location.href = 'index.php';
-        }
-
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-
-        function showForm() {
-            const formContainer = document.getElementById('form-container');
-            formContainer.innerHTML = `
-                   <form>
-                    <label for="name">opcion1:</label>
-                    <input type="text" id="name" name="name"><br><br>
-                    <label for="name">opcion2:</label>
-                    <input type="text" id="name" name="name"><br><br>
-                    <label for="name">opcion3:</label>
-                    <input type="text" id="name" name="name"><br><br>
-                    <label for="opcion4">Email:</label>
-                    <input type="email" id="email" name="email"><br><br>
-                    <input type="submit" value="Enviar">
-                </form>
-            `;
-        }
-        function showFormCarrera() {
-            const formContainer = document.getElementById('form-container');
-            formContainer.innerHTML = `
-                   <form>
-                    <label for="name">Nombre Carrera:</label>
-                    <input type="text" id="nombre" name="nombre"><br><br>
-                    <label for="name">Circuito:</label>
-                    <input type="text" id="circuito" name="circuito"><br><br>
-                    <label for="name">Fecha:</label>
-                    <input type="text" id="fecha" name="fecha"><br><br>
-                    <label for="opcion4">Precio:</label>
-                    <input type="number" id="precio" name="precio"><br><br>
-                    <input type="submit" value="Enviar">
-                </form>
-            `;
-        }
-    </script>
-    <style>
-        .accordion {
-            cursor: pointer;
-        }
-
-        .panel {
-            padding: 0 18px;
-            display: none;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            background-color: grey;
-            border-radius: 15px;
-        }
-
-        .panel a {
-            display: block;
-            padding: 10px 0;
-        }
-
-        .panel a:hover {
-            background-color: grey;
-        }
-
-        .column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #form-container {
-            margin-top: 20px;
-        }
-    </style>
 </body>
 </html>
