@@ -23,10 +23,17 @@ class Router {
                 $controller->verProximasCarreras();
                 break;
 
+            //Muestra todas las carreras terminadas
             case 'verresultadoscarreras':
                 $controller = new ResultadosController();
                 $controller->mostrarAnteriores();
                 break;
+            
+            //Muestra los resultados de una carrera en particular
+            case 'resultadoCarrera':
+                $controller = new ResultadosController();
+                $controller->mostrarResultadoCarrera($_GET['id'] ?? null);
+            break;
 
             // Login
             case 'login':
