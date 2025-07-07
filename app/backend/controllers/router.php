@@ -1,7 +1,7 @@
 <?php
 
 require_once 'administrador.controller.php'; 
-require_once 'backend/controllers/resultados.controller.php';
+require_once 'backend/controllers/carrera.controller.php';
 //agregar resto de controladores
 
 class Router {
@@ -17,21 +17,21 @@ class Router {
                 $controller->mostrarInicio();
                 break;
 
-            // Vistas públicas
+            // Carreras futuras
             case 'verproximascarreras':
-                $controller = new AdministradorController();
-                $controller->verProximasCarreras();
-                break;
+                $controller = new CarreraController();
+                $controller->mostrarProximasCarreras();
+            break;
 
             //Muestra todas las carreras terminadas
             case 'verresultadoscarreras':
-                $controller = new ResultadosController();
+                $controller = new CarreraController();
                 $controller->mostrarAnteriores();
                 break;
             
             //Muestra los resultados de una carrera en particular
             case 'resultadoCarrera':
-                $controller = new ResultadosController();
+                $controller = new CarreraController();
                 $controller->mostrarResultadoCarrera($_GET['id'] ?? null);
             break;
 
