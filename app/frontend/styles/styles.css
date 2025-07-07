@@ -1,12 +1,24 @@
+@font-face {
+    font-family: 'nav';
+    src: url('fonts/RubikMaps-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'txt';
+    src: url('fonts/Smack-Laidet.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: grey;
-    background-image: url("images/body.jpg");
-    background-repeat: no-repeat;
+    background-image: url("../images/body.jpg");
     background-size: cover;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -34,7 +46,8 @@ nav {
 nav a {
     color: black;
     text-decoration: none;
-    font-weight: bold;
+    font-family: 'nav', sans-serif;
+    font-size: 21px;
 }
 
 
@@ -43,19 +56,19 @@ nav a {
     padding: 20px;
     border-radius: 15px;
     opacity: 0.8;
+    font-family: 'txt', sans-serif;
+
 }
 
 
 footer {
-    margin-top: 100%;
+    margin-top: 10%;
     text-align: center;
     padding: 20px;
     background-color: #333;
     color: white;
     border-radius: 15px;
     opacity: 0.8;
-    top: 0;
-
 }
 
 .modal {
