@@ -1,6 +1,7 @@
 <?php
 
 require_once 'administrador.controller.php'; 
+require_once 'backend/controllers/resultados.controller.php';
 //agregar resto de controladores
 
 class Router {
@@ -23,8 +24,8 @@ class Router {
                 break;
 
             case 'verresultadoscarreras':
-                $controller = new AdministradorController();
-                $controller->verResultadosCarreras();
+                $controller = new ResultadosController();
+                $controller->mostrarAnteriores();
                 break;
 
             // Login
