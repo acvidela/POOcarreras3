@@ -12,6 +12,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'tr';
+    src: url('fonts/Gooseberry-Juice.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     background-color: grey;
@@ -98,6 +104,7 @@ footer {
     margin: 20px solid black;
     font-size: 18px;
     text-align: center;
+    font-family: 'tr', sans-serif;
   }
   
   /* Table header styling */
@@ -125,6 +132,8 @@ footer {
 
   td {
     border: 2px solid black;
+    font-family: 'txt', sans-serif;
+    font-size: 20px;
   }
   
   /* Hover effect */
@@ -137,5 +146,27 @@ footer {
     padding: 12px 15px;
   }
 
+  label{
+    font-family: 'tr', sans-serif;
+  }
 
+  button{
+        font-family: 'tr', sans-serif;
+  }
 
+  .centrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .admin {
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: black;
+    background-color: darkgrey;
+    width: 20%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
