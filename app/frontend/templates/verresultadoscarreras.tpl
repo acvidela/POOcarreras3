@@ -29,7 +29,7 @@
                                     <td>{$carrera->nombre}</td>
                                     <td>{$carrera->circuito}</td>
                                     <td>{$carrera->fecha}</td>
-                                    <td><button type="button" onclick="window.location.href='resultadoCarrera.php?id={$carrera->id}'">Ver Resultados</button></td> 
+                                    <td><button type="button" onclick="window.location.href='resultadoCarrera?id={$carrera->id}'">Ver Resultados</button></td>
                                 </tr>
                                 {/foreach}
                             </tbody>
