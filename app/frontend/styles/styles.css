@@ -40,7 +40,6 @@ header {
     opacity: 0.8;
 }
 
-/* Barra de navegación */
 nav {
     display: flex;
     justify-content: center;
@@ -120,6 +119,8 @@ footer {
   /* Table body styling */
   .table tbody tr {
     border: 2px solid black;
+    background-color: grey;
+    opacity: 0.8;
   }
   
   .table tbody tr:nth-of-type(even) {
@@ -170,3 +171,4 @@ footer {
     justify-content: center; 
     align-items: center;
   }
+

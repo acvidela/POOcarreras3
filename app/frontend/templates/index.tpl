@@ -16,7 +16,7 @@
             <h2>Estos son los lugares por donde podés llegar a pasar</h2>
             <section class="galeria">
                 <img src="https://as1.ftcdn.net/v2/jpg/03/90/19/48/1000_F_390194899_CEDg71PI6Uxb0UaoLkZNrO8zNx8lX0hZ.jpg" alt="Paisaje 1" />
-                <img src="https://photo620x400.mnstatic.com/def2c358c3ad724c60622558ba514f64/tandil.jpg" alt="Paisaje 2" />
+                <img src="https://photo620x400.mnstatic.com/def2c358c3ad724c60622558ba514f64/tandil.jpg" alt="Paisaje 2"/>
                 <img src="https://as1.ftcdn.net/jpg/04/32/05/48/1000_F_432054803_vvVpwJLGs2UlEBpSPqNrJ1SwFjnaILG3.jpg" alt="Paisaje 3" />
                 <img src="https://as1.ftcdn.net/v2/jpg/07/70/83/86/1000_F_770838641_ml0Pgj3q8DirP8dWgIq11HmLgpZRRntp.jpg" alt="Paisaje 4" />
             </section>
@@ -25,6 +25,11 @@
         </div>
 
         {include 'frontend/templates/footer.tpl'}
+
+        <!-- Modal de Imagen -->
+        <div id="modal" style="display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+            <img id="imagen-ampliada" style="max-width:90%; max-height:90%;" />
+        </div>
     </div>
 
     <script>
@@ -41,9 +46,23 @@
                 alert('Inicio de sesión cancelado.');
             }
         }
+
+        // Mostrar imagen en modal
+        document.querySelectorAll('.galeria img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.getElementById('imagen-ampliada').src = img.src;
+                document.getElementById('modal').style.display = 'flex';
+            });
+        });
+
+        // Ocultar modal al hacer clic fuera de la imagen
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') {
+                document.getElementById('modal').style.display = 'none';
+            }
+        });
     </script>
 </body>
-
 </html>
 
 <style>
@@ -78,7 +97,6 @@
         transition: background-color 0.3s;
     }
 
-
     h2 {
         font-family: 'txt', sans-serif;
         width: 100%;
@@ -87,9 +105,10 @@
         font-size: 40px;
     }
 
-    p{
+    p {
         font-size: 20px;
     }
+
     .galeria {
         display: flex;
         flex-wrap: wrap;
@@ -103,6 +122,11 @@
         height: auto;
         border: 2px solid #ccc;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+        transform: scale(1.05);
     }
 </style>
-
