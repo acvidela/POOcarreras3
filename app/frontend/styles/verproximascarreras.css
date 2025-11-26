@@ -1,4 +1,4 @@
-/* General table styling */
+﻿/* Estilos de tabla reutilizables */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-/* Table header styling */
+/* Encabezado de tabla */
 .table thead th {
   background-color: grey;
   border-color: black;
@@ -17,7 +17,7 @@
   padding: 10px;
 }
 
-/* Table body styling */
+/* Filas del cuerpo */
 .table tbody tr {
   border: 2px solid black;
 }
@@ -34,12 +34,13 @@ td {
   border: 2px solid black;
 }
 
-/* Hover effect */
+/* Efecto hover */
 .table tbody tr:hover {
   background-color: grey;
 }
 
-/* Cell padding */
-.table th, .table td {
+/* Espaciado de celdas */
+.table th,
+.table td {
   padding: 12px 15px;
 }

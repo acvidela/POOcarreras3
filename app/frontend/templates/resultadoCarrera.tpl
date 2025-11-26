@@ -1,80 +1,73 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
-
 {include 'frontend/templates/head.tpl'}
-
 <body>
+  <div class="container">
+    {include 'frontend/templates/header.tpl'}
+    {include 'frontend/templates/navbarIndex.tpl'}
+
     <div class="container">
-        {include 'frontend/templates/header.tpl'}
-        
-        {include 'frontend/templates/navbarIndex.tpl'}
-        
-        <div class="container">
-            {foreach from=$carrera item=carreraMostrar}
-            <h2>Clasificación de carrera {$carreraMostrar->nombre}</h2>
-            {/foreach}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="table-responsive" data-pattern="priority-columns">
-                        <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
-                            <caption>Resultados carrera</caption>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Pechera</th>
-                                    <th scope="col">Posición general</th>
-                                    <th scope="col">Posición Categoría</th>
-                                    <th scope="col">Categoría</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$resultados item=resultado}
-                                <tr>
-                                    <td>{$resultado->nombre}</td>
-                                    <td>{$resultado->id}</td>
-                                    <td>{$resultado->pos_general}</td>
-                                    <td>{$resultado->pos_categoria}</td>
-                                    <td>{$resultado->categoria}</td> 
-                                </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div><!--end of .table-responsive-->
-                </div>
-            </div>
+      {foreach from=$carrera item=carreraMostrar}
+        <h2>Clasificacion de carrera {$carreraMostrar->nombre}</h2>
+      {/foreach}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="table-responsive" data-pattern="priority-columns">
+            <table class="table table-bordered table-hover">
+              <caption>Resultados carrera</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Pechera</th>
+                  <th scope="col">Posicion general</th>
+                  <th scope="col">Posicion Categoria</th>
+                  <th scope="col">Categoria</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foreach from=$resultados item=resultado}
+                  <tr>
+                    <td>{$resultado->nombre}</td>
+                    <td>{$resultado->id}</td>
+                    <td>{$resultado->pos_general}</td>
+                    <td>{$resultado->pos_categoria}</td>
+                    <td>{$resultado->categoria}</td>
+                  </tr>
+                {/foreach}
+              </tbody>
+            </table>
+          </div>
         </div>
-        {include 'frontend/templates/footer.tpl'}
+      </div>
     </div>
+    {include 'frontend/templates/footer.tpl'}
+  </div>
 
-    <script>
-        function cargainicio() {
-            window.location.href = '../index.php';
-        }
-       
-    </script>
+  <script>
+    function cargainicio() {
+      window.location.href = '../index.php';
+    }
+  </script>
 
-    <style>
+  <style>
+    button {
+      background-color: Darkgrey;
+      border-radius: 12px;
+      border: 2px solid Black;
+      color: Black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-button {
-  background-color: Darkgrey;
-  border-radius: 12px;  /* Mantén uno de los border-radius */
-  border: 2px solid Black;
-  color: Black;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition: background-color 0.3s 
-}
-
-button:hover {
-    background-color: White;
-}
-    </style>
-
-
+    button:hover {
+      background-color: White;
+    }
+  </style>
 </body>
 </html>

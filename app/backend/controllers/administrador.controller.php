@@ -1,15 +1,16 @@
-<?php
+﻿<?php
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\administrador.model.php';
+require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\carrera.model.php';
+require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\participante.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\frontend\lib\smarty\libs\Smarty.class.php';
 
 class AdministradorController {
-
     private $smarty;
     private $modelo;
 
     public function __construct() {
-        $this->smarty = new Smarty\Smarty;
+        $this->smarty = new Smarty\Smarty();
         $this->modelo = new AdministradorModel();
     }
 
@@ -22,7 +23,7 @@ class AdministradorController {
     }
 
     public function verProximasCarreras() {
-        $this->smarty->assign('titulo', 'Próximas Carreras');
+        $this->smarty->assign('titulo', 'Proximas Carreras');
         $this->smarty->display('frontend/templates/verproximascarreras.tpl');
     }
 
@@ -35,10 +36,10 @@ class AdministradorController {
         session_start();
         $mensaje = $_SESSION['error'] ?? '';
         unset($_SESSION['error']);
-        
+
         $this->smarty->assign('titulo', 'Login de Administrador');
-        $this->smarty->assign('mensaje', $mensaje); // para mostrar errores
-        $this->smarty->display('frontend/templates/administrador.tpl'); //Para loguearse
+        $this->smarty->assign('mensaje', $mensaje);
+        $this->smarty->display('frontend/templates/administrador.tpl');
     }
 
     public function validarLogin($post) {
@@ -51,14 +52,14 @@ class AdministradorController {
             session_start();
             $_SESSION['admin'] = true;
             $_SESSION['usuario'] = $usuario;
-            header('Location: admin'); // redirige a /admin
-            exit;
-        } else {
-            session_start();
-            $_SESSION['error'] = 'Usuario o contraseña incorrectos. Por favor, intente nuevamente.';
-            header('Location: login');
+            header('Location: admin');
             exit;
         }
+
+        session_start();
+        $_SESSION['error'] = 'Usuario o contrasena incorrectos. Intente nuevamente.';
+        header('Location: login');
+        exit;
     }
 
     public function logout() {
@@ -74,8 +75,46 @@ class AdministradorController {
             header('Location: login');
             exit;
         }
-        $this->smarty->assign('usuario', $_SESSION['usuario'] ?? ''); // opcional
+
+        $flash = $_SESSION['flash_admin'] ?? '';
+        unset($_SESSION['flash_admin']);
+
+        // Resumen rápido para el tablero
+        $carreraModel = new Carrera();
+        $participanteModel = new Participante();
+
+        $todasCarreras = $carreraModel->todas();
+        $proximasCarreras = $carreraModel->proximas();
+        $anterioresCarreras = $carreraModel->anteriores();
+        $participantes = $participanteModel->todos();
+
+        $stats = [
+            'total_carreras' => count($todasCarreras),
+            'proximas' => count($proximasCarreras),
+            'anteriores' => count($anterioresCarreras),
+            'participantes' => count($participantes),
+        ];
+
+        // Listado de recientes (últimas 5 por fecha descendente)
+        $carrerasRecientes = array_slice($anterioresCarreras, 0, 5);
+
+        // Alertas básicas
+        $alertas = [];
+        if ($stats['proximas'] === 0) {
+            $alertas[] = 'No hay carreras próximas cargadas. Crea una nueva para que aparezca en la web.';
+        }
+        if ($stats['anteriores'] === 0) {
+            $alertas[] = 'No hay carreras anteriores con resultados publicados.';
+        }
+        if ($stats['participantes'] === 0) {
+            $alertas[] = 'Aún no hay inscriptos cargados.';
+        }
+
+        $this->smarty->assign('usuario', $_SESSION['usuario'] ?? '');
+        $this->smarty->assign('stats', $stats);
+        $this->smarty->assign('carrerasRecientes', $carrerasRecientes);
+        $this->smarty->assign('alertas', $alertas);
+        $this->smarty->assign('flash', $flash);
         $this->smarty->display('frontend/templates/paneladmin.tpl');
     }
- 
 }

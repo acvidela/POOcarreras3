@@ -1,8 +1,5 @@
-<?php
-require_once('lib\smarty\libs\Smarty.class.php');
+﻿<?php
+require_once 'lib\smarty\libs\Smarty.class.php';
 
-$smarty = new Smarty\Smarty;                                    //
+$smarty = new Smarty\Smarty();
 $smarty->display('templates\administrador.tpl');
-
-
-?>
