@@ -27,7 +27,7 @@ class AdministradorModel {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public function administrador_insertar($datos) {
+    public function insertar($datos) {
         $usuario = $datos['usuario'];
         $clave = $datos['clave'];
 
@@ -71,11 +71,11 @@ class AdministradorModel {
 /*
 // Para insertar usuarios por consola
 $admin = new AdministradorModel();
-$admin->administrador_insertar([
+$admin->insertar([
     'usuario' => 'admin1',
     'clave' => 'clave1',
 ]);
-$admin->administrador_insertar([
+$admin->insertar([
     'usuario' => 'admin2',
     'clave' => 'clave2',
 ]);

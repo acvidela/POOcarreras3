@@ -40,36 +40,14 @@
 
     {* Formulario emergente para inscripcion *}
     <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+
     <div class="popup" id="popup">
-      <form method="POST" action="inscribirse">
-        <h2>Formulario de Participacion</h2>
-        <input type="hidden" id="id_carrera" name="id_carrera" value="">
-
-        <label for="name">Nombre y apellido:</label>
-        <input type="text" id="name" name="name" required><br><br>
-
-        <label for="dob">Fecha de nacimiento:</label>
-        <input type="date" id="dob" name="dob" required><br><br>
-
-        <label for="gender">Sexo:</label>
-        <select id="gender" name="gender" required>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="otro">Otro</option>
-        </select><br><br>
-
-        <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" required><br><br>
-
-        <label for="mail">E-mail:</label>
-        <input type="email" id="mail" name="mail" required><br><br>
-
-        <button type="submit">Enviar</button>
-        <button type="button" onclick="hidePopup()">Cerrar</button>
+      <form method="POST" action="index.php?action=guardarPreinscripcion">
+        {include 'frontend/templates/form_preinscripcion.tpl'}
       </form>
     </div>
 
-    {include 'frontend/templates/footer.tpl'}
+     {include 'frontend/templates/footer.tpl'}
   </div>
 
   <script>
@@ -77,11 +55,11 @@
       window.location.href = 'home';
     }
 
-    function showPopup(idCarrera) {
-      document.getElementById('id_carrera').value = idCarrera;
-      document.getElementById('popup').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
+  function showPopup(idCarrera) {
+    document.getElementById('carrera_id').value = idCarrera;
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+  }
 
     function hidePopup() {
       document.getElementById('popup').style.display = 'none';

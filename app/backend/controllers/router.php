@@ -2,7 +2,7 @@
 
 require_once 'administrador.controller.php';
 require_once 'backend/controllers/carrera.controller.php';
-// Agregar resto de controladores aqui si se suman nuevos
+require_once 'backend/controllers/preinscripcion.controller.php';
 
 class Router {
     public function handleRequest() {
@@ -54,9 +54,37 @@ class Router {
                 $controller->crearCarrera($_POST);
                 break;
 
-            default:
-                echo '404 - Pagina no encontrada.';
-                break;
-        }
+            case 'preinscribirse':
+    // Muestra formulario para preinscribirse en una carrera
+    $controller = new PreinscripcionController();
+    $controller->mostrarFormulario($_GET['carrera_id'] ?? null);
+    break;
+    //Trabajo con preinscripciones
+    case 'guardarPreinscripcion':
+        // Procesa POST del formulario de preinscripción
+        $controller = new PreinscripcionController();
+        $controller->guardarPreinscripcion($_POST);
+        break;
+
+    case 'gestionarPreinscripciones':
+        // Vista del administrador
+        $controller = new PreinscripcionController();
+        $controller->listarPreinscripciones();
+        break;
+
+    case 'actualizarEstadoPreinscripcion':
+        $controller = new PreinscripcionController();
+        $controller->actualizarEstado($_POST['id'], $_POST['estado']);
+        break;
+
+    case 'eliminarPreinscripcion':
+        $controller = new PreinscripcionController();
+        $controller->eliminar($_GET['id']);
+        break;
+    
+    default:
+        echo '404 - Pagina no encontrada.';
+        break;
+    }
     }
 }
