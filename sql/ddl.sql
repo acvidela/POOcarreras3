@@ -1,10 +1,14 @@
-CREATE TABLE atletas (
-	id serial NOT NULL,
-	nombre varchar(255) NULL,
-	fechadenacimiento date NULL,
-	email varchar(255) NULL,
-	CONSTRAINT atletas_pkey PRIMARY KEY (id)
+CREATE TABLE public.atletas (
+	id SERIAL PRIMARY KEY,
+	nombre VARCHAR(255),
+	apellido VARCHAR(255),
+	fechadenacimiento DATE,
+	email VARCHAR(255),
+	dni VARCHAR(20) UNIQUE,
+	telefono VARCHAR(30),
+	genero VARCHAR(50)
 );
+
 
 CREATE TABLE kits (
 	id serial NOT NULL,
@@ -37,6 +41,25 @@ CREATE TABLE participantes (
 	categoria varchar NULL,
 	finalizo bool NULL DEFAULT false,
 	CONSTRAINT participantes_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE public.preinscripciones (
+    id SERIAL PRIMARY KEY,
+    atleta_id INT NOT NULL,
+    carrera_id INT NOT NULL,
+    estado VARCHAR(50) NOT NULL DEFAULT 'pendiente', 
+    fecha_preinscripcion TIMESTAMP NOT NULL DEFAULT NOW(),
+    comprobante_pago VARCHAR(255),
+    
+    CONSTRAINT fk_pre_atleta
+        FOREIGN KEY (atleta_id)
+        REFERENCES public.atletas(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_pre_carrera
+        FOREIGN KEY (carrera_id)
+        REFERENCES public.carreras(id)
+        ON DELETE CASCADE
 );
 
 INSERT INTO atletas (id, nombre, fechadenacimiento, email) VALUES
@@ -138,3 +161,13 @@ ALTER TABLE administradores ALTER COLUMN id SET DEFAULT nextval('administradores
 ALTER TABLE administradores ALTER COLUMN id SET NOT NULL;
 
 ALTER TABLE administradores ADD CONSTRAINT unique_usuario UNIQUE (usuario);
+
+ALTER TABLE public.atletas
+ADD COLUMN apellido VARCHAR(255),
+ADD COLUMN dni VARCHAR(20),
+ADD COLUMN telefono VARCHAR(30),
+ADD COLUMN genero VARCHAR(50);
+ALTER TABLE public.atletas
+
+ADD CONSTRAINT atletas_dni_unique UNIQUE (dni);
+
