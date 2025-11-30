@@ -1,6 +1,6 @@
 <?php
 
-require_once 'backend/models/preinscripcion.model.php';
+require_once 'backend/models/inscripcion.model.php';
 require_once 'backend/models/atleta.model.php';
 require_once 'backend/models/carrera.model.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
@@ -10,13 +10,13 @@ use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevel;
 
-class PreinscripcionController {
+class InscripcionController {
 
     private $model;
     private $smarty;
 
     public function __construct() {
-        $this->model = new PreinscripcionModel();
+        $this->model = new InscripcionModel();
         $this->smarty = new Smarty\Smarty();
     }
 

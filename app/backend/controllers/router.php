@@ -2,7 +2,7 @@
 
 require_once 'administrador.controller.php';
 require_once 'backend/controllers/carrera.controller.php';
-require_once 'backend/controllers/preinscripcion.controller.php';
+require_once 'backend/controllers/inscripcion.controller.php';
 
 class Router {
     public function handleRequest() {
@@ -56,39 +56,39 @@ class Router {
 
             case 'preinscribirse':
                 // Muestra formulario para preinscribirse en una carrera
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->mostrarFormulario($_GET['carrera_id'] ?? null);
             break;
             //Trabajo con preinscripciones
             case 'guardarPreinscripcion':
                 // Procesa POST del formulario de preinscripción
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->guardarPreinscripcion($_POST);
                 break;
 
             case 'gestionarPreinscripciones':
                 // Vista del administrador
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->listarPreinscripciones();
                 break;
 
             case 'actualizarEstadoPreinscripcion':
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->actualizarEstado($_POST['id'], $_POST['estado']);
                 break;
 
             case 'eliminarPreinscripcion':
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->eliminar($_GET['id']);
                 break;
 
             case 'preinscripcionConfirmada':
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->mostrarConfirmacion($_GET['id'] ?? null);
                 break;
             
             case 'cuponPago':
-                $controller = new PreinscripcionController();
+                $controller = new InscripcionController();
                 $controller->mostrarCuponPago($_GET['id'] ?? null);
                 break;
             

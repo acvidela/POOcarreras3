@@ -171,3 +171,21 @@ ALTER TABLE public.atletas
 
 ADD CONSTRAINT atletas_dni_unique UNIQUE (dni);
 
+-- Renombrar la tabla existente (opcional, para respaldo)
+ALTER TABLE preinscripciones RENAME TO preinscripciones_backup;
+
+-- Crear la nueva tabla inscripciones
+CREATE TABLE public.inscripciones (
+    id SERIAL PRIMARY KEY,
+    atleta_id INT NOT NULL,
+    carrera_id INT NOT NULL,
+    estado VARCHAR(50) DEFAULT 'pendiente' NOT NULL,
+    fecha_inscripcion TIMESTAMP DEFAULT now() NOT NULL,
+    comprobante_pago VARCHAR(255),
+    pos_general INT DEFAULT 0 NOT NULL,
+    pos_categoria INT DEFAULT 0 NOT NULL,
+    categoria VARCHAR(100),
+    finalizo BOOLEAN DEFAULT FALSE NOT NULL,
+    CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
+    CONSTRAINT fk_ins_carrera FOREIGN KEY (carrera_id) REFERENCES public.carreras(id) ON DELETE CASCADE
+);

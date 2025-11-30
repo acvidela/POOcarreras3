@@ -17,9 +17,8 @@
 <label for="genero">Género:</label>
 <select id="genero" name="genero" required>
     <option value="">Seleccionar...</option>
-    <option value="femenino">Femenino</option>
-    <option value="masculino">Masculino</option>
-    <option value="otro">Otro</option>
+    <option value="F">Femenino</option>
+    <option value="M">Masculino</option>
 </select>
 
 <label for="telefono">Teléfono:</label>

@@ -2,12 +2,12 @@
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 
-class PreinscripcionModel {
+class InscripcionModel {
 
      
     // Crear una preinscripción
     public function insertar($datos) {
-        $sql = "INSERT INTO preinscripciones (atleta_id, carrera_id, estado, comprobante_pago) 
+        $sql = "INSERT INTO inscripciones (atleta_id, carrera_id, estado, comprobante_pago) 
             VALUES (:atleta_id, :carrera_id, :estado, :comprobante_pago)
             RETURNING id";
 
@@ -32,7 +32,7 @@ class PreinscripcionModel {
                        a.nombre AS atleta_nombre,
                        a.apellido AS atleta_apellido,
                        c.nombre AS carrera_nombre
-                FROM preinscripciones p
+                FROM inscripciones p
                 JOIN atletas a ON p.atleta_id = a.id
                 JOIN carreras c ON p.carrera_id = c.id
                 ORDER BY p.fecha_preinscripcion DESC";
@@ -42,9 +42,9 @@ class PreinscripcionModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Obtener una preinscripción por ID
+    // Obtener una inscripción por ID
     public function uno($id) {
-        $sql = "SELECT * FROM preinscripciones WHERE id = :id";
+        $sql = "SELECT * FROM inscripciones WHERE id = :id";
         $stmt = Conexion::prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@ class PreinscripcionModel {
 
     // Actualizar el estado (ej: pendiente → pagado)
     public function actualizarEstado($id, $estado) {
-        $sql = "UPDATE preinscripciones 
+        $sql = "UPDATE inscripciones 
                 SET estado = :estado 
                 WHERE id = :id";
         $stmt = Conexion::prepare($sql);
@@ -62,23 +62,23 @@ class PreinscripcionModel {
         ]);
     }
 
-    // Eliminar una preinscripción
+    // Eliminar una inscripción
     public function eliminar($id) {
-        $sql = "DELETE FROM preinscripciones WHERE id = :id";
+        $sql = "DELETE FROM inscripciones WHERE id = :id";
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
 
     public function obtenerCuponPorID($id)
     {
-        $sql = "SELECT p.id, p.estado, 
+        $sql = "SELECT i.id, i.estado, 
                    a.nombre, a.apellido, a.dni,
                    c.nombre AS carrera_nombre,
                    c.fecha, c.precio
-                FROM preinscripciones p
-                INNER JOIN atletas a ON p.atleta_id = a.id
-                INNER JOIN carreras c ON p.carrera_id = c.id
-                WHERE p.id = :id";
+                FROM inscripciones i
+                INNER JOIN atletas a ON i.atleta_id = a.id
+                INNER JOIN carreras c ON i.carrera_id = c.id
+                WHERE i.id = :id";
 
         $stmt = Conexion::getConexion()->prepare($sql);
         $stmt->execute(['id' => $id]);

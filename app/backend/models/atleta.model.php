@@ -29,34 +29,41 @@ class Atleta {
         return Conexion::query($sql);
     }
 
-    // Buscar atleta por DNI (evita duplicados)
     public function buscarPorDni($dni) {
-        $sql = "SELECT * FROM atletas WHERE dni = '$dni'";
-        return Conexion::query($sql);
+      $sql = "SELECT * FROM atletas WHERE dni = :dni LIMIT 1";
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute([':dni' => $dni]);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // devuelve un solo atleta o false
     }
-
+    
     public function insertarYDevolverID($data) {
 
-        $sql = "
-            INSERT INTO atletas (nombre, apellido, fechadenacimiento, email, dni, telefono, genero)
-            VALUES (:nombre, :apellido, :fechadenacimiento, :email, :dni, :telefono, :genero)
-            RETURNING id
-        ";
+        $atletaExistente = $this->buscarPorDni($data['dni']); 
+        if ($atletaExistente) {
+            $atleta_id = $atletaExistente['id'];
+            return $atleta_id;
+        } else {
+            $sql = "
+                INSERT INTO atletas (nombre, apellido, fechadenacimiento, email, dni, telefono, genero)
+                VALUES (:nombre, :apellido, :fechadenacimiento, :email, :dni, :telefono, :genero)
+                RETURNING id
+            ";
 
-        $stmt = Conexion::prepare($sql);
-        $stmt->execute([
-            ':nombre' => $data['nombre'],
-            ':apellido' => $data['apellido'],
-            ':fechadenacimiento' => $data['fechadenacimiento'],
-            ':email' => $data['email'],
-            ':dni' => $data['dni'],
-            ':telefono' => $data['telefono'],
-            ':genero' => $data['genero']
-        ]);
+            $stmt = Conexion::prepare($sql);
+            $stmt->execute([
+                ':nombre' => $data['nombre'],
+                ':apellido' => $data['apellido'],
+                ':fechadenacimiento' => $data['fechadenacimiento'],
+                ':email' => $data['email'],
+                ':dni' => $data['dni'],
+                ':telefono' => $data['telefono'],
+                ':genero' => $data['genero']
+            ]);
 
-        return $stmt->fetchColumn(); // devuelve el id para poder insertarlo como FK en preinscripción
+            return $stmt->fetchColumn(); // devuelve el id para poder insertarlo como FK en preinscripción
+
+        }
     }
-
     // Actualizar atleta
     public function actualizar($id, $data) {
 
