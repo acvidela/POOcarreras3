@@ -3,6 +3,7 @@
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\administrador.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\carrera.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\participante.model.php';
+require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\inscripcion.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\frontend\lib\smarty\libs\Smarty.class.php';
 
 class AdministradorController {
@@ -117,4 +118,27 @@ class AdministradorController {
         $this->smarty->assign('flash', $flash);
         $this->smarty->display('frontend/templates/paneladmin.tpl');
     }
+
+    public function aprobarInscripcion() {
+        $inscripcion_id = $_POST['id'];
+        $carrera_id = $_POST['carrera_id'];
+        $genero = $_POST['genero'];
+
+        // 1. Obtener categoría según género
+        $categoria = ($genero === 'F') ? 'Femenino' : 'Masculino';
+
+        // 2. Obtener siguiente número de pechera
+    
+        $insModel = new InscripcionesModel();
+        $pechera = $insModel->obtenerSiguientePechera($carrera_id);
+
+        // 3. Actualizar inscripción
+        $insModel->aprobarInscripcion($inscripcion_id, $categoria, $pechera);
+
+        // 4. (Opcional) Enviar mail
+        // $this->enviarMailConfirmacion(...);
+
+        header("Location: index.php?view=preinscripciones_pagadas&msg=ok");
+    }
+
 }

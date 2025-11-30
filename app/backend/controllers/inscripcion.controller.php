@@ -76,16 +76,24 @@ class InscripcionController {
         $smarty = new Smarty\Smarty;
         $smarty->assign('titulo', 'Preinscripciones');
         $smarty->assign('preinscripciones', $preinscripciones);
-        $smarty->display('backend/templates/listarPreinscripciones.tpl');
+        $smarty->display('frontend/templates/listarPreinscripciones.tpl');
     }
 
     // ACTUALIZAR ESTADO (admin)
     public function actualizarEstado($id, $estado) {
         $this->model->actualizarEstado($id, $estado);
 
+        // Si cambia a pagado, volver a pendientes
+        if ($estado === 'pagado') {
+            header("Location: index.php?action=inscripcionesPendientes");
+            exit;
+        }
+
+        // Para otros estados en el futuro
         header("Location: index.php?action=gestionarPreinscripciones");
         exit;
     }
+
 
     // ELIMINAR (admin)
     public function eliminar($id) {
@@ -139,6 +147,46 @@ class InscripcionController {
 
         $this->smarty->assign('pre', $pre);
         $this->smarty->display('frontend/templates/preinscripcion_confirmada.tpl');
-}
+    }
+
+    public function confirmarInscripcion($id) {
+        $ins = $this->model->uno($id);
+
+        if (!$ins) {
+            echo "Inscripción no encontrada";
+            return;
+        }
+
+        // 1. Obtener next pechera
+        $pechera = $this->model->obtenerSiguientePechera($ins['carrera_id']);
+
+        // 2. Calcular categoría (según género por ahora)
+        $categoria = ($ins['genero'] === 'M') ? 'Masculino' : 'Femenino';
+
+        // 3. Actualizar inscripción
+        $this->model->confirmarInscripcion($id, [
+            'estado' => 'inscripto',
+            'pechera' => $pechera,
+            'categoria' => $categoria,
+            'pos_general' => 0,
+            'pos_categoria' => 0,
+            'finalizo' => false
+        ]);
+
+        // Opcional: emular envío de mail
+        echo "<script>alert('Inscripto confirmado. Pechera: $pechera'); window.location='index.php?action=inscripcionesPagadas';</script>";
+    }
+
+    public function listarPendientes() {
+        $inscripciones = $this->model->pendientesFuturas();
+        $this->smarty->assign('inscripciones', $inscripciones);
+        $this->smarty->display('frontend/templates/inscripciones_pendientes.tpl');
+    }
+
+    public function listarPagadas() {
+        $inscripciones = $this->model->pagadasFuturas();
+        $this->smarty->assign('inscripciones', $inscripciones);
+        $this->smarty->display('frontend/templates/inscripciones_pagadas.tpl');
+    }
 
 }

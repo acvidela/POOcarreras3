@@ -74,7 +74,7 @@ class Router {
 
             case 'actualizarEstadoPreinscripcion':
                 $controller = new InscripcionController();
-                $controller->actualizarEstado($_POST['id'], $_POST['estado']);
+                $controller->actualizarEstado($_GET['id'] ?? null, $_GET['estado'] ?? null );
                 break;
 
             case 'eliminarPreinscripcion':
@@ -91,6 +91,21 @@ class Router {
                 $controller = new InscripcionController();
                 $controller->mostrarCuponPago($_GET['id'] ?? null);
                 break;
+
+            case 'inscripcionesPendientes':
+                $controller = new InscripcionController();
+                $controller->listarPendientes();
+                break;
+
+            case 'inscripcionesPagadas':
+                $controller = new InscripcionController();
+                $controller->listarPagadas();
+                break;
+
+            case 'confirmarInscripcion':
+                $controller = new InscripcionController();
+                $controller->confirmarInscripcion($_GET['id']);
+            break;
             
             default:
                 echo '404 - Pagina no encontrada.';
