@@ -4,13 +4,20 @@ require_once 'backend/models/preinscripcion.model.php';
 require_once 'backend/models/atleta.model.php';
 require_once 'backend/models/carrera.model.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevel;
 
 class PreinscripcionController {
 
     private $model;
+    private $smarty;
 
     public function __construct() {
         $this->model = new PreinscripcionModel();
+        $this->smarty = new Smarty\Smarty();
     }
 
     // FORMULARIO DE PREINSCRIPCIÓN (público)
@@ -29,7 +36,6 @@ class PreinscripcionController {
         $smarty->display('frontend/templates/preinscripcion.tpl');
     }
 
-    // GUARDAR PREINSCRIPCIÓN (público)
     public function guardarPreinscripcion($post) {
 
         if (!$post) {
@@ -37,10 +43,8 @@ class PreinscripcionController {
             return;
         }
 
-        // 1) Guardar atleta (siempre nuevo)
-        require_once 'backend/models/atleta.model.php';
+        // 1) Guardar atleta
         $atletaModel = new Atleta();
-        
         $atleta_id = $atletaModel->insertarYDevolverID([
             'nombre' => $post['nombre'],
             'apellido' => $post['apellido'],
@@ -51,17 +55,19 @@ class PreinscripcionController {
             'fechadenacimiento' => $post['fechadenacimiento'],
         ]);
 
-        // 2) Crear la preinscripción
-        $this->model->insertar([
+        // 2) Crear la preinscripción y guardar ID
+        $preinscripcion_id = $this->model->insertar([
             'atleta_id' => $atleta_id,
             'carrera_id' => $post['carrera_id'],
             'estado' => 'pendiente',
             'comprobante_pago' => null
         ]);
 
-        header("Location: index.php?action=home&msg=preinscrito");
+        // 3) Redirigir a confirmación
+        header("Location: index.php?action=preinscripcionConfirmada&id=" . $preinscripcion_id);
         exit;
     }
+
 
     // LISTADO (admin)
     public function listarPreinscripciones() {
@@ -88,4 +94,51 @@ class PreinscripcionController {
         header("Location: index.php?action=gestionarPreinscripciones");
         exit;
     }
+
+
+    public function mostrarCuponPago($id) {
+        $pre = $this->model->obtenerCuponPorID($id);
+
+        if (!$pre) {
+            echo "Cupón no encontrado.";
+            return;
+        }
+
+        
+        // Datos que queremos en el QR
+        $qrData  = "Atleta: {$pre['nombre']} {$pre['apellido']}\n";
+        $qrData .= "Carrera: {$pre['carrera_nombre']}\n";
+        $qrData .= "Estado: {$pre['estado']}\n";
+        $qrData .= "ID Preinscripción: {$pre['id']}";
+
+        $qrCode = new QrCode(data: $qrData, size: 200, margin: 10);
+
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+
+        // Convertir a base64 para poner en HTML
+        $qrBase64 = base64_encode($result->getString());
+
+        $this->smarty->assign('cupon', $pre);
+        $this->smarty->assign('qr', $qrBase64);
+        $this->smarty->display('frontend/templates/cupon_pago.tpl');
+    }
+    
+    public function mostrarConfirmacion($idPreinscripcion) {
+        if (!$idPreinscripcion) {
+            echo "Preinscripción no encontrada.";
+            return;
+         }
+
+        $pre = $this->model->uno($idPreinscripcion);
+
+        if (!$pre) {
+            echo "La preinscripción no existe.";
+            return;
+        }
+
+        $this->smarty->assign('pre', $pre);
+        $this->smarty->display('frontend/templates/preinscripcion_confirmada.tpl');
+}
+
 }

@@ -4,19 +4,27 @@ require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 
 class PreinscripcionModel {
 
+     
     // Crear una preinscripción
     public function insertar($datos) {
         $sql = "INSERT INTO preinscripciones (atleta_id, carrera_id, estado, comprobante_pago) 
-                VALUES (:atleta_id, :carrera_id, :estado, :comprobante_pago)";
+            VALUES (:atleta_id, :carrera_id, :estado, :comprobante_pago)
+            RETURNING id";
+
         $stmt = Conexion::prepare($sql);
-        
-        return $stmt->execute([
+
+         $stmt->execute([
             ':atleta_id' => $datos['atleta_id'],
             ':carrera_id' => $datos['carrera_id'],
             ':estado' => $datos['estado'] ?? 'pendiente',
             ':comprobante_pago' => $datos['comprobante_pago'] ?? null
         ]);
+
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (isset($resultado['id']) ? (int)$resultado['id'] : null);
     }
+
+
 
     // Obtener todas las preinscripciones
     public function todos() {
@@ -60,4 +68,21 @@ class PreinscripcionModel {
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
+
+    public function obtenerCuponPorID($id)
+    {
+        $sql = "SELECT p.id, p.estado, 
+                   a.nombre, a.apellido, a.dni,
+                   c.nombre AS carrera_nombre,
+                   c.fecha, c.precio
+                FROM preinscripciones p
+                INNER JOIN atletas a ON p.atleta_id = a.id
+                INNER JOIN carreras c ON p.carrera_id = c.id
+                WHERE p.id = :id";
+
+        $stmt = Conexion::getConexion()->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
