@@ -8,7 +8,6 @@
     <tr>
         <th>dorsal</th>
         <th>Atleta</th>
-        <th>Categoría</th>
         <th>Carrera</th>
         <th>Fecha</th>
         <th>Acciones</th>
@@ -18,7 +17,6 @@
     <tr>
         <td>{$i.dorsal}</td>
         <td>{$i.atleta_nombre} {$i.atleta_apellido}</td>
-        <td>{$i.categoria}</td>
         <td>{$i.carrera_nombre}</td>
         <td>{$i.carrera_fecha}</td>
 

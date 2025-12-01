@@ -126,7 +126,7 @@ class AdministradorController {
         $genero = $_POST['genero'];
 
         // 1. Obtener categoría según género
-        $categoria = ($genero === 'F') ? 'Femenino' : 'Masculino';
+        //$categoria = ($genero === 'F') ? 'Femenino' : 'Masculino'; No se realiza más en inscripción, se realiza en resultados
 
         // 2. Obtener siguiente número de dorsal
     
@@ -134,7 +134,7 @@ class AdministradorController {
         $dorsal = $insModel->obtenerSiguientedorsal($carrera_id);
 
         // 3. Actualizar inscripción
-        $insModel->aprobarInscripcion($inscripcion_id, $categoria, $dorsal);
+        $insModel->aprobarInscripcion($inscripcion_id, $dorsal);
 
         // 4. (Opcional) Enviar mail
         // $this->enviarMailConfirmacion(...);

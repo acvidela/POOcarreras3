@@ -158,13 +158,13 @@ class InscripcionController {
         }
 
         // 1. Obtener next dorsal
-        $dorsal = $this->model->obtenerSiguientedorsal($ins['carrera_id']);
+        $dorsal = $this->model->obtenerSiguienteDorsal($ins['carrera_id']);
 
-        // 2. Calcular categoría (según género por ahora)
-        $categoria = $this->model->asignarCategoriaPorGenero($ins['id']);
+        // 2. Calcular categoría (según género por ahora) 
+        //$categoria = $this->model->asignarCategoriaPorGenero($ins['id']); //No se calcula más en inscripción. Se genera en resulados
 
         // 3. Actualizar inscripción a inscripto
-        $this->model->confirmarInscripcion($id, $categoria, $dorsal);
+        $this->model->confirmarInscripcion($id, $dorsal);
 
         // 4. Guardamos mensaje flash
          $_SESSION['flash'] = "Inscripción confirmada. Número de dorsal: $dorsal";

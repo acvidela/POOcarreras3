@@ -61,6 +61,8 @@ CREATE TABLE public.inscripciones (
 );
 
 
+
+
 INSERT INTO atletas (id, nombre, fechadenacimiento, email) VALUES
 (2, 'josefa', '2000-11-30', 'josefa@example.com'),
 (3, 'Maria Mendoza', '2000-08-05', 'mmendoza@gmail.com'),
@@ -175,3 +177,10 @@ ADD COLUMN dorsal INT DEFAULT 0 NOT NULL;
 
 --Cambia dorsal por dosrsal
 ALTER TABLE inscripciones RENAME COLUMN dorsal TO dorsal;
+
+--La tabla inscripciones ya no guarda resultados
+ALTER TABLE inscripciones
+    DROP COLUMN pos_general,
+    DROP COLUMN pos_categoria,
+    DROP COLUMN categoria,
+    DROP COLUMN finalizo;

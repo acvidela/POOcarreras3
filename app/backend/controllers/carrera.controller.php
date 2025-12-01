@@ -61,7 +61,7 @@ class CarreraController {
         $smarty->display('frontend/templates/resultadoCarrera.tpl');
     }
 
-    // Muestra las carreras proximas con formulario de inscripcion
+    // Muestra las carreras próximas con formulario de inscripción
     public function mostrarProximasCarreras() {
         $modelo = new Carrera();
         $carreras = $modelo->proximas();

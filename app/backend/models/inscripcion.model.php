@@ -10,10 +10,6 @@ CREATE TABLE public.inscripciones (
 	estado varchar(50) DEFAULT 'pendiente'::character varying NOT NULL,
 	fecha_inscripcion timestamp DEFAULT now() NOT NULL,
 	comprobante_pago varchar(255) NULL,
-	pos_general int4 DEFAULT 0 NOT NULL,
-	pos_categoria int4 DEFAULT 0 NOT NULL,
-	categoria varchar(100) NULL,
-	finalizo bool DEFAULT false NOT NULL,
 	dorsal int4 DEFAULT 0 NOT NULL,
 	CONSTRAINT inscripciones_pkey PRIMARY KEY (id),
 	CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
@@ -184,7 +180,7 @@ class InscripcionModel {
     }
 
     //Asigna un número de dorsal dentro de la carrera. (incremental dentro de la carrera)
-    public function obtenerSiguientedorsal($carrera_id) {
+    public function obtenerSiguienteDorsal($carrera_id) {
          $sql = "SELECT COALESCE(MAX(dorsal), 0) + 1 AS next_num
             FROM inscripciones
             WHERE carrera_id = :carrera_id";
@@ -194,6 +190,7 @@ class InscripcionModel {
         return (int) $stmt->fetchColumn();
     }
 
+/* No se asigna más en la preinscripción, se asigna en resultados al cargarlo
     //Asigna la categoría dependiendo del género. Podría ampliarse luego con la edad
     public function asignarCategoriaPorGenero($id) {
         $sql = "SELECT a.genero
@@ -215,35 +212,31 @@ class InscripcionModel {
 
         return "GENERAL";
     }
-
+*/
 
 
     //Se produce la inscripción, está verificado el pago y aceptada
-    public function confirmarInscripcion($id, $categoria, $dorsal) {
+    public function confirmarInscripcion($id, $dorsal) {
         $sql = "UPDATE inscripciones
-            SET categoria = :categoria,
-                dorsal = :dorsal,
+            SET dorsal = :dorsal,
                 estado = 'inscripto'
             WHERE id = :id";
 
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([
-            ':categoria' => $categoria,
             ':dorsal' => $dorsal,
             ':id' => $id
         ]);
     }
 
-    public function aprobarInscripcion($inscripcion_id, $categoria, $dorsal) {
+    public function aprobarInscripcion($inscripcion_id, $dorsal) {
         $sql = "UPDATE inscripciones
             SET estado = 'aprobado',
-                categoria = :categoria,
                 dorsal = :dorsal
             WHERE id = :id";
 
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([
-            ':categoria' => $categoria,
             ':dorsal' => $dorsal,
             ':id' => $inscripcion_id
         ]);
