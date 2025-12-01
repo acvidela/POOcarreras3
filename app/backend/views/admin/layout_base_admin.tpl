@@ -13,12 +13,13 @@
           <li><a href="admin">🏠 Dashboard</a></li>
 
           <li class="menu-section">Carreras</li>
-          <li><a href="verproximascarreras">📅 Próximas</a></li>
-          <li><a href="verresultadoscarreras">🏁 Finalizadas</a></li>
+          <li><a href="carrerasFuturas">📅 Próximas</a></li>
+          <li><a href="carrerasTerminadas">🏁 Finalizadas</a></li>
           <li><a href="javascript:void(0)" onclick="toggleCrearCarrera()">➕ Crear carrera</a></li>
 
           <li class="menu-section">Incripciones</li>
-          <li><a href="gestionarPreinscripciones">📋 Todas</a></li>
+          <li><a href="inscripcionesTodas">📋 Todas</a></li>
+          <li><a href="inscripcionesConfirmadas">✅ Confirmadas</a></li>
           <li><a href="inscripcionesPendientes">⏳ Pendientes de pago</a></li>
           <li><a href="inscripcionesPagadas">💵 Pagadas</a></li>
 
@@ -29,96 +30,19 @@
 
 
   <!-- ================= CONTENIDO PRINCIPAL ================= -->
-  <main class="content">
+<main class="content">
 
-      <header class="top-bar">
-          <h1>Bienvenido, {$usuario}</h1>
-      </header>
+    <header class="top-bar">
+        <h1>Bienvenido, {$usuario}</h1>
+    </header>
 
-      <!-- Resumen -->
-      <section class="stats-grid">
+    {if $flash}
+        <section class="flash-msg">{$flash}</section>
+    {/if}
 
-          <div class="stat-box">
-              <p class="stat-label">Carreras totales</p>
-              <p class="stat-value">{$stats.total_carreras}</p>
-          </div>
+    {block name="contenido_admin"}{/block}
 
-          <div class="stat-box">
-              <p class="stat-label">Próximas</p>
-              <p class="stat-value">{$stats.proximas}</p>
-          </div>
-
-          <div class="stat-box">
-              <p class="stat-label">Finalizadas</p>
-              <p class="stat-value">{$stats.anteriores}</p>
-          </div>
-
-          <div class="stat-box">
-              <p class="stat-label">Participantes</p>
-              <p class="stat-value">{$stats.participantes}</p>
-          </div>
-
-      </section>
-
-
-      <!-- Mensaje flash -->
-      {if $flash}
-      <section class="flash-msg">{$flash}</section>
-      {/if}
-
-
-      <!-- Alertas -->
-      <section class="alerts">
-          <h2>Alertas</h2>
-
-          {if $alertas|@count > 0}
-              <ul>
-              {foreach from=$alertas item=alerta}
-                  <li>{$alerta}</li>
-              {/foreach}
-              </ul>
-          {else}
-              <p>No hay alertas por ahora.</p>
-          {/if}
-      </section>
-
-
-      <!-- Últimas carreras -->
-      <section class="recent">
-          <h2>Últimas carreras</h2>
-
-          {if $carrerasRecientes|@count > 0}
-          <table class="tabla-admin">
-              <thead>
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Circuito</th>
-                      <th>Fecha</th>
-                      <th>Acciones</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {foreach from=$carrerasRecientes item=carrera}
-                  <tr>
-                      <td>{$carrera->nombre}</td>
-                      <td>{$carrera->circuito}</td>
-                      <td>{$carrera->fecha}</td>
-                      <td>
-                          <button onclick="toggleCrearCarrera({$carrera->id})">Editar</button>
-                          <button onclick="window.location.href='resultadoCarrera?id={$carrera->id}'">Ver resultados</button>
-                      </td>
-                  </tr>
-                  {/foreach}
-              </tbody>
-          </table>
-          {else}
-              <p>Aún no hay carreras cargadas.</p>
-          {/if}
-      </section>
-
-      <div id="form-carrera-container"></div>
-
-  </main>
+</main>
 </div>
 
 

@@ -12,6 +12,7 @@ class AdministradorController {
 
     public function __construct() {
         $this->smarty = new Smarty\Smarty();
+        $this->smarty->setTemplateDir('app/backend/views/admin/');
         $this->modelo = new AdministradorModel();
     }
 
@@ -116,7 +117,7 @@ class AdministradorController {
         $this->smarty->assign('carrerasRecientes', $carrerasRecientes);
         $this->smarty->assign('alertas', $alertas);
         $this->smarty->assign('flash', $flash);
-        $this->smarty->display('frontend/templates/paneladmin.tpl');
+        $this->smarty->display('backend/views/admin/paneladmin.tpl');
     }
 
     public function aprobarInscripcion() {

@@ -15,10 +15,39 @@ class Carrera {
         return Conexion::query($sql);
     }
 
-    // Devuelve carreras ya realizadas
+    
+     //Admin: Lista las carreras previas a HOY
+    public function listarAnteriores() {
+        $sql = "SELECT c.*
+            FROM carreras c
+            WHERE c.fecha < CURRENT_DATE
+            ORDER BY c.fecha DES";
+
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+     //Admin: Lista las carreras futuras a partir de hoy
+    public function listarFuturas() {
+        $sql = "SELECT c.*
+            FROM carreras c
+            WHERE c.fecha >= CURRENT_DATE";
+
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
     public function anteriores() {
         $sql = "SELECT * FROM carreras WHERE fecha <= CURRENT_DATE ORDER BY fecha DESC";
-        return Conexion::query($sql);
+
+        $pdo = Conexion::getConexion();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_OBJ); 
     }
 
     // Devuelve una carrera por id

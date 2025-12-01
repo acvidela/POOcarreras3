@@ -43,24 +43,23 @@ CREATE TABLE participantes (
 	CONSTRAINT participantes_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE public.preinscripciones (
-    id SERIAL PRIMARY KEY,
-    atleta_id INT NOT NULL,
-    carrera_id INT NOT NULL,
-    estado VARCHAR(50) NOT NULL DEFAULT 'pendiente', 
-    fecha_preinscripcion TIMESTAMP NOT NULL DEFAULT NOW(),
-    comprobante_pago VARCHAR(255),
-    
-    CONSTRAINT fk_pre_atleta
-        FOREIGN KEY (atleta_id)
-        REFERENCES public.atletas(id)
-        ON DELETE CASCADE,
-
-    CONSTRAINT fk_pre_carrera
-        FOREIGN KEY (carrera_id)
-        REFERENCES public.carreras(id)
-        ON DELETE CASCADE
+CREATE TABLE public.inscripciones (
+	id serial4 NOT NULL,
+	atleta_id int4 NOT NULL,
+	carrera_id int4 NOT NULL,
+	estado varchar(50) DEFAULT 'pendiente'::character varying NOT NULL,
+	fecha_inscripcion timestamp DEFAULT now() NOT NULL,
+	comprobante_pago varchar(255) NULL,
+	pos_general int4 DEFAULT 0 NOT NULL,
+	pos_categoria int4 DEFAULT 0 NOT NULL,
+	categoria varchar(100) NULL,
+	finalizo bool DEFAULT false NOT NULL,
+	pechera int4 DEFAULT 0 NOT NULL,
+	CONSTRAINT inscripciones_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
+	CONSTRAINT fk_ins_carrera FOREIGN KEY (carrera_id) REFERENCES public.carreras(id) ON DELETE CASCADE
 );
+
 
 INSERT INTO atletas (id, nombre, fechadenacimiento, email) VALUES
 (2, 'josefa', '2000-11-30', 'josefa@example.com'),
@@ -171,3 +170,5 @@ ALTER TABLE public.atletas
 
 ADD CONSTRAINT atletas_dni_unique UNIQUE (dni);
 
+ALTER TABLE inscripciones
+ADD COLUMN pechera INT DEFAULT 0 NOT NULL;

@@ -1,6 +1,9 @@
+{extends file="backend/views/admin/layout_base_admin.tpl"}
+
+{block name="contenido_admin"}
 <h2>Inscripciones Pendientes</h2>
 
-<table border="1" cellpadding="6" cellspacing="0">
+<table class="tabla-admin">
     <tr>
         <th>Atleta</th>
         <th>DNI</th>
@@ -37,3 +40,4 @@
 {if count($inscripciones) == 0}
 <p>No hay inscripciones pendientes.</p>
 {/if}
+{/block}

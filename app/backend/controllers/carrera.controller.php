@@ -4,16 +4,42 @@ require_once 'backend/models/participante.model.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
 
 class CarreraController {
-    // Muestra las carreras anteriores con resultados
+
+
+    private $model;
+    private $smarty;
+
+    public function __construct() {
+        $this->model = new Carrera();
+        $this->smarty = new Smarty\Smarty();
+    }
+
+
+    //Admin
     public function mostrarAnteriores() {
+        $carreras = $this->model->listarAnteriores();
+        $this->smarty->assign('carreras', $carreras);
+        $this->smarty->display('backend/views/admin/carreras_terminadas.tpl');
+    }
+
+     //Admin
+    public function carrerasFuturas() {
+        $carreras = $this->model->listarFuturas();
+        $this->smarty->assign('carreras', $carreras);
+        $this->smarty->display('backend/views/admin/carreras_futuras.tpl');
+    }
+    
+
+    //Admin: Muestra las carreras terminadas y está la opción de cargar/editar/ver resultados
+    public function carrerasTerminadas() {
         $modelo = new Carrera();
         $carreras = $modelo->anteriores();
 
-        $smarty = new Smarty\Smarty();
-        $smarty->assign('titulo', 'Es-Tan-Dil - Carreras anteriores');
-        $smarty->assign('carreras', $carreras);
-        $smarty->display('frontend/templates/verresultadoscarreras.tpl');
+        $this->smarty->assign('titulo', 'Es-Tan-Dil - Carreras anteriores');
+        $this->smarty->assign('carreras', $carreras);
+        $this->smarty->display('backend/views/admin/carreras_terminadas.tpl');
     }
+
 
     // Muestra los resultados de una carrera especifica
     public function mostrarResultadoCarrera($id) {

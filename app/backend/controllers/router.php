@@ -14,17 +14,17 @@ class Router {
                 $controller->mostrarInicio();
                 break;
 
-            case 'verproximascarreras': // Carreras futuras
+            case 'verproximascarreras': // Front: Carreras futuras
                 $controller = new CarreraController();
                 $controller->mostrarProximasCarreras();
                 break;
 
-            case 'verresultadoscarreras': // Carreras terminadas
+            case 'verresultadoscarreras': // Front: Carreras terminadas
                 $controller = new CarreraController();
                 $controller->mostrarAnteriores();
                 break;
 
-            case 'resultadoCarrera': // Resultados individuales
+            case 'resultadoCarrera': // Front: Resultados individuales
                 $controller = new CarreraController();
                 $controller->mostrarResultadoCarrera($_GET['id'] ?? null);
                 break;
@@ -49,13 +49,12 @@ class Router {
                 $controller->mostrarPanelAdmin();
                 break;
 
-            case 'crearCarrera':
+            case 'crearCarrera':  //Back: crear carrera
                 $controller = new CarreraController();
                 $controller->crearCarrera($_POST);
                 break;
 
-            case 'preinscribirse':
-                // Muestra formulario para preinscribirse en una carrera
+            case 'preinscribirse': 
                 $controller = new InscripcionController();
                 $controller->mostrarFormulario($_GET['carrera_id'] ?? null);
             break;
@@ -97,9 +96,19 @@ class Router {
                 $controller->listarPendientes();
                 break;
 
+            case 'inscripcionesConfirmadas':
+                $controller = new InscripcionController();
+                $controller->listarConfirmadas();
+                break;
+
             case 'inscripcionesPagadas':
                 $controller = new InscripcionController();
                 $controller->listarPagadas();
+                break;
+            
+            case 'inscripcionesTodas':
+                $controller = new InscripcionController();
+                $controller->listarTodas();
                 break;
 
             case 'confirmarInscripcion':
@@ -107,6 +116,16 @@ class Router {
                 $controller->confirmarInscripcion($_GET['id']);
             break;
             
+            case 'carrerasTerminadas':   //Back: ver carreras finalizadas y cargar/editar resultados
+                $controller = new CarreraController();
+                $controller->carrerasTerminadas();
+                break;
+                        
+            case 'carrerasFuturas':   //Back: ver carreras futuras y estado inscripciones
+                $controller = new CarreraController();
+                $controller->carrerasFuturas();
+                break;
+
             default:
                 echo '404 - Pagina no encontrada.';
                 break;

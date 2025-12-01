@@ -2,6 +2,25 @@
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\config\conexion.php';
 
+/*
+CREATE TABLE public.inscripciones (
+	id serial4 NOT NULL,
+	atleta_id int4 NOT NULL,
+	carrera_id int4 NOT NULL,
+	estado varchar(50) DEFAULT 'pendiente'::character varying NOT NULL,
+	fecha_inscripcion timestamp DEFAULT now() NOT NULL,
+	comprobante_pago varchar(255) NULL,
+	pos_general int4 DEFAULT 0 NOT NULL,
+	pos_categoria int4 DEFAULT 0 NOT NULL,
+	categoria varchar(100) NULL,
+	finalizo bool DEFAULT false NOT NULL,
+	pechera int4 DEFAULT 0 NOT NULL,
+	CONSTRAINT inscripciones_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
+	CONSTRAINT fk_ins_carrera FOREIGN KEY (carrera_id) REFERENCES public.carreras(id) ON DELETE CASCADE
+);
+*/
+
 class InscripcionModel {
 
      
@@ -30,8 +49,10 @@ class InscripcionModel {
     public function todos() {
         $sql = "SELECT p.*, 
                        a.nombre AS atleta_nombre,
+                       a.dni AS atleta_dni,
                        a.apellido AS atleta_apellido,
-                       c.nombre AS carrera_nombre
+                       c.nombre AS carrera_nombre,
+                       c.fecha AS carrera_fecha
                 FROM inscripciones p
                 JOIN atletas a ON p.atleta_id = a.id
                 JOIN carreras c ON p.carrera_id = c.id
@@ -124,7 +145,27 @@ class InscripcionModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Lista todos los insscriptos que pagaron y están verificados en una carrera, ordenados por número de pechera
+    //Lista las inscripciones pagadas y confirmadas para futuras carreras
+    public function confirmadasFuturas() {
+        $sql = "SELECT i.*, 
+                   a.nombre AS atleta_nombre,
+                   a.apellido AS atleta_apellido,
+                   c.nombre AS carrera_nombre,
+                   c.fecha AS carrera_fecha
+
+            FROM inscripciones i
+            JOIN atletas a ON i.atleta_id = a.id
+            JOIN carreras c ON i.carrera_id = c.id
+            WHERE i.estado = 'inscripto'
+            AND c.fecha >= CURRENT_DATE
+            ORDER BY c.fecha ASC";
+
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Lista todos los inscriptos que pagaron y están verificados en una carrera, ordenados por número de pechera
     public function inscriptosPorCarrera($carrera_id) {
          $sql = "SELECT i.*, 
                    a.nombre AS atleta_nombre,
@@ -154,11 +195,28 @@ class InscripcionModel {
     }
 
     //Asigna la categoría dependiendo del género. Podría ampliarse luego con la edad
-    public function asignarCategoriaPorGenero($genero) {
-        if ($genero === 'M') return "Masculino";
-        if ($genero === 'F') return "Femenino";
-    return "General";
+    public function asignarCategoriaPorGenero($id) {
+        $sql = "SELECT a.genero
+            FROM inscripciones i
+            INNER JOIN atletas a ON i.atleta_id = a.id
+            WHERE i.id = :id";
+
+        $stmt = Conexion::getConexion()->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Si no existe retorno por defecto
+        if (!$row) return "GENERAL";
+
+        $genero = $row['genero'];
+
+        if ($genero === 'M') return "CABALLERO";
+        if ($genero === 'F') return "DAMA";
+
+        return "GENERAL";
     }
+
+
 
     //Se produce la inscripción, está verificado el pago y aceptada
     public function confirmarInscripcion($id, $categoria, $pechera) {

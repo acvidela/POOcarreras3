@@ -76,7 +76,7 @@ class InscripcionController {
         $smarty = new Smarty\Smarty;
         $smarty->assign('titulo', 'Preinscripciones');
         $smarty->assign('preinscripciones', $preinscripciones);
-        $smarty->display('frontend/templates/listarPreinscripciones.tpl');
+        $smarty->display('backend/views/admin/inscripciones_confirmadas.tpl');
     }
 
     // ACTUALIZAR ESTADO (admin)
@@ -161,32 +161,48 @@ class InscripcionController {
         $pechera = $this->model->obtenerSiguientePechera($ins['carrera_id']);
 
         // 2. Calcular categoría (según género por ahora)
-        $categoria = ($ins['genero'] === 'M') ? 'Masculino' : 'Femenino';
+        $categoria = $this->model->asignarCategoriaPorGenero($ins['id']);
 
-        // 3. Actualizar inscripción
-        $this->model->confirmarInscripcion($id, [
-            'estado' => 'inscripto',
-            'pechera' => $pechera,
-            'categoria' => $categoria,
-            'pos_general' => 0,
-            'pos_categoria' => 0,
-            'finalizo' => false
-        ]);
+        // 3. Actualizar inscripción a inscripto
+        $this->model->confirmarInscripcion($id, $categoria, $pechera);
 
-        // Opcional: emular envío de mail
-        echo "<script>alert('Inscripto confirmado. Pechera: $pechera'); window.location='index.php?action=inscripcionesPagadas';</script>";
+        // 4. Guardamos mensaje flash
+         $_SESSION['flash'] = "Inscripción confirmada. Número de pechera: $pechera";
+
+         // Si cambia a inscripto, volver a pagados
+        if ($ins['estado'] === 'inscripto') {
+            header("Location: index.php?action=inscripcionesPagadas");
+            exit;
+        }
+
     }
-
+    //Admin
     public function listarPendientes() {
         $inscripciones = $this->model->pendientesFuturas();
         $this->smarty->assign('inscripciones', $inscripciones);
-        $this->smarty->display('frontend/templates/inscripciones_pendientes.tpl');
+        $this->smarty->display('backend/views/admin/inscripciones_pendientes.tpl');
     }
-
+    //Admin
     public function listarPagadas() {
         $inscripciones = $this->model->pagadasFuturas();
         $this->smarty->assign('inscripciones', $inscripciones);
-        $this->smarty->display('frontend/templates/inscripciones_pagadas.tpl');
+        $flash = $_SESSION['flash'] ?? null;
+        unset($_SESSION['flash']);
+        $this->smarty->assign('flash', $flash);
+        $this->smarty->display('backend/views/admin/inscripciones_pagadas.tpl');
     }
+    //Admin
+    public function listarConfirmadas() {
+        $inscripciones = $this->model->confirmadasFuturas();
+        $this->smarty->assign('inscripciones', $inscripciones);
+        $this->smarty->display('backend/views/admin/inscripciones_confirmadas.tpl');
+    }
+    //Admin
+    public function listarTodas() {
+        $inscripciones = $this->model->todos();
+        $this->smarty->assign('inscripciones', $inscripciones);
+        $this->smarty->display('backend/views/admin/inscripciones_todas.tpl');
+    }
+
 
 }
