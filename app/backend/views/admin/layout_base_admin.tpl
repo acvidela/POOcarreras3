@@ -15,7 +15,7 @@
           <li class="menu-section">Carreras</li>
           <li><a href="carrerasFuturas">📅 Próximas</a></li>
           <li><a href="carrerasTerminadas">🏁 Finalizadas</a></li>
-          <li><a href="javascript:void(0)" onclick="toggleCrearCarrera()">➕ Crear carrera</a></li>
+          <li><a href="crearCarrera"> ➕ Crear carrera</a></li>
 
           <li class="menu-section">Incripciones</li>
           <li><a href="inscripcionesTodas">📋 Todas</a></li>

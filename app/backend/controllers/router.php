@@ -49,10 +49,15 @@ class Router {
                 $controller->mostrarPanelAdmin();
                 break;
 
-            case 'crearCarrera':  //Back: crear carrera
+           case 'crearCarrera': //Admin: muestra el formulario de agregar una nueva carrera
                 $controller = new CarreraController();
-                $controller->crearCarrera($_POST);
-                break;
+                $controller->mostrarFormularioCrear();
+            break;
+
+            case 'guardarCarrera':  //Admin: recibe el submit del formulario de agregar una nueva carrera y la guarda
+                $controller = new CarreraController();
+                $controller->guardarCarrera();
+            break;
 
             case 'preinscribirse': 
                 $controller = new InscripcionController();

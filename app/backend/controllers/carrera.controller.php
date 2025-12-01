@@ -72,37 +72,35 @@ class CarreraController {
         $smarty->display('frontend/templates/verproximascarreras.tpl');
     }
 
-    // Crear carrera desde el panel admin
-    public function crearCarrera($post) {
-        session_start();
+    // Admin: Mostrar formulario
+    public function mostrarFormularioCrear() {
+        $this->smarty->assign('titulo', 'Crear nueva carrera');
+        $this->smarty->display('backend/views/admin/carrera_crear.tpl');
+    }
 
-        $nombre = trim($post['nombre'] ?? '');
-        $circuito = trim($post['circuito'] ?? '');
-        $fecha = $post['fecha'] ?? '';
-        $precio = $post['precio'] ?? '';
 
-        if ($nombre === '' || $circuito === '' || $fecha === '' || $precio === '') {
-            $_SESSION['flash_admin'] = 'Todos los campos son obligatorios.';
-            header('Location: admin');
-            exit;
+    // Admin: Guardar datos del formulario
+    public function guardarCarrera() {
+
+        // Validaciones básicas
+         if (
+            empty($_POST['nombre']) ||
+            empty($_POST['fecha']) ||
+            empty($_POST['circuito']) ||
+            empty($_POST['precio'])
+        ) {
+            die("Faltan datos obligatorios");
         }
 
-        if (!is_numeric($precio)) {
-            $_SESSION['flash_admin'] = 'El precio debe ser un número.';
-            header('Location: admin');
-            exit;
-        }
-
-        $modelo = new Carrera();
-        $modelo->insertar([
-            'nombre' => $nombre,
-            'circuito' => $circuito,
-            'fecha' => $fecha,
-            'precio' => $precio,
+        $this->model->insertar([
+            'nombre'   => $_POST['nombre'],
+            'fecha'    => $_POST['fecha'],
+            'circuito' => $_POST['circuito'],
+            'precio'   => $_POST['precio']
         ]);
 
-        $_SESSION['flash_admin'] = 'Carrera creada correctamente.';
-        header('Location: admin');
+        // Redirección al listado
+        header("Location: index.php?action=carrerasFuturas");
         exit;
     }
 }

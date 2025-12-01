@@ -172,3 +172,6 @@ ADD CONSTRAINT atletas_dni_unique UNIQUE (dni);
 
 ALTER TABLE inscripciones
 ADD COLUMN pechera INT DEFAULT 0 NOT NULL;
+
+--Cambia pechera por dosrsal
+ALTER TABLE inscripciones RENAME COLUMN pechera TO dorsal;
