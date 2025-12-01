@@ -1,6 +1,6 @@
 ﻿<?php
 require_once 'backend/models/carrera.model.php';
-require_once 'backend/models/participante.model.php';
+require_once 'backend/models/resultado.model.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
 
 class CarreraController {
@@ -15,11 +15,11 @@ class CarreraController {
     }
 
 
-    //Admin
+    //Desde el front
     public function mostrarAnteriores() {
         $carreras = $this->model->listarAnteriores();
         $this->smarty->assign('carreras', $carreras);
-        $this->smarty->display('backend/views/admin/carreras_terminadas.tpl');
+        $this->smarty->display('frontend/templates/verresultadoscarreras.tpl');
     }
 
      //Admin
@@ -41,24 +41,22 @@ class CarreraController {
     }
 
 
-    // Muestra los resultados de una carrera especifica
+    // Muestra los resultados de una carrera especifica en el front
     public function mostrarResultadoCarrera($id) {
         if (!$id) {
             echo 'Carrera no especificada.';
             return;
         }
 
-        $carreraModel = new Carrera();
-        $participanteModel = new Participante();
+        $resultadoModel = new ResultadoModel();
 
-        $carrera = $carreraModel->una($id);
-        $resultados = $participanteModel->todosEnCarrera($id);
+        $carrera = $this->model->una($id);
+        $resultados = $resultadoModel->traerPorCarrera($id);
 
-        $smarty = new Smarty\Smarty();
-        $smarty->assign('titulo', 'Es-Tan-Dil - Resultado carrera');
-        $smarty->assign('carrera', $carrera);
-        $smarty->assign('resultados', $resultados);
-        $smarty->display('frontend/templates/resultadoCarrera.tpl');
+        $this->smarty->assign('titulo', 'Es-Tan-Dil - Resultado carrera');
+        $this->smarty->assign('carrera', $carrera);
+        $this->smarty->assign('resultados', $resultados);
+        $this->smarty->display('frontend/templates/resultadoCarrera.tpl');
     }
 
     // Muestra las carreras próximas con formulario de inscripción

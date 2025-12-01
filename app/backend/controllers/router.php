@@ -3,6 +3,7 @@
 require_once 'administrador.controller.php';
 require_once 'backend/controllers/carrera.controller.php';
 require_once 'backend/controllers/inscripcion.controller.php';
+require_once 'backend/controllers/resultado.controller.php';
 
 class Router {
     public function handleRequest() {
@@ -24,7 +25,7 @@ class Router {
                 $controller->mostrarAnteriores();
                 break;
 
-            case 'resultadoCarrera': // Front: Resultados individuales
+            case 'resultadoCarrera': // Front: Resultados de una carrera en particular
                 $controller = new CarreraController();
                 $controller->mostrarResultadoCarrera($_GET['id'] ?? null);
                 break;
@@ -129,6 +130,21 @@ class Router {
             case 'carrerasFuturas':   //Back: ver carreras futuras y estado inscripciones
                 $controller = new CarreraController();
                 $controller->carrerasFuturas();
+                break;
+
+            case 'verResultadosAdmin':       // Mostrar resultados de una carrera
+                $controller = new ResultadoController();
+                $controller->verResultadosAdmin($_GET['id']);
+                break;
+
+            case 'cargarResultados':     // Cargar resultados de una carrera
+                $controller = new ResultadoController();
+                $controller->cargarResultados($_GET['id']);
+                break;
+
+             case 'guardarResultados':   // Guardar desde el formulario (POST)
+                $controller = new ResultadoController();
+                $controller->guardarResultados();
                 break;
 
             default:

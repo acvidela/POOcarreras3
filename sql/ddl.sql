@@ -184,3 +184,21 @@ ALTER TABLE inscripciones
     DROP COLUMN pos_categoria,
     DROP COLUMN categoria,
     DROP COLUMN finalizo;
+
+CREATE TABLE public.resultados (
+    id SERIAL PRIMARY KEY,
+    inscripcion_id INT NOT NULL,
+    tiempo VARCHAR(20) NOT NULL,        -- Ej: '00:35:12', 'DNF', 'DSQ'
+    pos_general INT NOT NULL,
+    categoria VARCHAR(100) NOT NULL,    -- Ej: 'Caballeros 30-39'
+    pos_categoria INT NOT NULL,
+    creado_en TIMESTAMP DEFAULT NOW(),
+
+    CONSTRAINT fk_result_inscripcion
+        FOREIGN KEY (inscripcion_id)
+        REFERENCES public.inscripciones(id)
+        ON DELETE CASCADE
+);
+
+CREATE INDEX idx_resultados_inscripcion
+    ON resultados(inscripcion_id);

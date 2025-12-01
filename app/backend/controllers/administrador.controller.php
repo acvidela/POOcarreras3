@@ -2,8 +2,8 @@
 
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\administrador.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\carrera.model.php';
-require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\participante.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\inscripcion.model.php';
+require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\resultado.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\frontend\lib\smarty\libs\Smarty.class.php';
 
 class AdministradorController {
@@ -83,12 +83,12 @@ class AdministradorController {
 
         // Resumen rápido para el tablero
         $carreraModel = new Carrera();
-        $participanteModel = new Participante();
+        $resultadoModel = new resultadoModel(); 
 
         $todasCarreras = $carreraModel->todas();
         $proximasCarreras = $carreraModel->proximas();
         $anterioresCarreras = $carreraModel->anteriores();
-        $participantes = $participanteModel->todos();
+        $participantes = $resultadoModel->todos();   //Todos los que ya han corrido
 
         $stats = [
             'total_carreras' => count($todasCarreras),

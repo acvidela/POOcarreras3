@@ -16,12 +16,12 @@ class Carrera {
     }
 
     
-     //Admin: Lista las carreras previas a HOY
+    //Admin/Front: Lista las carreras previas a HOY
     public function listarAnteriores() {
-        $sql = "SELECT c.*
-            FROM carreras c
-            WHERE c.fecha < CURRENT_DATE
-            ORDER BY c.fecha DES";
+        $sql = "SELECT *
+            FROM carreras
+            WHERE fecha < CURRENT_DATE
+            ORDER BY fecha DESC";
 
         $stmt = Conexion::prepare($sql);
         $stmt->execute();
