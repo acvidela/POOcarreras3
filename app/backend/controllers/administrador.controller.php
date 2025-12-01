@@ -128,13 +128,13 @@ class AdministradorController {
         // 1. Obtener categoría según género
         $categoria = ($genero === 'F') ? 'Femenino' : 'Masculino';
 
-        // 2. Obtener siguiente número de pechera
+        // 2. Obtener siguiente número de dorsal
     
         $insModel = new InscripcionesModel();
-        $pechera = $insModel->obtenerSiguientePechera($carrera_id);
+        $dorsal = $insModel->obtenerSiguientedorsal($carrera_id);
 
         // 3. Actualizar inscripción
-        $insModel->aprobarInscripcion($inscripcion_id, $categoria, $pechera);
+        $insModel->aprobarInscripcion($inscripcion_id, $categoria, $dorsal);
 
         // 4. (Opcional) Enviar mail
         // $this->enviarMailConfirmacion(...);

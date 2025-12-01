@@ -18,7 +18,7 @@
               <thead>
                 <tr>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Pechera</th>
+                  <th scope="col">dorsal</th>
                   <th scope="col">Posicion general</th>
                   <th scope="col">Posicion Categoria</th>
                   <th scope="col">Categoria</th>

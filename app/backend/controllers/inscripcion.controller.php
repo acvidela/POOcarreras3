@@ -157,17 +157,17 @@ class InscripcionController {
             return;
         }
 
-        // 1. Obtener next pechera
-        $pechera = $this->model->obtenerSiguientePechera($ins['carrera_id']);
+        // 1. Obtener next dorsal
+        $dorsal = $this->model->obtenerSiguientedorsal($ins['carrera_id']);
 
         // 2. Calcular categoría (según género por ahora)
         $categoria = $this->model->asignarCategoriaPorGenero($ins['id']);
 
         // 3. Actualizar inscripción a inscripto
-        $this->model->confirmarInscripcion($id, $categoria, $pechera);
+        $this->model->confirmarInscripcion($id, $categoria, $dorsal);
 
         // 4. Guardamos mensaje flash
-         $_SESSION['flash'] = "Inscripción confirmada. Número de pechera: $pechera";
+         $_SESSION['flash'] = "Inscripción confirmada. Número de dorsal: $dorsal";
 
          // Si cambia a inscripto, volver a pagados
         if ($ins['estado'] === 'inscripto') {

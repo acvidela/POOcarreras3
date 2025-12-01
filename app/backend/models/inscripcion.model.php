@@ -14,7 +14,7 @@ CREATE TABLE public.inscripciones (
 	pos_categoria int4 DEFAULT 0 NOT NULL,
 	categoria varchar(100) NULL,
 	finalizo bool DEFAULT false NOT NULL,
-	pechera int4 DEFAULT 0 NOT NULL,
+	dorsal int4 DEFAULT 0 NOT NULL,
 	CONSTRAINT inscripciones_pkey PRIMARY KEY (id),
 	CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
 	CONSTRAINT fk_ins_carrera FOREIGN KEY (carrera_id) REFERENCES public.carreras(id) ON DELETE CASCADE
@@ -165,7 +165,7 @@ class InscripcionModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Lista todos los inscriptos que pagaron y están verificados en una carrera, ordenados por número de pechera
+    //Lista todos los inscriptos que pagaron y están verificados en una carrera, ordenados por número de dorsal
     public function inscriptosPorCarrera($carrera_id) {
          $sql = "SELECT i.*, 
                    a.nombre AS atleta_nombre,
@@ -176,16 +176,16 @@ class InscripcionModel {
             JOIN carreras c ON c.id = i.carrera_id
             WHERE i.estado = 'inscripto'
             AND i.carrera_id = :carrera_id
-            ORDER BY i.pechera ASC";
+            ORDER BY i.dorsal ASC";
 
         $stmt = Conexion::prepare($sql);
         $stmt->execute([':carrera_id' => $carrera_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Asigna un número de pechera dentro de la carrera. (incremental dentro de la carrera)
-    public function obtenerSiguientePechera($carrera_id) {
-         $sql = "SELECT COALESCE(MAX(pechera), 0) + 1 AS next_num
+    //Asigna un número de dorsal dentro de la carrera. (incremental dentro de la carrera)
+    public function obtenerSiguientedorsal($carrera_id) {
+         $sql = "SELECT COALESCE(MAX(dorsal), 0) + 1 AS next_num
             FROM inscripciones
             WHERE carrera_id = :carrera_id";
 
@@ -219,32 +219,32 @@ class InscripcionModel {
 
 
     //Se produce la inscripción, está verificado el pago y aceptada
-    public function confirmarInscripcion($id, $categoria, $pechera) {
+    public function confirmarInscripcion($id, $categoria, $dorsal) {
         $sql = "UPDATE inscripciones
             SET categoria = :categoria,
-                pechera = :pechera,
+                dorsal = :dorsal,
                 estado = 'inscripto'
             WHERE id = :id";
 
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([
             ':categoria' => $categoria,
-            ':pechera' => $pechera,
+            ':dorsal' => $dorsal,
             ':id' => $id
         ]);
     }
 
-    public function aprobarInscripcion($inscripcion_id, $categoria, $pechera) {
+    public function aprobarInscripcion($inscripcion_id, $categoria, $dorsal) {
         $sql = "UPDATE inscripciones
             SET estado = 'aprobado',
                 categoria = :categoria,
-                pechera = :pechera
+                dorsal = :dorsal
             WHERE id = :id";
 
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([
             ':categoria' => $categoria,
-            ':pechera' => $pechera,
+            ':dorsal' => $dorsal,
             ':id' => $inscripcion_id
         ]);
     }

@@ -37,7 +37,7 @@ button {
     {/if}
 
     <br>
-    <p>Enviar el comprobante de pago a pagos@estandil.com.ar o presentarlo al momento de retirar la pechera.</p>
+    <p>Enviar el comprobante de pago a pagos@estandil.com.ar o presentarlo al momento de retirar la dorsal.</p>
 
     <button onclick="window.print()">Imprimir</button>
 </div>

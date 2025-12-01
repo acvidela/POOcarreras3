@@ -6,7 +6,7 @@
 
 <table class="tabla-admin">
     <tr>
-        <th>Pechera</th>
+        <th>dorsal</th>
         <th>Atleta</th>
         <th>Categoría</th>
         <th>Carrera</th>
@@ -16,7 +16,7 @@
 
     {foreach $inscripciones as $i}
     <tr>
-        <td>{$i.pechera}</td>
+        <td>{$i.dorsal}</td>
         <td>{$i.atleta_nombre} {$i.atleta_apellido}</td>
         <td>{$i.categoria}</td>
         <td>{$i.carrera_nombre}</td>

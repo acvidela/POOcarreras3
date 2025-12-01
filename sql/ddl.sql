@@ -54,7 +54,7 @@ CREATE TABLE public.inscripciones (
 	pos_categoria int4 DEFAULT 0 NOT NULL,
 	categoria varchar(100) NULL,
 	finalizo bool DEFAULT false NOT NULL,
-	pechera int4 DEFAULT 0 NOT NULL,
+	dorsal int4 DEFAULT 0 NOT NULL,
 	CONSTRAINT inscripciones_pkey PRIMARY KEY (id),
 	CONSTRAINT fk_ins_atleta FOREIGN KEY (atleta_id) REFERENCES public.atletas(id) ON DELETE CASCADE,
 	CONSTRAINT fk_ins_carrera FOREIGN KEY (carrera_id) REFERENCES public.carreras(id) ON DELETE CASCADE
@@ -171,7 +171,7 @@ ALTER TABLE public.atletas
 ADD CONSTRAINT atletas_dni_unique UNIQUE (dni);
 
 ALTER TABLE inscripciones
-ADD COLUMN pechera INT DEFAULT 0 NOT NULL;
+ADD COLUMN dorsal INT DEFAULT 0 NOT NULL;
 
---Cambia pechera por dosrsal
-ALTER TABLE inscripciones RENAME COLUMN pechera TO dorsal;
+--Cambia dorsal por dosrsal
+ALTER TABLE inscripciones RENAME COLUMN dorsal TO dorsal;
