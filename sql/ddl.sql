@@ -198,3 +198,24 @@ CREATE TABLE public.resultados (
 
 CREATE INDEX idx_resultados_inscripcion
     ON resultados(inscripcion_id);
+
+
+--Para probar en la carrera 14
+INSERT INTO inscripciones (id, atleta_id, carrera_id, estado, fecha_inscripcion, comprobante_pago, dorsal) VALUES
+(7, 2, 14, 'inscripto', '2025-07-20 10:15:00', '', 1),
+(8, 3, 14, 'inscripto', '2025-07-20 10:17:12', '', 2),
+(9, 4, 14, 'inscripto', '2025-07-20 10:20:44', '', 3),
+(10, 5, 14, 'inscripto', '2025-07-20 10:32:10', '', 4),
+(11, 7, 14, 'inscripto', '2025-07-20 10:41:09', '', 5),
+(12, 10, 14, 'inscripto', '2025-07-20 10:55:20', '', 6),
+(13, 12, 14, 'inscripto', '2025-07-20 11:01:55', '', 7),
+(14, 13, 14, 'inscripto', '2025-07-20 11:10:33', '', 8),
+(15, 14, 14, 'inscripto', '2025-07-20 11:22:12', '', 9),
+(16, 17, 14, 'inscripto', '2025-07-20 11:25:50', '', 10);
+
+--Agrega restricción de unicidad en id_inscripción para poder usar on conflict
+ALTER TABLE resultados
+ADD CONSTRAINT resultados_inscripcion_unique UNIQUE (inscripcion_id);
+
+ALTER TABLE resultados 
+ALTER COLUMN pos_categoria DROP NOT NULL;

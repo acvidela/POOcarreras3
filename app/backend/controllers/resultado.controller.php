@@ -10,10 +10,7 @@ class ResultadoController {
         $this->model = new ResultadoModel();
         $this->smarty = new Smarty\Smarty();
     }
-
-    
-    
-    
+  
     
     // Mostrar resultados de una carrera (vista admin)
     public function verResultadosAdmin($idCarrera) {
@@ -88,18 +85,17 @@ class ResultadoController {
                 continue;
             }
 
+            $categoria = $this->model->buscarCategoriaPorInscripcion($ins['id']);
+
             // guardar resultado
-            $this->model->guardarResultado($ins['id'], $tiempo, $posGeneral);
+            $this->model->guardarResultado($ins['id'], $tiempo, $posGeneral, $categoria);
 
             $resultadosCargados++;
         }
 
         fclose($handle);
 
-        // Mostrar resumen
-        $this->smarty->assign('cargados', $resultadosCargados);
-        $this->smarty->assign('errores', $errores);
-        $this->smarty->display('backend/views/admin/resumen_importacion.tpl');
+        header("Location: index.php?action=verResultadosAdmin&id={$idCarrera}");
     }
 
 }

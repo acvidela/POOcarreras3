@@ -16,12 +16,12 @@
 
     {foreach $resultados as $r}
     <tr>
-        <td>{$r.pos_general}</td>
-        <td>{$r.dorsal}</td>
-        <td>{$r.nombre} {$r.apellido}</td>
-        <td>{$r.tiempo}</td>
-        <td>{$r.categoria}</td>
-        <td>{$r.pos_categoria}</td>
+        <td>{$r->pos_general}</td>
+        <td>{$r->dorsal}</td>
+        <td>{$r->nombre} {$r->apellido}</td>
+        <td>{$r->tiempo}</td>
+        <td>{$r->categoria}</td>
+        <td>{$r->pos_categoria}</td>
     </tr>
     {/foreach}
 
