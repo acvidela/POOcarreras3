@@ -157,15 +157,27 @@ class Router {
                 $controller->verResultadosAdmin($_GET['id']);
                 break;
 
-            case 'cargarResultados':     // Cargar resultados de una carrera
+            case 'cargarResultadosManual':     // Cargar resultados de una carrera de manera manual en una tabla
                 $controller = new ResultadoController();
-                $controller->cargarResultados($_GET['id']);
+                $controller->cargarResultadosManual($_GET['id']);
                 break;
 
-             case 'guardarResultados':   // Guardar desde el formulario (POST)
+        
+            case 'guardarResultados':   // Guardar desde el formulario (POST)
                 $controller = new ResultadoController();
                 $controller->guardarResultados();
                 break;
+
+            case 'cargarResultadosCsv':         //Utiliza un archivo csv generados por chip para cargar resultados
+                $controller = new ResultadoController();
+                $controller->cargarResultadosForm($_GET['id']);
+                break;
+
+            case 'importarResultados':   //Carga en la DB los datos del archivo .csv
+                $controller = new ResultadoController();
+                $controller->importarResultados($_GET['id']);
+                break;
+
 
             default:
                 echo '404 - Pagina no encontrada.';

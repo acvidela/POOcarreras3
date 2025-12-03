@@ -49,4 +49,28 @@ class ResultadoModel {
 
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+
+    //Busca y devuelve por número de dorsal para cargar resultados
+    public function buscarInscripcionPorDorsal($carrera_id, $dorsal) {
+        $sql = "SELECT * FROM inscripciones 
+                WHERE carrera_id = ? AND pechera = ?";
+        $pdo = Conexion::getConexion();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$carrera_id, $dorsal]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    //Guarda los resultados desde un .cvs
+    public function guardarResultado($inscripcion_id, $tiempo, $posGeneral) {
+        $sql = "INSERT INTO resultados (inscripcion_id, tiempo, posicion_general)
+                VALUES (?, ?, ?)
+                ON CONFLICT (inscripcion_id)
+                DO UPDATE SET tiempo = EXCLUDED.tiempo,
+                            posicion_general = EXCLUDED.posicion_general";
+
+        $pdo = Conexion::getConexion();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$inscripcion_id, $tiempo, $posGeneral]);
+    }
+
 }
