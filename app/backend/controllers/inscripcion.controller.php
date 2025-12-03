@@ -20,7 +20,7 @@ class InscripcionController {
         $this->smarty = new Smarty\Smarty();
     }
 
-    // FORMULARIO DE PREINSCRIPCIÓN (público)
+    // FORMULARIO DE PREINSCRIPCION (publico)
     public function mostrarFormulario($carrera_id) {
         if (!$carrera_id) {
             echo "Carrera no especificada.";
@@ -32,40 +32,80 @@ class InscripcionController {
 
         $smarty = new Smarty\Smarty;
         $smarty->assign('carrera', $carrera);
-        $smarty->assign('titulo', 'Preinscripción');
+        $smarty->assign('titulo', 'Preinscripcion');
         $smarty->display('frontend/templates/preinscripcion.tpl');
     }
 
     public function guardarPreinscripcion($post) {
 
         if (!$post) {
-            echo "Datos inválidos";
+            echo "Datos invalidos";
             return;
         }
+        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
-        // 1) Guardar atleta
-        $atletaModel = new Atleta();
-        $atleta_id = $atletaModel->insertarYDevolverID([
-            'nombre' => $post['nombre'],
-            'apellido' => $post['apellido'],
-            'dni' => $post['dni'],
-            'email' => $post['email'],
-            'telefono' => $post['telefono'],
-            'genero' => $post['genero'],
-            'fechadenacimiento' => $post['fechadenacimiento'],
-        ]);
+        try {
+            // 1) Guardar atleta
+            $atletaModel = new Atleta();
+            $atleta_id = $atletaModel->insertarYDevolverID([
+                'nombre' => $post['nombre'],
+                'apellido' => $post['apellido'],
+                'dni' => $post['dni'],
+                'email' => $post['email'],
+                'telefono' => $post['telefono'],
+                'genero' => $post['genero'],
+                'fechadenacimiento' => $post['fechadenacimiento'],
+            ]);
 
-        // 2) Crear la preinscripción y guardar ID
-        $preinscripcion_id = $this->model->insertar([
-            'atleta_id' => $atleta_id,
-            'carrera_id' => $post['carrera_id'],
-            'estado' => 'pendiente',
-            'comprobante_pago' => null
-        ]);
+            // 1b) Evitar duplicados del mismo atleta en la misma carrera
+            $yaInscripto = $this->model->existeParaAtletaYCarrera($atleta_id, $post['carrera_id']);
+            if ($yaInscripto) {
+                $mensaje = 'Ya existe una inscripcion para este atleta en esta carrera.';
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode(['success' => false, 'message' => $mensaje]);
+                    return;
+                }
+                echo $mensaje;
+                return;
+            }
 
-        // 3) Redirigir a confirmación
-        header("Location: index.php?action=preinscripcionConfirmada&id=" . $preinscripcion_id);
-        exit;
+            // 2) Crear la preinscripcion y guardar ID
+            $preinscripcion_id = $this->model->insertar([
+                'atleta_id' => $atleta_id,
+                'carrera_id' => $post['carrera_id'],
+                'estado' => 'pendiente',
+                'comprobante_pago' => null
+            ]);
+
+            // Si es una solicitud AJAX, devolvemos JSON para mostrar un pop-up en la misma pagina
+            if ($isAjax) {
+                $pre = $this->model->uno($preinscripcion_id);
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => true,
+                    'preinscripcion_id' => $preinscripcion_id,
+                    'estado' => $pre['estado'] ?? 'pendiente',
+                ]);
+                return;
+            }
+
+            // 3) Redirigir a confirmacion
+            header("Location: index.php?action=preinscripcionConfirmada&id=" . $preinscripcion_id);
+            exit;
+        } catch (Exception $e) {
+            if ($isAjax) {
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'No se pudo guardar la preinscripcion: ' . $e->getMessage(),
+                ]);
+                return;
+            }
+
+            echo "No se pudo guardar la preinscripcion: " . $e->getMessage();
+        }
     }
 
 
@@ -108,24 +148,29 @@ class InscripcionController {
         $pre = $this->model->obtenerCuponPorID($id);
 
         if (!$pre) {
-            echo "Cupón no encontrado.";
+            echo "Cupon no encontrado.";
             return;
         }
 
-        
         // Datos que queremos en el QR
         $qrData  = "Atleta: {$pre['nombre']} {$pre['apellido']}\n";
         $qrData .= "Carrera: {$pre['carrera_nombre']}\n";
         $qrData .= "Estado: {$pre['estado']}\n";
-        $qrData .= "ID Preinscripción: {$pre['id']}";
+        $qrData .= "ID Preinscripcion: {$pre['id']}";
 
-        $qrCode = new QrCode(data: $qrData, size: 200, margin: 10);
+        $qrBase64 = null;
+        try {
+            $qrCode = new QrCode(data: $qrData, size: 200, margin: 10);
 
-        $writer = new PngWriter();
-        $result = $writer->write($qrCode);
+            $writer = new PngWriter();
+            $result = $writer->write($qrCode);
 
-        // Convertir a base64 para poner en HTML
-        $qrBase64 = base64_encode($result->getString());
+            // Convertir a base64 para poner en HTML
+            $qrBase64 = base64_encode($result->getString());
+        } catch (Exception $e) {
+            // Si GD no esta habilitado no frenamos el flujo; solo omitimos el QR
+            $qrBase64 = null;
+        }
 
         $this->smarty->assign('cupon', $pre);
         $this->smarty->assign('qr', $qrBase64);
@@ -134,14 +179,14 @@ class InscripcionController {
     
     public function mostrarConfirmacion($idPreinscripcion) {
         if (!$idPreinscripcion) {
-            echo "Preinscripción no encontrada.";
+            echo "Preinscripcion no encontrada.";
             return;
          }
 
         $pre = $this->model->uno($idPreinscripcion);
 
         if (!$pre) {
-            echo "La preinscripción no existe.";
+            echo "La preinscripcion no existe.";
             return;
         }
 
@@ -153,21 +198,18 @@ class InscripcionController {
         $ins = $this->model->uno($id);
 
         if (!$ins) {
-            echo "Inscripción no encontrada";
+            echo "Inscripcion no encontrada";
             return;
         }
 
         // 1. Obtener next dorsal
         $dorsal = $this->model->obtenerSiguienteDorsal($ins['carrera_id']);
 
-        // 2. Calcular categoría (según género por ahora) 
-        //$categoria = $this->model->asignarCategoriaPorGenero($ins['id']); //No se calcula más en inscripción. Se genera en resulados
-
-        // 3. Actualizar inscripción a inscripto
+        // 3. Actualizar inscripcion a inscripto
         $this->model->confirmarInscripcion($id, $dorsal);
 
         // 4. Guardamos mensaje flash
-         $_SESSION['flash'] = "Inscripción confirmada. Número de dorsal: $dorsal";
+         $_SESSION['flash'] = "Inscripcion confirmada. Numero de dorsal: $dorsal";
 
          // Si cambia a inscripto, volver a pagados
         if ($ins['estado'] === 'inscripto') {
@@ -204,5 +246,48 @@ class InscripcionController {
         $this->smarty->display('backend/views/admin/inscripciones_todas.tpl');
     }
 
+    //Admin: editar inscripcion/atleta
+    public function editarInscripcion($id) {
+        $detalle = $this->model->detalle($id);
 
+        if (!$detalle) {
+            echo "Inscripcion no encontrada.";
+            return;
+        }
+
+        $this->smarty->assign('inscripcion', $detalle);
+        $this->smarty->display('backend/views/admin/inscripcion_editar.tpl');
+    }
+
+    public function actualizarInscripcion($post) {
+        if (empty($post['id'])) {
+            echo "Solicitud invalida.";
+            return;
+        }
+
+        $ins = $this->model->uno($post['id']);
+        if (!$ins) {
+            echo "Inscripcion no encontrada.";
+            return;
+        }
+
+        // Actualizar atleta
+        $atletaModel = new Atleta();
+        $atletaModel->actualizar($ins['atleta_id'], [
+            'nombre' => $post['nombre'],
+            'apellido' => $post['apellido'],
+            'dni' => $post['dni'],
+            'email' => $post['email'],
+            'telefono' => $post['telefono'],
+            'genero' => $post['genero'],
+            'fechadenacimiento' => $post['fechadenacimiento'],
+        ]);
+
+        // Actualizar estado inscripcion
+        $estado = $post['estado'] ?? $ins['estado'];
+        $this->model->actualizar($post['id'], ['estado' => $estado]);
+
+        header("Location: index.php?action=inscripcionesTodas");
+        exit;
+    }
 }

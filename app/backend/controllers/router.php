@@ -55,9 +55,19 @@ class Router {
                 $controller->mostrarFormularioCrear();
             break;
 
+            case 'editarCarrera': //Admin: muestra formulario de edicion
+                $controller = new CarreraController();
+                $controller->mostrarFormularioEditar($_GET['id'] ?? null);
+            break;
+
             case 'guardarCarrera':  //Admin: recibe el submit del formulario de agregar una nueva carrera y la guarda
                 $controller = new CarreraController();
                 $controller->guardarCarrera();
+            break;
+
+            case 'eliminarCarrera':
+                $controller = new CarreraController();
+                $controller->eliminarCarrera($_GET['id'] ?? null);
             break;
 
             case 'preinscribirse': 
@@ -85,6 +95,16 @@ class Router {
             case 'eliminarPreinscripcion':
                 $controller = new InscripcionController();
                 $controller->eliminar($_GET['id']);
+                break;
+
+            case 'editarInscripcion':
+                $controller = new InscripcionController();
+                $controller->editarInscripcion($_GET['id'] ?? null);
+                break;
+
+            case 'actualizarInscripcion':
+                $controller = new InscripcionController();
+                $controller->actualizarInscripcion($_POST);
                 break;
 
             case 'preinscripcionConfirmada':

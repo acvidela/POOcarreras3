@@ -45,7 +45,6 @@
       padding: 24px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(4px);
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
 
     .login-card h2 {
@@ -79,7 +78,6 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 15px;
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
 
     .login-form input:focus {
@@ -98,7 +96,6 @@
       font-size: 16px;
       font-weight: 700;
       transition: background-color 0.2s ease;
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
 
     .login-form button:hover {

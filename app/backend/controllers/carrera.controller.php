@@ -1,11 +1,9 @@
-﻿<?php
+<?php
 require_once 'backend/models/carrera.model.php';
 require_once 'backend/models/resultado.model.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
 
 class CarreraController {
-
-
     private $model;
     private $smarty;
 
@@ -14,34 +12,28 @@ class CarreraController {
         $this->smarty = new Smarty\Smarty();
     }
 
-
-    //Desde el front
+    // ======== FRONT ========
     public function mostrarAnteriores() {
         $carreras = $this->model->listarAnteriores();
         $this->smarty->assign('carreras', $carreras);
         $this->smarty->display('frontend/templates/verresultadoscarreras.tpl');
     }
 
-     //Admin
+    // ======== ADMIN LISTADOS ========
     public function carrerasFuturas() {
         $carreras = $this->model->listarFuturas();
         $this->smarty->assign('carreras', $carreras);
         $this->smarty->display('backend/views/admin/carreras_futuras.tpl');
     }
-    
 
-    //Admin: Muestra las carreras terminadas y está la opción de cargar/editar/ver resultados
     public function carrerasTerminadas() {
-        $modelo = new Carrera();
-        $carreras = $modelo->anteriores();
-
+        $carreras = $this->model->anteriores();
         $this->smarty->assign('titulo', 'Es-Tan-Dil - Carreras anteriores');
         $this->smarty->assign('carreras', $carreras);
         $this->smarty->display('backend/views/admin/carreras_terminadas.tpl');
     }
 
-
-    // Muestra los resultados de una carrera especifica en el front
+    // ======== FRONT DETALLE ========
     public function mostrarResultadoCarrera($id) {
         if (!$id) {
             echo 'Carrera no especificada.';
@@ -49,39 +41,46 @@ class CarreraController {
         }
 
         $resultadoModel = new ResultadoModel();
-
         $carrera = $this->model->una($id);
         $resultados = $resultadoModel->traerPorCarrera($id);
 
         $this->smarty->assign('titulo', 'Es-Tan-Dil - Resultado carrera');
-        $this->smarty->assign('carrera', $carrera);
+        // La vista espera iterar, por eso enviamos un array
+        $this->smarty->assign('carrera', $carrera ? [$carrera] : []);
         $this->smarty->assign('resultados', $resultados);
         $this->smarty->display('frontend/templates/resultadoCarrera.tpl');
     }
 
-    // Muestra las carreras próximas con formulario de inscripción
     public function mostrarProximasCarreras() {
-        $modelo = new Carrera();
-        $carreras = $modelo->proximas();
-
+        $carreras = $this->model->proximas();
         $smarty = new Smarty\Smarty();
         $smarty->assign('titulo', 'Es-Tan-Dil - Proximas Carreras');
         $smarty->assign('carreras', $carreras);
         $smarty->display('frontend/templates/verproximascarreras.tpl');
     }
 
-    // Admin: Mostrar formulario
+    // ======== ADMIN FORMULARIOS ========
     public function mostrarFormularioCrear() {
         $this->smarty->assign('titulo', 'Crear nueva carrera');
+        $this->smarty->assign('carrera', null);
         $this->smarty->display('backend/views/admin/carrera_crear.tpl');
     }
 
+    public function mostrarFormularioEditar($id) {
+        $carrera = $this->model->una($id);
+        if (!$carrera) {
+            echo "Carrera no encontrada.";
+            return;
+        }
 
-    // Admin: Guardar datos del formulario
+        $this->smarty->assign('titulo', 'Editar carrera');
+        $this->smarty->assign('carrera', $carrera);
+        $this->smarty->display('backend/views/admin/carrera_crear.tpl');
+    }
+
+    // ======== ADMIN PERSISTENCIA ========
     public function guardarCarrera() {
-
-        // Validaciones básicas
-         if (
+        if (
             empty($_POST['nombre']) ||
             empty($_POST['fecha']) ||
             empty($_POST['circuito']) ||
@@ -90,14 +89,30 @@ class CarreraController {
             die("Faltan datos obligatorios");
         }
 
-        $this->model->insertar([
-            'nombre'   => $_POST['nombre'],
-            'fecha'    => $_POST['fecha'],
+        $payload = [
+            'nombre' => $_POST['nombre'],
+            'fecha' => $_POST['fecha'],
             'circuito' => $_POST['circuito'],
-            'precio'   => $_POST['precio']
-        ]);
+            'precio' => $_POST['precio']
+        ];
 
-        // Redirección al listado
+        if (!empty($_POST['id'])) {
+            $this->model->actualizar($_POST['id'], $payload);
+        } else {
+            $this->model->insertar($payload);
+        }
+
+        header("Location: index.php?action=carrerasFuturas");
+        exit;
+    }
+
+    public function eliminarCarrera($id) {
+        if (!$id) {
+            echo "Carrera no especificada.";
+            return;
+        }
+
+        $this->model->eliminar($id);
         header("Location: index.php?action=carrerasFuturas");
         exit;
     }

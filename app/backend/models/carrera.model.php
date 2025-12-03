@@ -52,8 +52,13 @@ class Carrera {
 
     // Devuelve una carrera por id
     public function una($id) {
-        $sql = "SELECT * FROM carreras WHERE id = $id";
-        return Conexion::query($sql);
+        $sql = "SELECT * FROM carreras WHERE id = :id";
+        $stmt = Conexion::prepare($sql);
+        if ($stmt) {
+            $stmt->execute([':id' => $id]);
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+        return null;
     }
 
     // Inserta una carrera
@@ -67,6 +72,36 @@ class Carrera {
                 ':fecha' => $datos['fecha'],
                 ':precio' => $datos['precio'],
             ]);
+        }
+    }
+
+    // Actualiza una carrera existente
+    public function actualizar($id, $datos) {
+        $sql = "UPDATE carreras
+                SET nombre = :nombre,
+                    circuito = :circuito,
+                    fecha = :fecha,
+                    precio = :precio
+                WHERE id = :id";
+
+        $stmt = Conexion::prepare($sql);
+        if ($stmt) {
+            $stmt->execute([
+                ':nombre' => $datos['nombre'],
+                ':circuito' => $datos['circuito'],
+                ':fecha' => $datos['fecha'],
+                ':precio' => $datos['precio'],
+                ':id' => $id,
+            ]);
+        }
+    }
+
+    // Elimina una carrera
+    public function eliminar($id) {
+        $sql = "DELETE FROM carreras WHERE id = :id";
+        $stmt = Conexion::prepare($sql);
+        if ($stmt) {
+            $stmt->execute([':id' => $id]);
         }
     }
 }

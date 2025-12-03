@@ -7,6 +7,9 @@
 
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar">
+      <div class="sidebar-logo">
+          <img src="frontend/images/logo.png" alt="Logo" />
+      </div>
       <h2 class="sidebar-title">Panel Admin</h2>
 
       <ul class="menu">
@@ -98,6 +101,18 @@ body {
     color: white;
     padding: 20px;
     box-sizing: border-box;
+}
+
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.sidebar-logo img {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
 }
 
 .sidebar-title {

@@ -67,6 +67,38 @@ class InscripcionModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Obtener inscripcion con datos de atleta y carrera
+    public function detalle($id) {
+        $sql = "SELECT i.*, 
+                       a.id AS atleta_id,
+                       a.nombre AS atleta_nombre,
+                       a.apellido AS atleta_apellido,
+                       a.dni AS atleta_dni,
+                       a.email AS atleta_email,
+                       a.telefono AS atleta_telefono,
+                       a.genero AS atleta_genero,
+                       a.fechadenacimiento AS atleta_fechadenacimiento,
+                       c.nombre AS carrera_nombre
+                FROM inscripciones i
+                JOIN atletas a ON i.atleta_id = a.id
+                JOIN carreras c ON i.carrera_id = c.id
+                WHERE i.id = :id";
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Verifica si ya existe una inscripción para el mismo atleta y carrera
+    public function existeParaAtletaYCarrera($atleta_id, $carrera_id) {
+        $sql = "SELECT id FROM inscripciones WHERE atleta_id = :atleta_id AND carrera_id = :carrera_id LIMIT 1";
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute([
+            ':atleta_id' => $atleta_id,
+            ':carrera_id' => $carrera_id
+        ]);
+        return (bool) $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Actualizar el estado (ej: pendiente → pagado)
     public function actualizarEstado($id, $estado) {
         $sql = "UPDATE inscripciones 
@@ -75,6 +107,18 @@ class InscripcionModel {
         $stmt = Conexion::prepare($sql);
         return $stmt->execute([
             ':estado' => $estado,
+            ':id' => $id
+        ]);
+    }
+
+    // Actualizar datos basicos de la inscripcion
+    public function actualizar($id, $datos) {
+        $sql = "UPDATE inscripciones
+                SET estado = :estado
+                WHERE id = :id";
+        $stmt = Conexion::prepare($sql);
+        return $stmt->execute([
+            ':estado' => $datos['estado'],
             ':id' => $id
         ]);
     }

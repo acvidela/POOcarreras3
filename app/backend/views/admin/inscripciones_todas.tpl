@@ -2,7 +2,7 @@
 
 {block name="contenido_admin"}
 
-<h2>Histórico de preinscripciones</h2>
+<h2>Historico de preinscripciones</h2>
 
 <table class="tabla-admin">
     <tr>
@@ -10,8 +10,9 @@
         <th>DNI Atleta</th>
         <th>Carrera</th>
         <th>Fecha de carrera</th>
-        <th>Estado de inscripción</th>
-        <th>Fecha de preinscripción</th>
+        <th>Estado de inscripcion</th>
+        <th>Fecha de preinscripcion</th>
+        <th>Acciones</th>
     </tr>
 
     {foreach $inscripciones as $i}
@@ -22,7 +23,10 @@
         <td>{$i.carrera_fecha}</td>
         <td>{$i.estado}</td>
         <td>{$i.fecha_inscripcion}</td>
-  
+        <td>
+            <a class="btn" href="index.php?action=editarInscripcion&id={$i.id}">Editar</a>
+            <a class="btn btn-danger" href="index.php?action=eliminarPreinscripcion&id={$i.id}" onclick="return confirm('Eliminar esta inscripcion?');">Eliminar</a>
+        </td>
     </tr>
     {/foreach}
 </table>

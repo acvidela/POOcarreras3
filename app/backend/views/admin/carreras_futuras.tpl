@@ -10,6 +10,7 @@
         <th>Circuito</th>
         <th>Precio</th>
         <th>Inscripciones</th>
+        <th>Acciones</th>
     </tr>
 
     {foreach $carreras as $c}
@@ -29,6 +30,10 @@
             <a href="index.php?action=verCantidadPendientes&id={$c.id}">
             Sin confirmar
             </a>
+        </td>
+        <td>
+            <a class="btn" href="index.php?action=editarCarrera&id={$c.id}">Editar</a>
+            <a class="btn btn-danger" href="index.php?action=eliminarCarrera&id={$c.id}" onclick="return confirm('Eliminar esta carrera?');">Eliminar</a>
         </td>
     </tr>
     {/foreach}

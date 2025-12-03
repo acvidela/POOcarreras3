@@ -50,7 +50,7 @@ class Atleta {
             ";
 
             $stmt = Conexion::prepare($sql);
-            $stmt->execute([
+            $params = [
                 ':nombre' => $data['nombre'],
                 ':apellido' => $data['apellido'],
                 ':fechadenacimiento' => $data['fechadenacimiento'],
@@ -58,36 +58,60 @@ class Atleta {
                 ':dni' => $data['dni'],
                 ':telefono' => $data['telefono'],
                 ':genero' => $data['genero']
-            ]);
+            ];
 
-            return $stmt->fetchColumn(); // devuelve el id para poder insertarlo como FK en preinscripción
+            try {
+                $stmt->execute($params);
+            } catch (PDOException $e) {
+                if (strpos($e->getMessage(), 'atletas_pkey') !== false) {
+                    $this->sincronizarSecuencia();
+                    $stmt->execute($params);
+                } else {
+                    throw $e;
+                }
+            }
+
+            return $stmt->fetchColumn(); // devuelve el id para poder insertarlo como FK en preinscripcion
 
         }
+    }
+
+    private function sincronizarSecuencia() {
+        $sql = "
+            SELECT setval(
+                pg_get_serial_sequence('atletas', 'id'),
+                COALESCE((SELECT MAX(id) FROM atletas), 0) + 1,
+                false
+            );
+        ";
+        Conexion::query($sql);
     }
     // Actualizar atleta
     public function actualizar($id, $data) {
 
-        $nombre = $data['nombre'];
-        $apellido = $data['apellido'];
-        $fecha = $data['fechadenacimiento'];
-        $email = $data['email'];
-        $dni = $data['dni'];
-        $telefono = $data['telefono'];
-        $genero = $data['genero'];
-
         $sql = "
             UPDATE atletas SET
-                nombre = '$nombre',
-                apellido = '$apellido',
-                fechadenacimiento = '$fecha',
-                email = '$email',
-                dni = '$dni',
-                telefono = '$telefono',
-                genero = '$genero'
-            WHERE id = $id
+                nombre = :nombre,
+                apellido = :apellido,
+                fechadenacimiento = :fechadenacimiento,
+                email = :email,
+                dni = :dni,
+                telefono = :telefono,
+                genero = :genero
+            WHERE id = :id
         ";
 
-        return Conexion::query($sql);
+        $stmt = Conexion::prepare($sql);
+        return $stmt->execute([
+            ':nombre' => $data['nombre'],
+            ':apellido' => $data['apellido'],
+            ':fechadenacimiento' => $data['fechadenacimiento'],
+            ':email' => $data['email'],
+            ':dni' => $data['dni'],
+            ':telefono' => $data['telefono'],
+            ':genero' => $data['genero'],
+            ':id' => $id,
+        ]);
     }
 
     // Eliminar atleta

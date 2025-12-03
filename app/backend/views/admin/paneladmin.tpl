@@ -63,8 +63,9 @@
                     <td>{$carrera->circuito}</td>
                     <td>{$carrera->fecha}</td>
                     <td>
-                        <button onclick="toggleCrearCarrera({$carrera->id})">Editar</button>
-                        <button onclick="window.location.href='resultadoCarrera?id={$carrera->id}'">Ver resultados</button>
+                        <a class="btn" href="index.php?action=editarCarrera&id={$carrera->id}">Editar</a>
+                        <a class="btn btn-danger" href="index.php?action=eliminarCarrera&id={$carrera->id}" onclick="return confirm('Eliminar esta carrera?');">Eliminar</a>
+                        <a class="btn" href="resultadoCarrera?id={$carrera->id}">Ver resultados</a>
                     </td>
                 </tr>
                 {/foreach}
