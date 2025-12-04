@@ -27,9 +27,10 @@
           <li><a href="inscripcionesPendientes">⏳ Pendientes de pago</a></li>
 
           <li class="menu-section">Cuenta</li>
+          <li>🧑‍💼 {$usuario}</li>
           <li><a href="logout">🚪 Cerrar sesión</a></li>
       </ul>
-      <h3>Administrador {$usuario}</h3>
+      
   </aside>
 
 

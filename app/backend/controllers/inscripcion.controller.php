@@ -3,6 +3,7 @@
 require_once 'backend/models/inscripcion.model.php';
 require_once 'backend/models/atleta.model.php';
 require_once 'backend/models/carrera.model.php';
+require_once 'backend/controllers/base.controller.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
 require_once __DIR__ . '/../../../vendor/autoload.php';
 use Endroid\QrCode\QrCode;
@@ -10,16 +11,15 @@ use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevel;
 
-class InscripcionController {
+class InscripcionController extends BaseController{
 
     private $model;
-    private $smarty;
-
+   
     public function __construct() {
+        parent::__construct();
         $this->model = new InscripcionModel();
-        $this->smarty = new Smarty\Smarty();
     }
-
+    
     // FORMULARIO DE PREINSCRIPCION (publico)
     public function mostrarFormulario($carrera_id) {
         if (!$carrera_id) {
@@ -30,10 +30,9 @@ class InscripcionController {
         $carreraModel = new Carrera();
         $carrera = $carreraModel->una($carrera_id);
 
-        $smarty = new Smarty\Smarty;
-        $smarty->assign('carrera', $carrera);
-        $smarty->assign('titulo', 'Preinscripcion');
-        $smarty->display('frontend/templates/preinscripcion.tpl');
+        $this->smarty->assign('carrera', $carrera);
+        $this->smarty->assign('titulo', 'Preinscripcion');
+        $this->smarty->display('frontend/templates/preinscripcion.tpl');
     }
 
     public function guardarPreinscripcion($post) {
@@ -125,10 +124,9 @@ class InscripcionController {
     public function listarPreinscripciones() {
         $preinscripciones = $this->model->todos();
 
-        $smarty = new Smarty\Smarty;
-        $smarty->assign('titulo', 'Preinscripciones');
-        $smarty->assign('preinscripciones', $preinscripciones);
-        $smarty->display('backend/views/admin/inscripciones_confirmadas.tpl');
+        $this->smarty->assign('titulo', 'Preinscripciones');
+        $this->smarty->assign('preinscripciones', $preinscripciones);
+        $this->smarty->display('backend/views/admin/inscripciones_confirmadas.tpl');
     }
 
     // ACTUALIZAR ESTADO (admin)

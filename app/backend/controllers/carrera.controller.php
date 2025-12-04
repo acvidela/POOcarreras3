@@ -1,15 +1,15 @@
 <?php
 require_once 'backend/models/carrera.model.php';
 require_once 'backend/models/resultado.model.php';
+require_once 'backend/controllers/base.controller.php';
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
 
-class CarreraController {
+class CarreraController extends BaseController{
     private $model;
-    private $smarty;
-
+    
     public function __construct() {
+        parent::__construct();
         $this->model = new Carrera();
-        $this->smarty = new Smarty\Smarty();
     }
 
     // ======== FRONT ========
@@ -53,10 +53,9 @@ class CarreraController {
 
     public function mostrarProximasCarreras() {
         $carreras = $this->model->proximas();
-        $smarty = new Smarty\Smarty();
-        $smarty->assign('titulo', 'Es-Tan-Dil - Proximas Carreras');
-        $smarty->assign('carreras', $carreras);
-        $smarty->display('frontend/templates/verproximascarreras.tpl');
+        $this->smarty->assign('titulo', 'Es-Tan-Dil - Proximas Carreras');
+        $this->smarty->assign('carreras', $carreras);
+        $this->smarty->display('frontend/templates/verproximascarreras.tpl');
     }
 
     // ======== ADMIN FORMULARIOS ========

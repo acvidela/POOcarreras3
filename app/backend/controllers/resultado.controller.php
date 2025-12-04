@@ -1,17 +1,17 @@
 <?php
 require_once 'frontend/lib/smarty/libs/Smarty.class.php';
+require_once 'backend/controllers/base.controller.php';
 
-class ResultadoController {
+class ResultadoController extends BaseController{
 
     private $model;
-    private $smarty;
 
     public function __construct() {
-        $this->model = new ResultadoModel();
-        $this->smarty = new Smarty\Smarty();
+        parent::__construct();
+        $this->model = ResultadoModel();
     }
   
-    
+   
     // Mostrar resultados de una carrera (vista admin)
     public function verResultadosAdmin($idCarrera) {
         $resultados = $this->model->traerPorCarrera($idCarrera);

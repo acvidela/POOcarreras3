@@ -5,22 +5,22 @@ require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\carrera.model.php'
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\inscripcion.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\backend\models\resultado.model.php';
 require_once 'C:\xampp\htdocs\POOcarreras3\app\frontend\lib\smarty\libs\Smarty.class.php';
+require_once 'backend/controllers/base.controller.php';
 
-class AdministradorController {
-    private $smarty;
+class AdministradorController extends BaseController{
     private $modelo;
 
     public function __construct() {
-        $this->smarty = new Smarty\Smarty();
-        $this->smarty->setTemplateDir('app/backend/views/admin/');
+        parent::__construct();
         $this->modelo = new AdministradorModel();
+        $this->smarty->setTemplateDir('app/backend/views/admin/');
     }
 
     public function mostrarInicio() {
         session_start();
         $logueado = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         $this->smarty->assign('logueado', $logueado);
-        $this->smarty->assign('usuario', $_SESSION['usuario'] ?? '');
+        //$this->smarty->assign('usuario', $_SESSION['usuario'] ?? '');
         $this->smarty->display('frontend/templates/index.tpl');
     }
 
