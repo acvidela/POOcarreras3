@@ -1,10 +1,10 @@
 ﻿<nav>
   <a href="home">Inicio</a>
   <a href="verresultadoscarreras">Resultados de Carreras</a>
-  <a href="verproximascarreras">Ver Proximas Carreras</a>
+  <a href="verproximascarreras">Ver Próximas Carreras</a>
   {if $logueado}
     <a href="admin">Panel</a>
-    <a href="logout">Cerrar sesion ({$usuario})</a>
+    <a href="logout">Cerrar sesión ({$usuario})</a>
   {else}
     <a href="login">Administrador</a>
   {/if}

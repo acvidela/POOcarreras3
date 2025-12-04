@@ -23,12 +23,13 @@
           <li class="menu-section">Incripciones</li>
           <li><a href="inscripcionesTodas">📋 Todas</a></li>
           <li><a href="inscripcionesConfirmadas">✅ Confirmadas</a></li>
-          <li><a href="inscripcionesPendientes">⏳ Pendientes de pago</a></li>
           <li><a href="inscripcionesPagadas">💵 Pagadas</a></li>
+          <li><a href="inscripcionesPendientes">⏳ Pendientes de pago</a></li>
 
           <li class="menu-section">Cuenta</li>
           <li><a href="logout">🚪 Cerrar sesión</a></li>
       </ul>
+      <h3>Administrador {$usuario}</h3>
   </aside>
 
 
@@ -36,7 +37,7 @@
 <main class="content">
 
     <header class="top-bar">
-        <h1>Bienvenido, {$usuario}</h1>
+        <h1>Es-Tan-Dil</h1>
     </header>
 
     {if $flash}

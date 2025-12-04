@@ -11,7 +11,6 @@
         <div class="col-xs-12">
           <div class="table-responsive">
             <table class="table table-bordered table-hover tabla-proximas">
-              <caption>Proximas Carreras</caption>
               <thead>
                 <tr>
                   <th>Nombre</th>

@@ -9,9 +9,10 @@
     <div class="main-content">
       <!-- Contenido principal de la pagina -->
       <h2>Bienvenido a Es-Tan-Dil</h2>
-      <p>Somos un grupo apasionado por el Atletismo y la naturaleza, dedicados a organizar carreras inolvidables en las hermosas sierras de Tandil. Nuestro objetivo es fomentar un estilo de vida saludable y conectar a las personas con la naturaleza de nuestra ciudad a traves del deporte.</p>
+      <p>Somos un grupo apasionado por el Atletismo y la naturaleza, dedicados a organizar carreras inolvidables en las hermosas sierras de Tandil.
+      Nuestro objetivo es fomentar un estilo de vida saludable y conectar a las personas con la naturaleza de nuestra ciudad a traves del deporte.</p>
 
-      <h2>Estos son los lugares por donde podes llegar a pasar</h2>
+      <h2>Estos son los lugares por donde podés llegar a pasar</h2>
       <section class="galeria">
         <img src="https://as1.ftcdn.net/v2/jpg/03/90/19/48/1000_F_390194899_CEDg71PI6Uxb0UaoLkZNrO8zNx8lX0hZ.jpg" alt="Paisaje 1" />
         <img src="https://photo620x400.mnstatic.com/def2c358c3ad724c60622558ba514f64/tandil.jpg" alt="Paisaje 2" />

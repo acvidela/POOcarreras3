@@ -1,5 +1,5 @@
 <div class="pre-card">
-  <h2>Formulario de Preinscripcion</h2>
+  <h2>Formulario de Preinscripción</h2>
 
   <input type="hidden" name="carrera_id" id="carrera_id" value="{$carrera_id|default:''}">
 
@@ -16,14 +16,14 @@
     <label for="fechadenacimiento">Fecha de nacimiento</label>
     <input type="date" id="fechadenacimiento" name="fechadenacimiento" required>
 
-    <label for="genero">Genero</label>
+    <label for="genero">Género</label>
     <select id="genero" name="genero" required>
         <option value="">Seleccionar...</option>
         <option value="F">Femenino</option>
         <option value="M">Masculino</option>
     </select>
 
-    <label for="telefono">Telefono</label>
+    <label for="telefono">Teléfono</label>
     <input type="text" id="telefono" name="telefono" required>
 
     <label for="email">Email</label>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="pre-actions">
-    <button type="submit" class="btn">Enviar preinscripcion</button>
+    <button type="submit" class="btn">Enviar preinscripción</button>
     <button type="button" class="btn" onclick="hidePopup()">Cancelar</button>
   </div>
 </div>

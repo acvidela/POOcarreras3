@@ -15,8 +15,8 @@
             <th>Nombre</th>
             <th>Tiempo</th>
             <th>Pos. General</th>
-            <th>Categoria</th>
-            <th>Pos. Categoria</th>
+            <th>Categoría</th>
+            <th>Pos. Categoría</th>
         </tr>
 
         {foreach $inscripciones as $i}

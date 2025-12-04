@@ -10,8 +10,8 @@
         <th>DNI Atleta</th>
         <th>Carrera</th>
         <th>Fecha de carrera</th>
-        <th>Estado de inscripcion</th>
-        <th>Fecha de preinscripcion</th>
+        <th>Estado de inscripción</th>
+        <th>Fecha de preinscripción</th>
         <th>Acciones</th>
     </tr>
 

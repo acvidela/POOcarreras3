@@ -8,20 +8,19 @@
 
     <div class="container">
       {foreach from=$carrera item=carreraMostrar}
-        <h2>Clasificacion de carrera {$carreraMostrar->nombre}</h2>
+        <h2>Clasificación de carrera {$carreraMostrar->nombre}</h2>
       {/foreach}
       <div class="row">
         <div class="col-xs-12">
           <div class="table-responsive" data-pattern="priority-columns">
             <table class="table table-bordered table-hover">
-              <caption>Resultados carrera</caption>
               <thead>
                 <tr>
                   <th scope="col">Nombre</th>
                   <th scope="col">dorsal</th>
-                  <th scope="col">Posicion general</th>
-                  <th scope="col">Posicion Categoria</th>
-                  <th scope="col">Categoria</th>
+                  <th scope="col">Posición general</th>
+                  <th scope="col">Posición Categoria</th>
+                  <th scope="col">Categoría</th>
                 </tr>
               </thead>
               <tbody>
