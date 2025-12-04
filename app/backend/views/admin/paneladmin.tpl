@@ -65,7 +65,7 @@
                     <td>
                         <a class="btn" href="index.php?action=editarCarrera&id={$carrera->id}">Editar</a>
                         <a class="btn btn-danger" href="index.php?action=eliminarCarrera&id={$carrera->id}" onclick="return confirm('Eliminar esta carrera?');">Eliminar</a>
-                        <a class="btn" href="resultadoCarrera?id={$carrera->id}">Ver resultados</a>
+                        <a class="btn" href="verResultadosAdmin?id={$carrera->id}">Ver resultados</a>
                     </td>
                 </tr>
                 {/foreach}

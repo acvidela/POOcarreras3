@@ -8,7 +8,7 @@ class ResultadoController extends BaseController{
 
     public function __construct() {
         parent::__construct();
-        $this->model = ResultadoModel();
+        $this->model = new ResultadoModel();
     }
   
    
