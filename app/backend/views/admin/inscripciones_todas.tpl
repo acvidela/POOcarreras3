@@ -23,7 +23,7 @@
         <td>{$i.carrera_fecha}</td>
         <td>{$i.estado}</td>
         <td>{$i.fecha_inscripcion}</td>
-        <td>
+        <td class="action-buttons">
             <a class="btn" href="index.php?action=editarInscripcion&id={$i.id}">Editar</a>
             <a class="btn btn-danger" href="index.php?action=eliminarPreinscripcion&id={$i.id}" onclick="return confirm('Eliminar esta inscripcion?');">Eliminar</a>
         </td>

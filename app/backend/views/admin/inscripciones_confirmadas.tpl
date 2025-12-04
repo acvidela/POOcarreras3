@@ -20,7 +20,7 @@
         <td>{$i.carrera_nombre}</td>
         <td>{$i.carrera_fecha}</td>
 
-        <td>
+        <td class="action-buttons">
             <a class="btn" href="index.php?action=verInscripto&id={$i.id}">
                 Ver detalle
             </a>

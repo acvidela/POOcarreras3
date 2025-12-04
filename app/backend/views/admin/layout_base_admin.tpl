@@ -274,6 +274,22 @@ body {
     margin-left: 6px;
 }
 
+.action-buttons {
+    display: inline-flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tabla-admin td.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-width: 160px;
+}
+
 </style>
 
 </body>

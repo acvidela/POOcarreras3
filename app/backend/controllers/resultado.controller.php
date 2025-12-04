@@ -53,12 +53,11 @@ class ResultadoController {
         $this->smarty->display('backend/views/admin/cargar_resultados_csv.tpl');
     }
 
-    //Verifica que el archivo .csv esté cargado correctamente
+    //Verifica que el archivo .csv esta cargado correctamente
     public function importarResultados($carrera_id) {
-    
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== 0) {
             die("Error al subir archivo");
-         }
+        }
 
         $file = $_FILES['archivo']['tmp_name'];
         $handle = fopen($file, "r");
@@ -75,9 +74,27 @@ class ResultadoController {
             if ($line === '') continue;
 
             // dorsal;tiempo;pos_general
-            list($dorsal, $tiempo, $posGeneral) = explode(";", $line);
+            $parts = explode(";", $line);
+            if (count($parts) < 3) {
+                $errores[] = "Linea incompleta: $line";
+                continue;
+            }
 
-            // buscar inscripción
+            $dorsal = trim($parts[0]);
+            $tiempo = trim($parts[1]);
+            $posGeneral = trim($parts[2]);
+
+            if (!ctype_digit($dorsal)) {
+                $errores[] = "Dorsal invalido: $dorsal";
+                continue;
+            }
+
+            if (!ctype_digit($posGeneral)) {
+                $errores[] = "Posicion general invalida: $posGeneral (dorsal $dorsal)";
+                continue;
+            }
+
+            // buscar inscripcion
             $ins = $this->model->buscarInscripcionPorDorsal($carrera_id, $dorsal);
 
             if (!$ins) {
@@ -88,14 +105,15 @@ class ResultadoController {
             $categoria = $this->model->buscarCategoriaPorInscripcion($ins['id']);
 
             // guardar resultado
-            $this->model->guardarResultado($ins['id'], $tiempo, $posGeneral, $categoria);
+            $this->model->guardarResultado($ins['id'], $tiempo, (int)$posGeneral, $categoria);
 
             $resultadosCargados++;
         }
 
         fclose($handle);
 
-        header("Location: index.php?action=verResultadosAdmin&id={$idCarrera}");
+        // TODO: podríamos mostrar errores acumulados en la vista; por ahora solo redirigimos
+        header("Location: index.php?action=verResultadosAdmin&id={$carrera_id}");
     }
 
 }

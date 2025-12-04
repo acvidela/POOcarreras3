@@ -18,7 +18,7 @@
         <td>{$i.carrera_nombre}</td>
         <td>{$i.fecha}</td>
 
-        <td>
+        <td class="action-buttons">
             <a class="btn" href="index.php?action=confirmarInscripcion&id={$i.id}">
                 Confirmar inscripcion
             </a>

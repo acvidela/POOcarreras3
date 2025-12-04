@@ -21,15 +21,9 @@
         <td>$ {$c.precio}</td>
         <td>
             <!-- Ver cantidad inscriptos -->
-            <a href="index.php?action=verCantidadInscriptos&id={$c.id}">
-            Cantidad confirmados
-            </a>
-            &nbsp;|&nbsp;
-
+            <a class="btn" href="index.php?action=verCantidadInscriptos&id={$c.id}">Cantidad confirmados</a>
            <!-- Ver cantidad preinscriptos -->
-            <a href="index.php?action=verCantidadPendientes&id={$c.id}">
-            Sin confirmar
-            </a>
+            <a class="btn" href="index.php?action=verCantidadPendientes&id={$c.id}">Sin confirmar</a>
         </td>
         <td>
             <a class="btn" href="index.php?action=editarCarrera&id={$c.id}">Editar</a>

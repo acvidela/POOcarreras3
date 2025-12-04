@@ -21,7 +21,7 @@
         <td>{$i.carrera_fecha}</td>
         <td>{$i.fecha_inscripcion}</td>
 
-        <td>
+        <td class="action-buttons">
             <a class="btn" href="index.php?action=cuponPago&id={$i.id}">Ver cupon</a>
             <a class="btn" href="index.php?action=actualizarEstadoPreinscripcion&id={$i.id}&estado=pagado">Marcar como pagado</a>
         </td>
