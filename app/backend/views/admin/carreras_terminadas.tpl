@@ -21,22 +21,9 @@
         <td>$ {$c->precio}</td>
         <td>
             <!-- Ver resultados -->
-            <a href="index.php?action=verResultadosAdmin&id={$c->id}">
-            Ver resultados
-            </a>
-            &nbsp;|&nbsp;
-
-            <!-- Cargar resultados -->
-            <a href="index.php?action=cargarResultadosManual&id={$c->id}">
-            Editar resultados
-            </a>
-
-            &nbsp;|&nbsp;
-
-            <!-- Importar resultados -->
-            <a href="index.php?action=cargarResultadosCsv&id={$c->id}">
-            Importar resultados
-            </a>
+            <a class="btn" href="index.php?action=verResultadosAdmin&id={$c->id}">Ver resultados</a>
+            <a class="btn" href="index.php?action=cargarResultadosManual&id={$c->id}">Editar resultados</a>
+            <a class="btn" href="index.php?action=cargarResultadosCsv&id={$c->id}">Importar resultados</a>
         </td>
     </tr>
     {/foreach}

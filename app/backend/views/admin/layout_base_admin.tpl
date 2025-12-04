@@ -87,7 +87,7 @@ function toggleCrearCarrera(id = null) {
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: initial;
 }
 
 .admin-layout {
@@ -140,6 +140,7 @@ body {
     color: white;
     text-decoration: none;
     font-size: 16px;
+    font-family: inherit;
 }
 
 .menu a:hover {
@@ -151,6 +152,7 @@ body {
     flex: 1;
     padding: 30px;
     background: #f5f5f5;
+    font-family: inherit;
 }
 
 .top-bar h1 {
@@ -203,6 +205,7 @@ body {
 .tabla-admin td {
     padding: 10px;
     border: 1px solid #ccc;
+    font-family: inherit;
 }
 
 .tabla-admin th {
@@ -228,6 +231,47 @@ body {
     margin-top: 10px;
     display: flex;
     gap: 10px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(180deg, #2f63d4 0%, #1f4ba3 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #1f4ba3;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.08s ease, box-shadow 0.18s ease, background 0.2s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(180deg, #3f75e3 0%, #2454b0 100%);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-danger {
+    background: linear-gradient(180deg, #d93939 0%, #b02121 100%);
+    border-color: #a51919;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(180deg, #e14c4c 0%, #c12b2b 100%);
+}
+
+.btn + .btn {
+    margin-left: 6px;
 }
 
 </style>

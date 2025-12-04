@@ -9,7 +9,7 @@
         <th>DNI</th>
         <th>Carrera</th>
         <th>Fecha carrera</th>
-        <th>Fecha preinscipción</th>
+        <th>Fecha preinscripcion</th>
         <th>Acciones</th>
     </tr>
 
@@ -22,16 +22,8 @@
         <td>{$i.fecha_inscripcion}</td>
 
         <td>
-            <!-- Ver cupón -->
-            <a href="index.php?action=cuponPago&id={$i.id}">
-            Ver cupón
-            </a>
-            &nbsp;|&nbsp;
-
-            <!-- Marcar como pagado -->
-            <a href="index.php?action=actualizarEstadoPreinscripcion&id={$i.id}&estado=pagado">
-            Marcar como pagado
-            </a>
+            <a class="btn" href="index.php?action=cuponPago&id={$i.id}">Ver cupon</a>
+            <a class="btn" href="index.php?action=actualizarEstadoPreinscripcion&id={$i.id}&estado=pagado">Marcar como pagado</a>
         </td>
     </tr>
     {/foreach}

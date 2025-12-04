@@ -91,7 +91,6 @@
     }
 
     h2 {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       width: 100%;
       text-align: center;
       margin-bottom: 5%;
@@ -99,7 +98,6 @@
     }
 
     p {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       font-size: 18px;
       font-weight: 400;
       font-style: normal;

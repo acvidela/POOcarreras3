@@ -2,7 +2,7 @@
 
 {block name="contenido_admin"}
 
-<h2>Inscripciones Pagadas (Próximas Carreras)</h2>
+<h2>Inscripciones Pagadas (Proximas Carreras)</h2>
 
 <table class="tabla-admin">
     <tr>
@@ -19,8 +19,8 @@
         <td>{$i.fecha}</td>
 
         <td>
-            <a href="index.php?action=confirmarInscripcion&id={$i.id}">
-                Confirmar inscripción
+            <a class="btn" href="index.php?action=confirmarInscripcion&id={$i.id}">
+                Confirmar inscripcion
             </a>
         </td>
     </tr>

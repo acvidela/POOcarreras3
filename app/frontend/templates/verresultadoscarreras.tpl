@@ -66,7 +66,6 @@
 
     .tabla-resultados th,
     .tabla-resultados td {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       font-weight: 600;
     }

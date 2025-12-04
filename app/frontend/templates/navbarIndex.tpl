@@ -26,15 +26,7 @@ button {
   transition: background-color 0.3s;
 }
 
-@font-face {
-  font-family: 'Rubikmaps';
-  src: url('../styles/fonts/Rubikmaps-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 h2 {
-  font-family: 'Rubikmaps', sans-serif;
   width: 100%;
   text-align: center;
   margin-bottom: 5%;

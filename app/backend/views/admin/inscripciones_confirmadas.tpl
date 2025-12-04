@@ -21,7 +21,7 @@
         <td>{$i.carrera_fecha}</td>
 
         <td>
-            <a href="index.php?action=verInscripto&id={$i.id}">
+            <a class="btn" href="index.php?action=verInscripto&id={$i.id}">
                 Ver detalle
             </a>
         </td>

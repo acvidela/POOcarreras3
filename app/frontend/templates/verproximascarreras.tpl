@@ -164,21 +164,24 @@
       });
 
       const raw = await response.text();
-      let data = {};
+      let data = null;
 
       try {
-        data = JSON.parse(raw);
+        data = raw ? JSON.parse(raw) : null;
       } catch (parseError) {
-        throw new Error(raw || 'Respuesta inesperada del servidor');
+        // si viene HTML o texto plano pero la respuesta es 200, lo tomamos como exito
+        if (!response.ok) throw parseError;
       }
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || 'No se pudo completar la preinscripcion');
+      const success = response.ok && (data === null || data.success !== false);
+      if (!success) {
+        throw new Error(data?.message || raw || 'No se pudo completar la preinscripcion');
       }
 
       form.reset();
       hidePopup();
-      showSuccess(data.preinscripcion_id, data.estado);
+      const preId = data?.preinscripcion_id || data?.id || null;
+      showSuccess(preId, data?.estado || 'pendiente');
     } catch (error) {
       showError(error.message || error);
     }
@@ -206,7 +209,6 @@
 
     .tabla-proximas th,
     .tabla-proximas td {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       font-weight: 600;
     }

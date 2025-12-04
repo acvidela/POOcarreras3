@@ -45,6 +45,18 @@ class InscripcionController {
         $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
         try {
+            // 0) Validar DNI unico por carrera
+            if (!empty($post['dni']) && !empty($post['carrera_id']) && $this->model->existeDniParaCarrera($post['dni'], $post['carrera_id'])) {
+                $mensaje = 'Ya existe una inscripcion en esta carrera con ese DNI.';
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode(['success' => false, 'message' => $mensaje]);
+                    return;
+                }
+                echo $mensaje;
+                return;
+            }
+
             // 1) Guardar atleta
             $atletaModel = new Atleta();
             $atleta_id = $atletaModel->insertarYDevolverID([

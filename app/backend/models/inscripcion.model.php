@@ -99,6 +99,21 @@ class InscripcionModel {
         return (bool) $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Verifica si ya existe una inscripcion en la misma carrera con un DNI dado
+    public function existeDniParaCarrera($dni, $carrera_id) {
+        $sql = "SELECT i.id
+                FROM inscripciones i
+                JOIN atletas a ON a.id = i.atleta_id
+                WHERE a.dni = :dni AND i.carrera_id = :carrera_id
+                LIMIT 1";
+        $stmt = Conexion::prepare($sql);
+        $stmt->execute([
+            ':dni' => $dni,
+            ':carrera_id' => $carrera_id
+        ]);
+        return (bool) $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Actualizar el estado (ej: pendiente → pagado)
     public function actualizarEstado($id, $estado) {
         $sql = "UPDATE inscripciones 
